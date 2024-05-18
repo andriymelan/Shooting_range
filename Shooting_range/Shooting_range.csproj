@@ -56,32 +56,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="RellayCommand\RelayCommand.cs" />
-    <Compile Include="Services\IWindowService.cs" />
+    <Compile Include="Models\StartMenuModel.cs" />
+    <Compile Include="Services\RellayCommand.cs" />
     <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\StartMenuViewModel.cs" />
-    <Compile Include="Views\MenuSettings.xaml.cs">
-      <DependentUpon>MenuSettings.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\StartMenu.xaml.cs">
       <DependentUpon>StartMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SureExit.xaml.cs">
-      <DependentUpon>SureExit.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\MenuSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\StartMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SureExit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,8 +98,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

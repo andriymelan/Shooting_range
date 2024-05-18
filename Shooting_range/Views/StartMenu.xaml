@@ -4,25 +4,59 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Shooting_range.ViewModels"
+             xmlns:local1="clr-namespace:Shooting_range.Models"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" WindowState="Maximized" WindowStyle="None">
+             d:DesignHeight="800" d:DesignWidth="800" WindowState="Maximized" WindowStyle="None">
     <Grid Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition/>
-            <RowDefinition Height="100"/>
-        </Grid.RowDefinitions>
-        <Button Grid.Column="1" Grid.Row="1" FontSize="36" Padding="0 0 95 0" x:Name="Play" Content="Play"/>
-        <Button Grid.Column="1" Grid.Row="3" FontSize="36" Padding="0 0 30 0" x:Name="SettingButton" Content="Settings" Command="{Binding OpenMenuSettingsCommand}"/>
-        <Button Grid.Column="1" Grid.Row="5" Margin="0 0 0 20" FontSize="36" Padding="0 0 30 0" x:Name="ExitButton" Content="Exit" Command="{Binding OpenSureExitCommand}"/>
+        <Grid x:Name="InitialGrid" Visibility="{Binding StartMenuVisibility.InitialVisibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="1" Grid.Row="1" FontSize="36" Padding="0 0 95 0" x:Name="Play" Content="Play" Command="{Binding OpenPlayCommand}"/>
+            <Button Grid.Column="1" Grid.Row="3" FontSize="36" Padding="0 0 30 0" x:Name="SettingButton" Content="Settings" Command="{Binding OpenSettingsCommand}"/>
+            <Button Grid.Column="1" Grid.Row="5" Margin="0 0 0 20" FontSize="36" Padding="0 0 30 0" x:Name="ExitButton" Content="Exit" Command="{Binding OpenSureExitCommand}"/>
+        </Grid>
+        <Grid x:Name="PlayGrid" Visibility="{Binding StartMenuVisibility.PlayVisibility}">
+            <Button Width="200" Height="200" Margin="0 0 600 0"/>
+            <Button Width="200" Height="200" Margin="0 0 0 0"/>
+            <Button Width="200" Height="200" Margin="600 0 0 0"/>
+        </Grid>
+        <Grid x:Name="SettingsGrid" Visibility="{Binding StartMenuVisibility.SettingsVisibility}">
+            <!--"{Binding StartMenuVisibility.SettingsVisibility}"-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="CloseButton" Content="Close" Grid.Row="4" Grid.Column="3" Command="{Binding BackToMenuCommand}"/>
+        </Grid>
+        <Grid x:Name="SureExitGrid" Visibility="{Binding StartMenuVisibility.SureExitVisibility}">
+            <!--{Binding StartMenuVisibility.SureExitVisibility}-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="50 100" Content="Yes" x:Name="AcceptExit" Command="{Binding CloseAppCommand}"/>
+            <Button Grid.Column="1" Margin="50 100" Content="No" x:Name="CancelExit" Command="{Binding BackToMenuCommand}"/>
+        </Grid>
     </Grid>
 </Window>

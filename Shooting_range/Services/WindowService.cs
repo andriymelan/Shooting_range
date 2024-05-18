@@ -9,19 +9,8 @@ using Shooting_range.Views;
 
 namespace Shooting_range.Services
 {
-    public class WindowService : IWindowService
+    public class WindowService
     {
-        public void OpenSettingsWindow()
-        {
-            var window = new MenuSettings();
-            window.ShowDialog();
-        }
-
-        public void OpenSureExitWindow()
-        {
-            var window = new SureExit();
-            window.ShowDialog();
-        }
         public void CloseWindow()
         {
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
@@ -31,6 +20,14 @@ namespace Shooting_range.Services
                 window.Close();
             }
         }
-               
+        public void CloseApp()
+        {
+            Application.Current.Shutdown();
+        }
+
+        public void ShowWindow(Window window)
+        {
+            window.ShowDialog();
+        }
     }
 }

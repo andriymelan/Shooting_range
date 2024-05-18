@@ -24,8 +24,7 @@ namespace Shooting_range.Views
         public StartMenu()
         {
             InitializeComponent();
-            var windowService = new WindowService();
-            DataContext = new StartMenuViewModel(windowService);
+            DataContext = new StartMenuViewModel();
         }
     }
 }

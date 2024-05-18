@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Open_Window_Trial_1.Utilities
+namespace Shooting_range.Models
 {
     public class RelayCommand : ICommand
     {
