@@ -1,0 +1,137 @@
+﻿<Window x:Class="Shooting_range.Views.StartMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Shooting_range.ViewModels"
+             xmlns:local1="clr-namespace:Shooting_range.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800" WindowState="Maximized" WindowStyle="None" Cursor="{Binding cursor}">
+    <Window.Background>
+        <ImageBrush ImageSource="../Images/MainMenuBackGround.jpg"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF029DBB" />
+            <Setter Property="Foreground" Value="#FFC6FBFF" />
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="30" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF00778E" />
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#FF1F1616" Direction="-50" Opacity="1" BlurRadius="5" ShadowDepth="4"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="LightGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid x:Name="InitialGrid" Visibility="Collapsed">
+            <!--Visibility="{Binding StartMenuVisibility.InitialVisibility}"-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="1" Grid.Row="1" FontSize="36" Padding="0 0 95 0" x:Name="Play" Content="Play" Command="{Binding OpenPlayCommand}"/>
+            <Button Grid.Column="1" Grid.Row="3" FontSize="36" Padding="0 0 30 0" x:Name="SettingButton" Content="Settings" Command="{Binding OpenSettingsCommand}"/>
+            <Button Grid.Column="1" Grid.Row="7" Margin="0 0 0 20" FontSize="36" Padding="0 0 30 0" x:Name="ExitButton" Content="Exit" Command="{Binding OpenSureExitCommand}"/>
+        </Grid>
+        <Grid x:Name="PlayGrid" Visibility="Collapsed">
+            <!--Visibility="{Binding StartMenuVisibility.PlayVisibility}"-->
+            <Button Width="200" Height="200" Margin="0 0 600 0"/>
+            <Button Width="200" Height="200" Margin="0 0 0 0"/>
+            <Button Width="200" Height="200" Margin="600 0 0 0"/>
+        </Grid>
+        <Grid x:Name="SettingsGrid" Visibility="Visible">
+            <!--"{Binding StartMenuVisibility.SettingsVisibility}"-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="120"/>
+            </Grid.RowDefinitions>
+            <Button Content="Sound" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
+            <Button Content="Customize" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
+            <Button Content="Language" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
+            <Button Content="Close" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
+            <Button Content="Default" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20"/>
+            <Button Content="Apply" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20"/>
+            <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="Targets" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+                <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="Targets" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="SureExitGrid" Visibility="Collapsed">
+            <!--{Binding StartMenuVisibility.SureExitVisibility}-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" HorizontalAlignment="Right" Margin="50" Content="Yes" x:Name="AcceptExit" Command="{Binding CloseAppCommand}" Height="100" Width="200"/>
+            <Button Grid.Column="1" HorizontalAlignment="Left" Margin="50" Content="No" x:Name="CancelExit" Command="{Binding BackToMenuCommand}" Height="100" Width="200"/>
+        </Grid>
+    </Grid>
+</Window>

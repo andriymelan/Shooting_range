@@ -11,6 +11,7 @@ using Shooting_range.Models;
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.IO;
 
 namespace Shooting_range.ViewModels
 {
@@ -23,12 +24,21 @@ namespace Shooting_range.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        public ICommand OpenSettingsCommand {  get; set; }
-        public ICommand CloseAppCommand { get; set; }
-        public ICommand OpenSureExitCommand {  get; set; }
-        public ICommand BackToMenuCommand {  get; set; }
-        public ICommand OpenPlayCommand { get; set; }
-
+        public RelayCommand OpenSettingsCommand {  get; set; }
+        public RelayCommand CloseAppCommand { get; set; }
+        public RelayCommand OpenSureExitCommand {  get; set; }
+        public RelayCommand BackToMenuCommand {  get; set; }
+        public RelayCommand OpenPlayCommand { get; set; }
+        private string Cursor { get; set; }
+        public string cursor
+        {
+            get { return Cursor; }
+            set
+            {
+                Cursor = value;
+                OnPropertyChanged(nameof(Cursor));
+            }
+        }
         public StartMenuViewModel()
         {
             StartMenuVisibility = new StartMenuModel();
@@ -36,7 +46,9 @@ namespace Shooting_range.ViewModels
             OpenSureExitCommand = new RelayCommand(OpenSureExit);
             BackToMenuCommand = new RelayCommand(BackToMenu);
             CloseAppCommand = new RelayCommand(CloseApp);
-            OpenPlayCommand = new RelayCommand(OpenPlay);
+            OpenPlayCommand = new RelayCommand(OpenPlay); 
+            string cursorDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Cursor";
+            cursor = ($@"{cursorDirectory}\\MainCursor.cur");
         }
 
 
@@ -55,7 +67,7 @@ namespace Shooting_range.ViewModels
         private void BackToMenu(object sender)
         {
             HideAll();
-            StartMenuVisibility.InitialVisibility = Visibility.Visible;
+            OpenSmth("InitialVisibility");
         }
 
 
@@ -63,6 +75,7 @@ namespace Shooting_range.ViewModels
         {
             HideAll();
             StartMenuVisibility.PlayVisibility = Visibility.Visible;
+            OpenSmth("PlayVisibility");
         }
 
 
@@ -70,19 +83,41 @@ namespace Shooting_range.ViewModels
         {
             HideAll();
             StartMenuVisibility.SettingsVisibility = Visibility.Visible;
+            OpenSmth("SettingsVisibility");
         }
 
 
         private void OpenSureExit(object sender)
         {
             HideAll();
-            StartMenuVisibility.SureExitVisibility = Visibility.Visible;
+            OpenSmth("SureExitVisibility");
         }
 
 
         private void CloseApp(object sender)
         {
             Application.Current.Shutdown();
+        }
+
+        private void OpenSmth(string visibleParametr)
+        {
+            switch (visibleParametr)
+            {
+                case "InitialVisibility":
+                    StartMenuVisibility.InitialVisibility = Visibility.Visible;
+                    break;
+                case "PlayVisibility":
+                    StartMenuVisibility.PlayVisibility = Visibility.Visible;
+                    break;
+                case "SettingsVisibility":
+                    StartMenuVisibility.SettingsVisibility = Visibility.Visible;
+                    break;
+                case "SureExitVisibility":
+                    StartMenuVisibility.SureExitVisibility = Visibility.Visible;
+                    break;
+                default:
+                    break;
+            }
         }
 
 

@@ -60,14 +60,14 @@
     <Compile Include="Services\RellayCommand.cs" />
     <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\StartMenuViewModel.cs" />
-    <Compile Include="Views\StartMenu.xaml.cs">
-      <DependentUpon>StartMenu.xaml</DependentUpon>
+    <Compile Include="Views\StartMenuView.xaml.cs">
+      <DependentUpon>StartMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\StartMenu.xaml">
+    <Page Include="Views\StartMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +98,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MainMenuBackGround.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\MainMenuBackGround.jpg" />
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Cursor\MainCursor.cur" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
