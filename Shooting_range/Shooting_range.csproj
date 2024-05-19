@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\SettingsProperty.cs" />
     <Compile Include="Models\StartMenuModel.cs" />
     <Compile Include="Services\RellayCommand.cs" />
     <Compile Include="Services\WindowService.cs" />
@@ -113,7 +114,16 @@
   <ItemGroup>
     <Resource Include="Images\MainMenuBackGround.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Targets\Aqua-Target.png" />
+    <Resource Include="Targets\Black-Target.png" />
+    <Resource Include="Targets\Blue-Target.png" />
+    <Resource Include="Targets\Green-Target.png" />
+    <Resource Include="Targets\Orange-Target.png" />
+    <Resource Include="Targets\Purple-Target.png" />
+    <Resource Include="Targets\Red-Target.png" />
+    <Resource Include="Targets\Yellow-Target.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Cursor\MainCursor.cur" />
   </ItemGroup>

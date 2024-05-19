@@ -94,36 +94,132 @@
                 <RowDefinition/>
                 <RowDefinition Height="120"/>
             </Grid.RowDefinitions>
-            <Button Content="{DynamicResource MainMenuSettingsSoundBtn}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20" FontSize="36"/>
-            <Button Content="{DynamicResource MainMenuSettingsCustomizeBtn}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20" FontSize="36"/>
-            <Button Content="{DynamicResource MainMenuSettingsLanguageBtn}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20" FontSize="36"/>
+            <Button Content="{DynamicResource MainMenuSettingsSoundBtn}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding OpenSoundSettingsCommand}" Margin="20" FontSize="36"/>
+            <Button Content="{DynamicResource MainMenuSettingsCustomizeBtn}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Command="{Binding OpenCustomizeSettingsCommand}" Margin="20" FontSize="36"/>
+            <Button Content="{DynamicResource MainMenuSettingsLanguageBtn}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding OpenLanguageSettingsCommand}" Margin="20" FontSize="36"/>
             <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
             <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20"/>
             <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20"/>
             <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="150"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="{DynamicResource MainMenuSettingsTargetLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
-                <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="{DynamicResource MainMenuSettingsCrosshairLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+                <!--{Binding StartMenuVisibility.SoundSettings}-->
+                
             </Grid>
-            <Grid x:Name="LanguageSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10">
+            <Grid x:Name="CustomizeSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="{Binding StartMenuVisibility.CustomizeSettings}">
+                <Grid.RowDefinitions>
+    <RowDefinition Height="150"/>
+    <RowDefinition/>
+    <RowDefinition Height="150"/>
+    <RowDefinition/>
+    <RowDefinition/>
+</Grid.RowDefinitions>
+<Grid.ColumnDefinitions>
+    <ColumnDefinition/>
+    <ColumnDefinition Width="300"/>
+    <ColumnDefinition/>
+    <ColumnDefinition/>
+    <ColumnDefinition/>
+    <ColumnDefinition/>
+    <ColumnDefinition/>
+    <ColumnDefinition/>
+    <ColumnDefinition/>
+    <ColumnDefinition/>
+</Grid.ColumnDefinitions>
+<Label Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Content="{DynamicResource MainMenuSettingsTargetLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+<Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Content="{DynamicResource MainMenuSettingsCrosshairLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+                <Border Grid.Column="2" Grid.Row="1" BorderBrush="Green">
+                    <Ellipse Width="150" Height="150">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Targets/Aqua-Target.png"/>
+                        </Ellipse.Fill>
+                        <Ellipse.InputBindings>
+                            <MouseBinding
+            Command="{Binding oop}"
+            Gesture="leftclick"
+            />
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                </Border>
+                <Border Grid.Column="3" Grid.Row="1">
+                    <Ellipse Width="100" Height="100">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Targets/Blue-Target.png"/>
+                        </Ellipse.Fill>
+                        <Ellipse.InputBindings>
+                            <MouseBinding
+Command="{Binding oop}"
+Gesture="leftclick"
+/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                </Border>
+                <Border Grid.Column="4" Grid.Row="1">
+                    <Ellipse Width="100" Height="100">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Targets/Yellow-Target.png"/>
+                        </Ellipse.Fill>
+                        <Ellipse.InputBindings>
+                            <MouseBinding
+Command="{Binding oop}"
+Gesture="leftclick"
+/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                </Border>
+                <Border Grid.Column="5" Grid.Row="1">
+                    <Ellipse Width="100" Height="100">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Targets/Orange-Target.png"/>
+                        </Ellipse.Fill>
+                        <Ellipse.InputBindings>
+                            <MouseBinding
+Command="{Binding oop}"
+Gesture="leftclick"
+/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                </Border>
+                <Border Grid.Column="6" Grid.Row="1">
+                    <Ellipse Width="100" Height="100">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Targets/Red-Target.png"/>
+                        </Ellipse.Fill>
+                        <Ellipse.InputBindings>
+                            <MouseBinding
+Command="{Binding oop}"
+Gesture="leftclick"
+/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                </Border>
+                <Border Grid.Column="7" Grid.Row="1">
+                    <Ellipse Width="100" Height="100">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Targets/Green-Target.png"/>
+                        </Ellipse.Fill>
+                        <Ellipse.InputBindings>
+                            <MouseBinding
+Command="{Binding oop}"
+Gesture="leftclick"
+/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                </Border>
+                <Border Grid.Column="8" Grid.Row="1">
+                    <Ellipse Width="100" Height="100">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Targets/Black-Target.png"/>
+                        </Ellipse.Fill>
+                        <Ellipse.InputBindings>
+                            <MouseBinding
+Command="{Binding oop}"
+Gesture="leftclick"
+/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                </Border>
+            </Grid>
+            <Grid x:Name="LanguageSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
+                <!--{Binding StartMenuVisibility.LanguageSettings}-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

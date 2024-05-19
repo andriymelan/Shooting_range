@@ -25,7 +25,24 @@ namespace Shooting_range.ViewModels
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-
+        public StartMenuViewModel()
+        {
+            StartMenuVisibility = new StartMenuModel();
+            OpenSettingsCommand = new RelayCommand(OpenSettings);
+            OpenSureExitCommand = new RelayCommand(OpenSureExit);
+            BackToMenuCommand = new RelayCommand(BackToMenu);
+            CloseAppCommand = new RelayCommand(CloseApp);
+            OpenPlayCommand = new RelayCommand(OpenPlay);
+            string cursorDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Cursor";
+            cursor = ($@"{cursorDirectory}\\MainCursor.cur");
+            ChangeEnglishLanguageCommand = new RelayCommand(ChangeEnglishLanguage);
+            ChangeUkrainianLanguageCommand = new RelayCommand(ChangeUkrainianLanguage);
+            ChangeSpanishLanguageCommand = new RelayCommand(ChangeSpanishLanguage);
+            OpenSoundSettingsCommand = new RelayCommand(OpenSoundSettings);
+            OpenCustomizeSettingsCommand = new RelayCommand(OpenCustomizeSettings);
+            OpenLanguageSettingsCommand = new RelayCommand(OpenLanguageSettings);
+        }
+        #region CreateProperty
         public RelayCommand OpenSettingsCommand {  get; set; }
         public RelayCommand CloseAppCommand { get; set; }
         public RelayCommand OpenSureExitCommand {  get; set; }
@@ -34,6 +51,9 @@ namespace Shooting_range.ViewModels
         public RelayCommand ChangeEnglishLanguageCommand { get; set; }
         public RelayCommand ChangeUkrainianLanguageCommand { get; set; }
         public RelayCommand ChangeSpanishLanguageCommand { get; set; }
+        public RelayCommand OpenSoundSettingsCommand {  get; set; }
+        public RelayCommand OpenCustomizeSettingsCommand {  get; set; }
+        public RelayCommand OpenLanguageSettingsCommand {  get; set; }
         private string Cursor { get; set; }
         public string cursor
         {
@@ -54,25 +74,8 @@ namespace Shooting_range.ViewModels
                 OnPropertyChanged(nameof(startMenuVisibility));
             }
         }
-        public StartMenuViewModel()
-        {
-            StartMenuVisibility = new StartMenuModel();
-            OpenSettingsCommand = new RelayCommand(OpenSettings);
-            OpenSureExitCommand = new RelayCommand(OpenSureExit);
-            BackToMenuCommand = new RelayCommand(BackToMenu);
-            CloseAppCommand = new RelayCommand(CloseApp);
-            OpenPlayCommand = new RelayCommand(OpenPlay); 
-            string cursorDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Cursor";
-            cursor = ($@"{cursorDirectory}\\MainCursor.cur");
-            ChangeEnglishLanguageCommand = new RelayCommand(ChangeEnglishLanguage);
-            ChangeUkrainianLanguageCommand = new RelayCommand(ChangeUkrainianLanguage);
-            ChangeSpanishLanguageCommand = new RelayCommand(ChangeSpanishLanguage);
-        }
-
-
-
-
-
+        #endregion
+        #region StartMenuButtons
         private void BackToMenu(object sender)
         {
             OpenSmth("InitialVisibility");
@@ -123,6 +126,15 @@ namespace Shooting_range.ViewModels
                     break;
             }
         }
+        private void HideAll()
+        {
+            StartMenuVisibility.InitialVisibility = Visibility.Collapsed;
+            StartMenuVisibility.SettingsVisibility = Visibility.Collapsed;
+            StartMenuVisibility.SureExitVisibility = Visibility.Collapsed;
+            StartMenuVisibility.PlayVisibility = Visibility.Collapsed;
+        }
+        #endregion
+        #region LanguageChange
         private void ChangeEnglishLanguage(object sender)
         {
             Changelanguage("en-US");
@@ -147,13 +159,45 @@ namespace Shooting_range.ViewModels
             };
             Application.Current.Resources.MergedDictionaries.Add(resdict);
         }
-        private void HideAll()
+        #endregion
+        #region SettingsButtons
+        private void OpenSoundSettings(object sender)
         {
-            StartMenuVisibility.InitialVisibility = Visibility.Collapsed;
-            StartMenuVisibility.SettingsVisibility = Visibility.Collapsed;
-            StartMenuVisibility.SureExitVisibility = Visibility.Collapsed;
-            StartMenuVisibility.PlayVisibility = Visibility.Collapsed;
+            OpenSomeSettings("SoundSettings");
         }
+        private void OpenCustomizeSettings(object sender)
+        {
+            OpenSomeSettings("CustomizeSettings");
+        }
+        private void OpenLanguageSettings(object sender)
+        {
+            OpenSomeSettings("LanguageSettings");
+        }
+        private void OpenSomeSettings(string settings)
+        {
+            CloseAllSettings();
+            switch (settings)
+            {
+                case "SoundSettings":
+                    StartMenuVisibility.SoundSettings = Visibility.Visible;
+                    break;
+                case "CustomizeSettings":
+                    StartMenuVisibility.CustomizeSettings = Visibility.Visible;
+                    break;
+                case "LanguageSettings":
+                    StartMenuVisibility.LanguageSettings = Visibility.Visible;
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void CloseAllSettings()
+        {
+            StartMenuVisibility.SoundSettings = Visibility.Collapsed;
+            StartMenuVisibility.CustomizeSettings = Visibility.Collapsed;
+            StartMenuVisibility.LanguageSettings = Visibility.Collapsed;
+        }
+        #endregion
     }
 
 }

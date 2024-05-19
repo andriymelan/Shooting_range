@@ -17,8 +17,7 @@ namespace Shooting_range.Models
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-
-
+        #region VisibilityStartMenu
         private Visibility initialVisibility { get; set; } = Visibility.Visible;  
         public Visibility InitialVisibility
         {
@@ -29,7 +28,6 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(initialVisibility));
             }
         }
-
         private Visibility settingsVisibility { get; set; } = Visibility.Collapsed;
         public Visibility SettingsVisibility
         {
@@ -40,7 +38,6 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(settingsVisibility));
             }
         }
-
         private Visibility sureExitVisibility { get; set; } = Visibility.Collapsed;
         public Visibility SureExitVisibility
         {
@@ -51,7 +48,6 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(sureExitVisibility));
             }
         }
-
         private Visibility playVisibility { get; set; } = Visibility.Collapsed;
         public Visibility PlayVisibility
         {
@@ -62,5 +58,38 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(playVisibility));
             }
         }
+        #endregion
+        #region VisibilitySettings
+        private Visibility soundSettings {  get; set; } = Visibility.Collapsed;
+        public Visibility SoundSettings
+        {
+            get { return soundSettings; }
+            set
+            {
+                soundSettings = value;
+                OnPropertyChanged(nameof(soundSettings));
+            }
+        }
+        private Visibility customizeSettings { get; set; } = Visibility.Collapsed;
+        public Visibility CustomizeSettings
+        {
+            get { return customizeSettings; }
+            set
+            {
+                customizeSettings = value;
+                OnPropertyChanged(nameof(customizeSettings));
+            }
+        }
+        private Visibility languageSettings { get; set; } = Visibility.Collapsed;
+        public Visibility LanguageSettings
+        {
+            get { return languageSettings; }
+            set
+            {
+                languageSettings = value;
+                OnPropertyChanged(nameof(languageSettings));
+            }
+        }
+        #endregion
     }
 }
