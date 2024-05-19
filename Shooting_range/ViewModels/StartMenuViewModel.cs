@@ -12,6 +12,8 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.IO;
+using System.Globalization;
+using System.Threading;
 
 namespace Shooting_range.ViewModels
 {
@@ -29,6 +31,9 @@ namespace Shooting_range.ViewModels
         public RelayCommand OpenSureExitCommand {  get; set; }
         public RelayCommand BackToMenuCommand {  get; set; }
         public RelayCommand OpenPlayCommand { get; set; }
+        public RelayCommand ChangeEnglishLanguageCommand { get; set; }
+        public RelayCommand ChangeUkrainianLanguageCommand { get; set; }
+        public RelayCommand ChangeSpanishLanguageCommand { get; set; }
         private string Cursor { get; set; }
         public string cursor
         {
@@ -37,6 +42,16 @@ namespace Shooting_range.ViewModels
             {
                 Cursor = value;
                 OnPropertyChanged(nameof(Cursor));
+            }
+        }
+        private StartMenuModel startMenuVisibility { get; set; }
+        public StartMenuModel StartMenuVisibility
+        {
+            get { return startMenuVisibility; }
+            set
+            {
+                startMenuVisibility = value;
+                OnPropertyChanged(nameof(startMenuVisibility));
             }
         }
         public StartMenuViewModel()
@@ -49,47 +64,35 @@ namespace Shooting_range.ViewModels
             OpenPlayCommand = new RelayCommand(OpenPlay); 
             string cursorDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Cursor";
             cursor = ($@"{cursorDirectory}\\MainCursor.cur");
+            ChangeEnglishLanguageCommand = new RelayCommand(ChangeEnglishLanguage);
+            ChangeUkrainianLanguageCommand = new RelayCommand(ChangeUkrainianLanguage);
+            ChangeSpanishLanguageCommand = new RelayCommand(ChangeSpanishLanguage);
         }
 
 
-        private StartMenuModel startMenuVisibility {  get; set; }
-        public StartMenuModel StartMenuVisibility
-        {
-            get { return startMenuVisibility; }
-            set 
-            {
-                startMenuVisibility = value; 
-                OnPropertyChanged(nameof(startMenuVisibility));
-            }
-        }
+
 
 
         private void BackToMenu(object sender)
         {
-            HideAll();
             OpenSmth("InitialVisibility");
         }
 
 
         private void OpenPlay(object sender)
         {
-            HideAll();
-            StartMenuVisibility.PlayVisibility = Visibility.Visible;
             OpenSmth("PlayVisibility");
         }
 
 
         private void OpenSettings(object sender)
         {
-            HideAll();
-            StartMenuVisibility.SettingsVisibility = Visibility.Visible;
             OpenSmth("SettingsVisibility");
         }
 
 
         private void OpenSureExit(object sender)
         {
-            HideAll();
             OpenSmth("SureExitVisibility");
         }
 
@@ -101,6 +104,7 @@ namespace Shooting_range.ViewModels
 
         private void OpenSmth(string visibleParametr)
         {
+            HideAll();
             switch (visibleParametr)
             {
                 case "InitialVisibility":
@@ -119,8 +123,30 @@ namespace Shooting_range.ViewModels
                     break;
             }
         }
+        private void ChangeEnglishLanguage(object sender)
+        {
+            Changelanguage("en-US");
+        }
+        private void ChangeUkrainianLanguage(object sender)
+        {
+            Changelanguage("uk-UA");
+        }
+        private void ChangeSpanishLanguage(object sender)
+        {
+            Changelanguage("es-ES");
+        }
+        private void Changelanguage(string language)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo($"{language}");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo($"{language}");
 
-
+            Application.Current.Resources.MergedDictionaries.Clear();
+            ResourceDictionary resdict = new ResourceDictionary()
+            {
+                Source = new Uri($"LanguagePack/Dictionary-{language}.xaml", UriKind.Relative)
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resdict);
+        }
         private void HideAll()
         {
             StartMenuVisibility.InitialVisibility = Visibility.Collapsed;

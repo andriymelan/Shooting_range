@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:String x:Key="MainMenuPlayBtn">Грати</System:String>
+    <System:String x:Key="MainMenuSettingsBtn">Налаштування</System:String>
+    <System:String x:Key="MainMenuQuitBtn">Вийти</System:String>
+    <System:String x:Key="MainMenuSureExitYesBtn">Так</System:String>
+    <System:String x:Key="MainMenuSureExitNoBtn">Ні</System:String>
+    <System:String x:Key="MainMenuSettingsSoundBtn">Звук</System:String>
+    <System:String x:Key="MainMenuSettingsCustomizeBtn">Кастомізація</System:String>
+    <System:String x:Key="MainMenuSettingsLanguageBtn">Мова</System:String>
+    <System:String x:Key="MainMenuSettingsTargetLabel">Мішені</System:String>
+    <System:String x:Key="MainMenuSettingsCrosshairLabel">Приціл</System:String>
+    <System:String x:Key="MainMenuSettingsCloseBtn">Закрити</System:String>
+    <System:String x:Key="MainMenuSettingsDefaultBtn">За замовчуванням</System:String>
+    <System:String x:Key="MainMenuSettingsApplyBtn">Застосувати</System:String>
+</ResourceDictionary>

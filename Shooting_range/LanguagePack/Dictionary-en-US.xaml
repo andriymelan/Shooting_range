@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:String x:Key="MainMenuPlayBtn">Play</System:String>
+    <System:String x:Key="MainMenuSettingsBtn">Settings</System:String>
+    <System:String x:Key="MainMenuQuitBtn">Exit</System:String>
+    <System:String x:Key="MainMenuSureExitYesBtn">Yes</System:String>
+    <System:String x:Key="MainMenuSureExitNoBtn">No</System:String>
+    <System:String x:Key="MainMenuSettingsSoundBtn">Sound</System:String>
+    <System:String x:Key="MainMenuSettingsCustomizeBtn">Customize</System:String>
+    <System:String x:Key="MainMenuSettingsLanguageBtn">Language</System:String>
+    <System:String x:Key="MainMenuSettingsTargetLabel">Targets</System:String>
+    <System:String x:Key="MainMenuSettingsCrosshairLabel">Crosshair</System:String>
+    <System:String x:Key="MainMenuSettingsCloseBtn">Close</System:String>
+    <System:String x:Key="MainMenuSettingsDefaultBtn">Default</System:String>
+    <System:String x:Key="MainMenuSettingsApplyBtn">Apply</System:String>
+</ResourceDictionary>

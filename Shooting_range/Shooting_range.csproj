@@ -67,6 +67,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="LanguagePack\Dictionary-en-US.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LanguagePack\Dictionary-es-ES.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LanguagePack\Dictionary-uk-UA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StartMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,9 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MainMenuBackGround.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\MainMenuBackGround.jpg" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -48,7 +48,7 @@
             <!--Visibility="{Binding StartMenuVisibility.InitialVisibility}"-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -62,9 +62,9 @@
                 <RowDefinition/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
-            <Button Grid.Column="1" Grid.Row="1" FontSize="36" Padding="0 0 95 0" x:Name="Play" Content="Play" Command="{Binding OpenPlayCommand}"/>
-            <Button Grid.Column="1" Grid.Row="3" FontSize="36" Padding="0 0 30 0" x:Name="SettingButton" Content="Settings" Command="{Binding OpenSettingsCommand}"/>
-            <Button Grid.Column="1" Grid.Row="7" Margin="0 0 0 20" FontSize="36" Padding="0 0 30 0" x:Name="ExitButton" Content="Exit" Command="{Binding OpenSureExitCommand}"/>
+            <Button Grid.Column="1" Grid.Row="1" FontSize="36" Padding="0 0 95 0" x:Name="Play" Content="{DynamicResource MainMenuPlayBtn}" Command="{Binding OpenPlayCommand}"/>
+            <Button Grid.Column="1" Grid.Row="3" FontSize="36" Padding="0 0 30 0" x:Name="SettingButton" Content="{DynamicResource MainMenuSettingsBtn}" Command="{Binding OpenSettingsCommand}"/>
+            <Button Grid.Column="1" Grid.Row="7" Margin="0 0 0 20" FontSize="36" Padding="0 0 30 0" x:Name="ExitButton" Content="{DynamicResource MainMenuQuitBtn}" Command="{Binding OpenSureExitCommand}"/>
         </Grid>
         <Grid x:Name="PlayGrid" Visibility="Collapsed">
             <!--Visibility="{Binding StartMenuVisibility.PlayVisibility}"-->
@@ -94,13 +94,13 @@
                 <RowDefinition/>
                 <RowDefinition Height="120"/>
             </Grid.RowDefinitions>
-            <Button Content="Sound" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
-            <Button Content="Customize" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
-            <Button Content="Language" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
-            <Button Content="Close" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
-            <Button Content="Default" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20"/>
-            <Button Content="Apply" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20"/>
-            <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" >
+            <Button Content="{DynamicResource MainMenuSettingsSoundBtn}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20" FontSize="36"/>
+            <Button Content="{DynamicResource MainMenuSettingsCustomizeBtn}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20" FontSize="36"/>
+            <Button Content="{DynamicResource MainMenuSettingsLanguageBtn}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20" FontSize="36"/>
+            <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
+            <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20"/>
+            <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20"/>
+            <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>
                     <RowDefinition/>
@@ -120,8 +120,18 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="Targets" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
-                <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="Targets" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+                <Label Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="{DynamicResource MainMenuSettingsTargetLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+                <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="{DynamicResource MainMenuSettingsCrosshairLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+            </Grid>
+            <Grid x:Name="LanguageSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="English" Command="{Binding ChangeEnglishLanguageCommand}"/>
+                <Button Grid.Column="1" Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Українська" Command="{Binding ChangeUkrainianLanguageCommand}"/>
+                <Button Grid.Column="2" Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Español" Command="{Binding ChangeSpanishLanguageCommand}"/>
             </Grid>
         </Grid>
         <Grid x:Name="SureExitGrid" Visibility="Collapsed">
@@ -130,8 +140,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" HorizontalAlignment="Right" Margin="50" Content="Yes" x:Name="AcceptExit" Command="{Binding CloseAppCommand}" Height="100" Width="200"/>
-            <Button Grid.Column="1" HorizontalAlignment="Left" Margin="50" Content="No" x:Name="CancelExit" Command="{Binding BackToMenuCommand}" Height="100" Width="200"/>
+            <Button Grid.Column="0" HorizontalAlignment="Right" Margin="50" Content="{DynamicResource MainMenuSureExitYesBtn}" x:Name="AcceptExit" Command="{Binding CloseAppCommand}" Height="100" Width="200"/>
+            <Button Grid.Column="1" HorizontalAlignment="Left" Margin="50" Content="{DynamicResource MainMenuSureExitNoBtn}" x:Name="CancelExit" Command="{Binding BackToMenuCommand}" Height="100" Width="200"/>
         </Grid>
     </Grid>
 </Window>
