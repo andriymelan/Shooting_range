@@ -99,7 +99,7 @@
             <Button Content="{DynamicResource MainMenuSettingsLanguageBtn}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding OpenLanguageSettingsCommand}" Margin="20" FontSize="36"/>
             <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
             <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20" />
-            <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20" Command="{Binding ApplySettingsChangeCommand}"/>
+            <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20" Command="{Binding ApplySettingsChangeCommand}" IsEnabled="{Binding IsEnabledApplyButton}"/>
             <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
                 <!--{Binding StartMenuVisibility.SoundSettings}-->
                 

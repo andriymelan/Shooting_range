@@ -51,7 +51,11 @@ namespace Shooting_range.ViewModels
             TargetPathChangeRedCommand = new RelayCommand(TargetPathChangeRed);
             TargetPathChangeYellowCommand = new RelayCommand(TargetPathChangeYellow);
         }
+
+
         #region CreateProperty
+
+
         SettingsProperty settingsProperty = new SettingsProperty();
         public RelayCommand OpenSettingsCommand {  get; set; }
         public RelayCommand CloseAppCommand { get; set; }
@@ -93,10 +97,23 @@ namespace Shooting_range.ViewModels
                 OnPropertyChanged(nameof(startMenuVisibility));
             }
         }
-        
+        private bool isEnabledApplyButton {  get; set; } = false;
+        public bool IsEnabledApplyButton
+        {
+            get { return isEnabledApplyButton; }
+            set
+            {
+                isEnabledApplyButton = value;
+                OnPropertyChanged(nameof(isEnabledApplyButton));
+            }
+        }
         private string ApplyLanguageChange { get; set; }
         private string TargetPathChange { get; set; }
+
+
         #region BorderProperties
+
+
         private int borderChangeLanguageEnglish { get; set; } = 0;
         public int BorderChangeLanguageEnglish {
             get 
@@ -306,18 +323,21 @@ namespace Shooting_range.ViewModels
             ApplyLanguageChange = "en-US";
             BorderChangeLanguageHide();
             BorderChangeLanguageEnglish = 2;
+            IsEnabledApplyButton = true;
         }
         private void ChangeUkrainianLanguage(object sender)
         {
             ApplyLanguageChange = "uk-UA";
             BorderChangeLanguageHide();
             BorderChangeLanguageUkrainian = 2;
+            IsEnabledApplyButton = true;
         }
         private void ChangeSpanishLanguage(object sender)
         {
             ApplyLanguageChange = "es-ES";
             BorderChangeLanguageHide();
             BorderChangeLanguageSpanish = 2;
+            IsEnabledApplyButton = true;
         }
         private void Changelanguage(string language)
         {
@@ -382,48 +402,56 @@ namespace Shooting_range.ViewModels
             TargetPathChange = "../Targets/Aqua-Target.png";
             HideAllBorderTarget();
             BorderChangeTargetAqua = 2;
+            isEnabledApplyButton = true;
         }
         private void TargetPathChangeBlack(object sender)
         {
             TargetPathChange = "../Targets/Black-Target.png";
             HideAllBorderTarget();
             BorderChangeTargetBlack = 2;
+            IsEnabledApplyButton = true;
         }
         private void TargetPathChangeBlue (object sender)
         {
             TargetPathChange = "../Targets/Blue-Target.png";
             HideAllBorderTarget();
             BorderChangeTargetBlue = 2;
+            IsEnabledApplyButton = true;
         }
         private void TargetPathChangeGreen(object sender)
         {
             TargetPathChange = "../Targets/Green-Target.png";
             HideAllBorderTarget();
             BorderChangeTargetGreen = 2;
+            IsEnabledApplyButton = true;
         }
         private void TargetPathChangeOrange(object sender)
         {
             TargetPathChange = "../Targets/Orange-Target.png";
             HideAllBorderTarget();
             BorderChangeTargetOrange = 2;
+            IsEnabledApplyButton = true;
         }
         private void TargetPathChangePurple(object sender)
         {
             TargetPathChange = "../Targets/Purple-Target.png";
             HideAllBorderTarget();
             BorderChangeTargetPurple = 2;
+            IsEnabledApplyButton = true;
         }
         private void TargetPathChangeRed(object sender)
         {
             TargetPathChange = "../Targets/Red-Target.png";
             HideAllBorderTarget();
             BorderChangeTargetRed = 2;
+            IsEnabledApplyButton = true;
         }
         private void TargetPathChangeYellow(object sender)
         {
             TargetPathChange = "../Targets/Yellow-Target.png";
             HideAllBorderTarget();
             BorderChangeTargetYellow = 2;
+            IsEnabledApplyButton = true;
         }
         private void ApplyTargetPathChange(string Path)
         {
@@ -450,6 +478,7 @@ namespace Shooting_range.ViewModels
             if(TargetPathChange!=null)
                 ApplyTargetPathChange(TargetPathChange); 
             HideAllBorderTarget();
+            IsEnabledApplyButton = false;
         }
         #endregion
     }
