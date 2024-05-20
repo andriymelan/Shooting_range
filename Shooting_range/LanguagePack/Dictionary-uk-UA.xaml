@@ -12,7 +12,17 @@
     <System:String x:Key="MainMenuSettingsTargetLabel">Мішені</System:String>
     <System:String x:Key="MainMenuSettingsCrosshairLabel">Приціл</System:String>
     <System:String x:Key="MainMenuSettingsCloseBtn">Закрити</System:String>
+    <System:String x:Key="MainMenuSettingsApplyBtn">Застосувати</System:String>
     <System:String x:Key="MainMenuSettingsDefaultBtn">За замовчуванням</System:String>
     <System:String x:Key="MainMenuSettingsVolumeLevel">Музика</System:String>
     <System:String x:Key="MainMenuSettingsSoundLevel">Звуки</System:String>
+    <System:String x:Key="MainMenuPlayGridShotButton">Грід шот</System:String>
+    <System:String x:Key="MainMenuPlaySpyderShotButton">Спайдер шот</System:String>
+    <System:String x:Key="MainMenuPlayMotionShotButton">Моушн шот</System:String>
+    <System:String x:Key="MainMenuPlayTime15Sec">15 секунд</System:String>
+    <System:String x:Key="MainMenuPlayTime30Sec">30 секунд</System:String>
+    <System:String x:Key="MainMenuPlayTime60Sec">60 секунд</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityEasy">Легко</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityMedium">Середньо</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityHard">Складно</System:String>
 </ResourceDictionary>

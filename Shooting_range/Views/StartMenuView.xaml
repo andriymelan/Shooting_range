@@ -44,7 +44,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid x:Name="InitialGrid" Visibility="Collapsed">
+        <Grid x:Name="InitialGrid" Visibility="{Binding StartMenuVisibility.InitialVisibility}">
             <!--Visibility="{Binding StartMenuVisibility.InitialVisibility}"-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -66,15 +66,45 @@
             <Button Grid.Column="1" Grid.Row="3" FontSize="36" Padding="0 0 30 0" x:Name="SettingButton" Content="{DynamicResource MainMenuSettingsBtn}" Command="{Binding OpenSettingsCommand}"/>
             <Button Grid.Column="1" Grid.Row="7" Margin="0 0 0 20" FontSize="36" Padding="0 0 30 0" x:Name="ExitButton" Content="{DynamicResource MainMenuQuitBtn}" Command="{Binding OpenSureExitCommand}"/>
         </Grid>
-        <Grid x:Name="PlayGrid" Visibility="Visible">
+        <Grid x:Name="PlayGrid" Visibility="{Binding StartMenuVisibility.PlayVisibility}">
             <!--Visibility="{Binding StartMenuVisibility.PlayVisibility}"-->
-            <Grid>
-                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayGridShotButton}" FontSize="48" FontWeight="Bold"/>
-                <Button Width="300" Height="200" Margin="0 0 0 0"/>
-                <Button Width="300" Height="200" Margin="800 0 0 0"/>
+            <Grid x:Name="GameMode" Visibility="{Binding StartMenuVisibility.GameModeVisibility}">
+                <!--Visibility="{Binding StartMenuVisibility.GameModeVisibility}"-->
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayGridShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenGridShotCommand}"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlaySpyderShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenSpyderShotCommand}"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotCommand}"/>
+                <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToMenuCommand}" Margin="40"/>
+            </Grid>
+            <Grid x:Name="GridShot" Visibility="{Binding StartMenuVisibility.GridShotVisibility}">
+                <!--Visibility="{Binding StartMenuVisibility.GridShotVisibility}"-->
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold"/>
+                <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
+            </Grid>
+            <Grid x:Name="SpyderShot" Visibility="Collapsed">
+                <!--Visibility="{Binding StartMenuVisibility.SpyderShotVisibility}"-->
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold"/>
+                <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
+            </Grid>
+            <Grid x:Name="MotionShot" Visibility="{Binding StartMenuVisibility.MotionShotVisibility}">
+                <!--Visibility="{Binding StartMenuVisibility.MotionShotVisibility}"-->
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotComplexityCommand}"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotComplexityCommand}"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotComplexityCommand}"/>
+                <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
+            </Grid>
+            <Grid x:Name="MotionShotComplexity" Visibility="{Binding StartMenuVisibility.MotionComplexityVisibility}">
+                <!--Visibility="{Binding StartMenuVisibility.MotionComplexityVisibility}"-->
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayMotionComplexityEasy}" FontSize="48" FontWeight="Bold"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityMedium}" FontSize="48" FontWeight="Bold"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityHard}" FontSize="48" FontWeight="Bold"/>
+                <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
             </Grid>
         </Grid>
-        <Grid x:Name="SettingsGrid" Visibility="Collapsed">
+        <Grid x:Name="SettingsGrid" Visibility="{Binding StartMenuVisibility.SettingsVisibility}">
             <!--"{Binding StartMenuVisibility.SettingsVisibility}"-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -102,7 +132,7 @@
             <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
             <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20" Command="{Binding SetDefaultSettingsCommand}"/>
             <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20" Command="{Binding ApplySettingsChangeCommand}" IsEnabled="{Binding IsEnabledApplyButton}"/>
-            <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Visible">
+            <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="{Binding StartMenuVisibility.SoundSettings}">
                 <!--{Binding StartMenuVisibility.SoundSettings}-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"/>
@@ -135,7 +165,7 @@
                 <Label Grid.Column="2" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" Content="{DynamicResource MainMenuSettingsVolumeLevel}" Foreground="#FF029DBB" FontWeight="Bold"/>
                 <Label Grid.Column="2" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" Content="{DynamicResource MainMenuSettingsSoundLevel}" Foreground="#FF029DBB" FontWeight="Bold"/>
             </Grid>
-            <Grid x:Name="CustomizeSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
+            <Grid x:Name="CustomizeSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="{Binding StartMenuVisibility.CustomizeSettings}">
                 <!--{Binding StartMenuVisibility.CustomizeSettings}-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>
@@ -409,7 +439,7 @@ Gesture="leftclick">
                     </Border.InputBindings>
                 </Border>
             </Grid>
-            <Grid x:Name="LanguageSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
+            <Grid x:Name="LanguageSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="{Binding StartMenuVisibility.LanguageSettings}">
                 <!--{Binding StartMenuVisibility.LanguageSettings}-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -427,7 +457,7 @@ Gesture="leftclick">
                 </Border>
             </Grid>
         </Grid>
-        <Grid x:Name="SureExitGrid" Visibility="Collapsed">
+        <Grid x:Name="SureExitGrid" Visibility="{Binding StartMenuVisibility.SureExitVisibility}">
             <!--{Binding StartMenuVisibility.SureExitVisibility}-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

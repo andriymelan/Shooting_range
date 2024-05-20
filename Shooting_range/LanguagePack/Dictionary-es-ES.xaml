@@ -14,6 +14,15 @@
     <System:String x:Key="MainMenuSettingsCloseBtn">Cerca</System:String>
     <System:String x:Key="MainMenuSettingsDefaultBtn">Por defecto</System:String>
     <System:String x:Key="MainMenuSettingsApplyBtn">Aplicar</System:String>
-    <System:String x:Key="MainMenuSettingsVolumeLevel">música</System:String>
-    <System:String x:Key="MainMenuSettingsSoundLevel">sonido</System:String>
+    <System:String x:Key="MainMenuSettingsVolumeLevel">Música</System:String>
+    <System:String x:Key="MainMenuSettingsSoundLevel">Sonido</System:String>
+    <System:String x:Key="MainMenuPlayGridShotButton">Cuadrícula</System:String>
+    <System:String x:Key="MainMenuPlaySpyderShotButton">Espía</System:String>
+    <System:String x:Key="MainMenuPlayMotionShotButton">Movimiento</System:String>
+    <System:String x:Key="MainMenuPlayTime15Sec">15 segundos</System:String>
+    <System:String x:Key="MainMenuPlayTime30Sec">30 segundos</System:String>
+    <System:String x:Key="MainMenuPlayTime60Sec">60 segundos</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityEasy">Luz</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityMedium">Medio</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityHard">Dificil</System:String>
 </ResourceDictionary>

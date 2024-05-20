@@ -17,4 +17,12 @@
     <System:String x:Key="MainMenuSettingsVolumeLevel">Music</System:String>
     <System:String x:Key="MainMenuSettingsSoundLevel">Sound</System:String>
     <System:String x:Key="MainMenuPlayGridShotButton">Grid shot</System:String>
+    <System:String x:Key="MainMenuPlaySpyderShotButton">Spyder shot</System:String>
+    <System:String x:Key="MainMenuPlayMotionShotButton">Motion shot</System:String>
+    <System:String x:Key="MainMenuPlayTime15Sec">15 seconds</System:String>
+    <System:String x:Key="MainMenuPlayTime30Sec">30 seconds</System:String>
+    <System:String x:Key="MainMenuPlayTime60Sec">60 seconds</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityEasy">Easy</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityMedium">Meduim</System:String>
+    <System:String x:Key="MainMenuPlayMotionComplexityHard">Hard</System:String>
 </ResourceDictionary>

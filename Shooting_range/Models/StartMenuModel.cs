@@ -59,6 +59,7 @@ namespace Shooting_range.Models
             }
         }
         #endregion
+
         #region VisibilitySettings
         private Visibility soundSettings {  get; set; } = Visibility.Collapsed;
         public Visibility SoundSettings
@@ -88,6 +89,59 @@ namespace Shooting_range.Models
             {
                 languageSettings = value;
                 OnPropertyChanged(nameof(languageSettings));
+            }
+        }
+        #endregion
+
+        #region VisibilityPlay
+        private Visibility gameModeVisibility {  get; set; } = Visibility.Visible;
+        public Visibility GameModeVisibility
+        {
+            get { return gameModeVisibility; }
+            set
+            {
+                gameModeVisibility = value;
+                OnPropertyChanged(nameof(gameModeVisibility));
+            }
+        }
+        private Visibility gridShotVisibility {  get; set; } = Visibility.Collapsed;
+        public Visibility GridShotVisibility
+        {
+            get { return gridShotVisibility; }
+            set
+            {
+                gridShotVisibility = value;
+                OnPropertyChanged(nameof(gridShotVisibility));
+            }
+        }
+        private Visibility spiderShotVisibility {  get; set; } = Visibility.Collapsed;
+        public Visibility SpiderShotVisibility
+        {
+            get { return spiderShotVisibility; }
+            set
+            {
+                spiderShotVisibility = value;
+                OnPropertyChanged(nameof(spiderShotVisibility));
+            }
+        }
+        private Visibility motionShotVisibility {  get; set; } = Visibility.Collapsed;
+        public Visibility MotionShotVisibility
+        {
+            get { return motionShotVisibility; }
+            set
+            {
+                motionShotVisibility = value;
+                OnPropertyChanged(nameof(motionShotVisibility));
+            }
+        }
+        private Visibility motionComplexityVisibility { get; set; } = Visibility.Collapsed;
+        public Visibility MotionComplexityVisibility
+        {
+            get { return motionComplexityVisibility; }
+            set
+            {
+                motionComplexityVisibility = value;
+                OnPropertyChanged(nameof(motionComplexityVisibility));
             }
         }
         #endregion

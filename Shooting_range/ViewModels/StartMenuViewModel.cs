@@ -83,6 +83,12 @@ namespace Shooting_range.ViewModels
             ChangeSoundVolumeUpCommand = new RelayCommand(ChangeSoundVolumeUp);
             ChangeSoundVolumeDownCommand = new RelayCommand(ChangeSoundVolumeDown);
 
+            OpenGridShotCommand = new RelayCommand(OpenGridShot);
+            OpenSpyderShotCommand = new RelayCommand(OpenSpyderShot);
+            OpenMotionShotCommand = new RelayCommand(OpenMotionShot);
+            BackToGameModeCommand = new RelayCommand(BackToGameModeChange);
+            OpenMotionShotComplexityCommand = new RelayCommand(OpenMotionShotComplexity);
+
             MusicInitialize();
         }
         #endregion
@@ -138,6 +144,12 @@ namespace Shooting_range.ViewModels
         public RelayCommand ChangeMusicVolumeDownCommand {  get; set; }
         public RelayCommand ChangeSoundVolumeUpCommand {  get; set; }
         public RelayCommand ChangeSoundVolumeDownCommand {  get; set; }
+
+        public RelayCommand OpenGridShotCommand {  get; set; }
+        public RelayCommand OpenSpyderShotCommand {  get; set; }
+        public RelayCommand OpenMotionShotCommand {  get; set; }
+        public RelayCommand BackToGameModeCommand { get; set; }
+        public RelayCommand OpenMotionShotComplexityCommand {  get; set; }
 
         private string Cursor { get; set; }
         public string cursor
@@ -619,48 +631,6 @@ namespace Shooting_range.ViewModels
         }
         #endregion
 
-        #region LanguageChange
-        private void ChangeEnglishLanguage(object sender)
-        {
-            ApplyLanguageChange = "en-US";
-            BorderChangeLanguageHide();
-            BorderChangeLanguageEnglish = 2;
-            IsEnabledApplyButton = true;
-        }
-        private void ChangeUkrainianLanguage(object sender)
-        {
-            ApplyLanguageChange = "uk-UA";
-            BorderChangeLanguageHide();
-            BorderChangeLanguageUkrainian = 2;
-            IsEnabledApplyButton = true;
-        }
-        private void ChangeSpanishLanguage(object sender)
-        {
-            ApplyLanguageChange = "es-ES";
-            BorderChangeLanguageHide();
-            BorderChangeLanguageSpanish = 2;
-            IsEnabledApplyButton = true;
-        }
-        private void ChangeLanguage(string language)
-        {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo($"{language}");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo($"{language}");
-
-            Application.Current.Resources.MergedDictionaries.Clear();
-            ResourceDictionary resdict = new ResourceDictionary()
-            {
-                Source = new Uri($"LanguagePack/Dictionary-{language}.xaml", UriKind.Relative)
-            };
-            Application.Current.Resources.MergedDictionaries.Add(resdict);
-        }
-        private void BorderChangeLanguageHide()
-        {
-            BorderChangeLanguageEnglish = 0;    
-            BorderChangeLanguageUkrainian = 0;    
-            BorderChangeLanguageSpanish = 0;    
-        }
-        #endregion
-
         #region SettingsButtons
         private void OpenSoundSettings(object sender)
         {
@@ -697,6 +667,133 @@ namespace Shooting_range.ViewModels
             StartMenuVisibility.SoundSettings = Visibility.Collapsed;
             StartMenuVisibility.CustomizeSettings = Visibility.Collapsed;
             StartMenuVisibility.LanguageSettings = Visibility.Collapsed;
+        }
+        #endregion
+
+        #region PlayButtons
+        private void OpenGridShot(object sender)
+        {
+            CloseGameProperties();
+            startMenuVisibility.GridShotVisibility = Visibility.Visible;
+        }
+        private void OpenSpyderShot(object sender)
+        {
+            CloseGameProperties();
+            startMenuVisibility.SpiderShotVisibility = Visibility.Visible;
+        }
+        private void OpenMotionShot(object sender)
+        {
+            CloseGameProperties();
+            startMenuVisibility.MotionShotVisibility = Visibility.Visible;
+        }
+        private void OpenMotionShotComplexity(object sender)
+        {
+            CloseGameProperties();
+            startMenuVisibility.MotionComplexityVisibility = Visibility.Visible;
+        }
+        private void BackToGameModeChange(object sender)
+        {
+            CloseGameProperties();
+            startMenuVisibility.MotionComplexityVisibility = Visibility.Collapsed;
+            startMenuVisibility.GameModeVisibility = Visibility.Visible;
+        }
+        private void CloseGameProperties()
+        {
+            startMenuVisibility.GridShotVisibility = Visibility.Collapsed;
+            startMenuVisibility.SpiderShotVisibility = Visibility.Collapsed;
+            startMenuVisibility.MotionShotVisibility = Visibility.Collapsed;
+        }
+        #endregion
+
+        #region ChangeVolume
+        private void ChangeMusicVolumeUp(object sender)
+        {
+            if (MusicVolume != 100)
+            {
+                ButtonClick();
+                MusicVolume += 5;
+                IsEnabledApplyButton = true;
+            }
+        }
+        private void ChangeMusicVolumeDown(object sender)
+        {
+            if (MusicVolume != 0)
+            {
+                ButtonClick();
+                MusicVolume -= 5;
+                IsEnabledApplyButton = true;
+            }
+        }
+        private void ChangeSoundVolumeUp(object sender)
+        {
+            if (SoundVolume != 100)
+            {
+                ButtonClick();
+                SoundVolume += 5;
+                IsEnabledApplyButton = true;
+            }
+        }
+
+
+
+        private void ChangeSoundVolumeDown(object sender)
+        {
+            if (SoundVolume != 0)
+            {
+                ButtonClick();
+                SoundVolume -= 5;
+                IsEnabledApplyButton = true;
+            }
+        }
+        private void ApplyMusicVolumeChange(int volume)
+        {
+            settingsProperty.MusicVolume = volume;
+        }
+        private void ApplySoundVolumeChange(int volume)
+        {
+            settingsProperty.SoundVolume = volume;
+        }
+        #endregion
+
+        #region LanguageChange
+        private void ChangeEnglishLanguage(object sender)
+        {
+            ApplyLanguageChange = "en-US";
+            BorderChangeLanguageHide();
+            BorderChangeLanguageEnglish = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void ChangeUkrainianLanguage(object sender)
+        {
+            ApplyLanguageChange = "uk-UA";
+            BorderChangeLanguageHide();
+            BorderChangeLanguageUkrainian = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void ChangeSpanishLanguage(object sender)
+        {
+            ApplyLanguageChange = "es-ES";
+            BorderChangeLanguageHide();
+            BorderChangeLanguageSpanish = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void ChangeLanguage(string language)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo($"{language}");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo($"{language}");
+
+            Application.Current.Resources.MergedDictionaries.Clear();
+            ResourceDictionary resdict = new ResourceDictionary()
+            {
+                Source = new Uri($"LanguagePack/Dictionary-{language}.xaml", UriKind.Relative)
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resdict);
+        }
+        private void BorderChangeLanguageHide()
+        {
+            BorderChangeLanguageEnglish = 0;
+            BorderChangeLanguageUkrainian = 0;
+            BorderChangeLanguageSpanish = 0;
         }
         #endregion
 
@@ -911,56 +1008,6 @@ namespace Shooting_range.ViewModels
             BorderChangeDotCrosshairPurple = 0;
             BorderChangeDotCrosshairRed = 0;
             BorderChangeDotCrosshairYellow = 0;
-        }
-        #endregion
-
-        #region ChangeVolume
-        private void ChangeMusicVolumeUp(object sender)
-        {
-            if(MusicVolume!=100)
-            {
-                ButtonClick();
-                MusicVolume += 5;
-                IsEnabledApplyButton = true;
-            }
-        }
-        private void ChangeMusicVolumeDown(object sender)
-        {
-            if(MusicVolume!=0)
-            {
-                ButtonClick();
-                MusicVolume -= 5;
-                IsEnabledApplyButton = true;
-            }
-        }
-        private void ChangeSoundVolumeUp(object sender)
-        {
-            if(SoundVolume!=100)
-            {
-                ButtonClick();
-                SoundVolume += 5;
-                IsEnabledApplyButton = true;
-            }
-        }
-
-
-        
-        private void ChangeSoundVolumeDown(object sender)
-        {
-            if (SoundVolume != 0)
-            {
-                ButtonClick();
-                SoundVolume -= 5;
-                IsEnabledApplyButton = true;
-            }
-        }
-        private void ApplyMusicVolumeChange(int volume)
-        {
-            settingsProperty.MusicVolume = volume;
-        }
-        private void ApplySoundVolumeChange(int volume)
-        {
-            settingsProperty.SoundVolume = volume;
         }
         #endregion
 
