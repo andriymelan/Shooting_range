@@ -98,13 +98,14 @@
             <Button Content="{DynamicResource MainMenuSettingsCustomizeBtn}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Command="{Binding OpenCustomizeSettingsCommand}" Margin="20" FontSize="36"/>
             <Button Content="{DynamicResource MainMenuSettingsLanguageBtn}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding OpenLanguageSettingsCommand}" Margin="20" FontSize="36"/>
             <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
-            <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20" />
+            <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20" Command="{Binding SetDefaultSettingsCommand}"/>
             <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20" Command="{Binding ApplySettingsChangeCommand}" IsEnabled="{Binding IsEnabledApplyButton}"/>
             <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
                 <!--{Binding StartMenuVisibility.SoundSettings}-->
                 
             </Grid>
-            <Grid x:Name="CustomizeSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="{Binding StartMenuVisibility.CustomizeSettings}">
+            <Grid x:Name="CustomizeSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
+                <!--{Binding StartMenuVisibility.CustomizeSettings}-->
                 <Grid.RowDefinitions>
     <RowDefinition Height="150"/>
     <RowDefinition/>
@@ -229,6 +230,151 @@ Gesture="leftclick"
 />
                         </Ellipse.InputBindings>
                     </Ellipse>
+                </Border>
+
+                <Border x:Name="FineAquaCrosshair" Grid.Column="2" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairAqua}"> 
+                    <Image Source="../Crosshairs/FineImages/FineAqua.png" Width="100" Height="100"/>                     <Border.InputBindings>
+                        <MouseBinding
+                            Command="{Binding CrosshairPathChangeFineAquaCommand}"
+                            Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="FineBlueCrosshair" Grid.Column="3" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairBlue}">
+                    <Image Source="../Crosshairs/FineImages/FineBlue.png" Width="100" Height="100"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+            Command="{Binding CrosshairPathChangeFineBlueCommand}"
+            Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="FineYellowCrosshair" Grid.Column="4" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairYellow}">
+                    <Image Source="../Crosshairs/FineImages/FineYellow.png" Width="100" Height="100"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+            Command="{Binding CrosshairPathChangeFineYellowCommand}"
+            Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="FineOrangeCrosshair" Grid.Column="5" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairOrange}">
+                    <Image Source="../Crosshairs/FineImages/FineOrange.png" Width="100" Height="100"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+            Command="{Binding CrosshairPathChangeFineOrangeCommand}"
+            Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="FineRedCrosshair" Grid.Column="6" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairRed}">
+                    <Image Source="../Crosshairs/FineImages/FineRed.png" Width="100" Height="100"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+            Command="{Binding CrosshairPathChangeFineRedCommand}"
+            Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="FineGreenCrosshair" Grid.Column="7" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairGreen}"> 
+                    <Image Source="../Crosshairs/FineImages/FineGreen.png" Width="100" Height="100"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+            Command="{Binding CrosshairPathChangeFineGreenCommand}"
+            Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="FinePurpleCrosshair" Grid.Column="8" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairPurple}">
+                    <Image Source="../Crosshairs/FineImages/FinePurple.png" Width="100" Height="100"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+            Command="{Binding CrosshairPathChangeFinePurpleCommand}"
+            Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="FineBlackCrosshair" Grid.Column="9" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairBlack}">
+                    <Image Source="../Crosshairs/FineImages/FineBlack.png" Width="100" Height="100"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+            Command="{Binding CrosshairPathChangeFineBlackCommand}"
+            Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+
+                <Border x:Name="DotAquaCrosshair" Grid.Column="2" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairAqua}">
+                    <Image Source="../Crosshairs/DotImages/DotAqua.png" Width="50" Height="50"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+                Command="{Binding CrosshairPathChangeDotAquaCommand}"
+                Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="DotBlueCrosshair" Grid.Column="3" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairBlue}">
+                    <Image Source="../Crosshairs/DotImages/DotBlue.png" Width="50" Height="50"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+Command="{Binding CrosshairPathChangeDotBlueCommand}"
+Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="DotYellowCrosshair" Grid.Column="4" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairYellow}">
+                    <Image Source="../Crosshairs/DotImages/DotYellow.png" Width="50" Height="50"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+Command="{Binding CrosshairPathChangeDotYellowCommand}"
+Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="DotOrangeCrosshair" Grid.Column="5" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairOrange}">
+                    <Image Source="../Crosshairs/DotImages/DotOrange.png" Width="50" Height="50"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+Command="{Binding CrosshairPathChangeDotOrangeCommand}"
+Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="DotRedCrosshair" Grid.Column="6" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairRed}">
+                    <Image Source="../Crosshairs/DotImages/DotRed.png" Width="50" Height="50"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+Command="{Binding CrosshairPathChangeDotRedCommand}"
+Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="DotGreenCrosshair" Grid.Column="7" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairGreen}">
+                    <Image Source="../Crosshairs/DotImages/DotGreen.png" Width="50" Height="50"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+Command="{Binding CrosshairPathChangeDotGreenCommand}"
+Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="DotPurpleCrosshair" Grid.Column="8" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairPurple}">
+                    <Image Source="../Crosshairs/DotImages/DotPurple.png" Width="50" Height="50"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+Command="{Binding CrosshairPathChangeDotPurpleCommand}"
+Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
+                </Border>
+                <Border x:Name="DotBlackCrosshair" Grid.Column="9" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairBlack}"> 
+                    <Image Source="../Crosshairs/DotImages/DotBlack.png" Width="50" Height="50"/>
+                    <Border.InputBindings>
+                        <MouseBinding
+Command="{Binding CrosshairPathChangeDotBlackCommand}"
+Gesture="leftclick">
+                        </MouseBinding>
+                    </Border.InputBindings>
                 </Border>
             </Grid>
             <Grid x:Name="LanguageSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">

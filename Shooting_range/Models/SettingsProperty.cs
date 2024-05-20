@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -24,6 +25,20 @@ namespace Shooting_range.Models
             {
                 targetPath = value;
                 OnPropertyChanged(nameof(targetPath));
+            }
+        }
+        static string cursorDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Crosshairs";
+        private string crosshairPath { get; set; } = $@"{cursorDirectory}\\Fine\\AquaFineCrosshair.cur";
+        public string CrosshairPath
+        {
+            get
+            {
+                return crosshairPath;
+            }
+            set
+            {
+                crosshairPath = $"{cursorDirectory}{value}";
+                OnPropertyChanged(nameof(crosshairPath));
             }
         }
     }

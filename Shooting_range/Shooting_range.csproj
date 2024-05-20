@@ -127,5 +127,47 @@
   <ItemGroup>
     <Resource Include="Cursor\MainCursor.cur" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Crosshairs\Dot\AquaDotCrosshair.cur" />
+    <Resource Include="Crosshairs\Dot\BlackDotCrosshair.cur" />
+    <Resource Include="Crosshairs\Dot\BlueDotCrosshair.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Crosshairs\Fine\AquaFineCrosshair.cur" />
+    <Resource Include="Crosshairs\Fine\BlackFineCrosshair.cur" />
+    <Resource Include="Crosshairs\Fine\BlueFineCrosshair.cur" />
+    <Resource Include="Crosshairs\Fine\GreenFineCrosshair.cur" />
+    <Resource Include="Crosshairs\Fine\OrangeFineCrosshair.cur" />
+    <Resource Include="Crosshairs\Fine\PurpleFineCrosshair.cur" />
+    <Resource Include="Crosshairs\Fine\RedFineCrosshair.cur" />
+    <Resource Include="Crosshairs\Fine\YellowFineCrosshair.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Crosshairs\Dot\GreenDotCrosshair.cur" />
+    <Resource Include="Crosshairs\Dot\OrangeDotCrosshair.cur" />
+    <Resource Include="Crosshairs\Dot\PurpleDotCrosshair.cur" />
+    <Resource Include="Crosshairs\Dot\RedDotCrosshair.cur" />
+    <Resource Include="Crosshairs\Dot\YellowDotCrosshair.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Crosshairs\FineImages\FineAqua.png" />
+    <Resource Include="Crosshairs\FineImages\FineBlack.png" />
+    <Resource Include="Crosshairs\FineImages\FineBlue.png" />
+    <Resource Include="Crosshairs\FineImages\FineGreen.png" />
+    <Resource Include="Crosshairs\FineImages\FineOrange.png" />
+    <Resource Include="Crosshairs\FineImages\FinePurple.png" />
+    <Resource Include="Crosshairs\FineImages\FineRed.png" />
+    <Resource Include="Crosshairs\FineImages\FineYellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Crosshairs\DotImages\DotAqua.png" />
+    <Resource Include="Crosshairs\DotImages\DotBlack.png" />
+    <Resource Include="Crosshairs\DotImages\DotBlue.png" />
+    <Resource Include="Crosshairs\DotImages\DotGreen.png" />
+    <Resource Include="Crosshairs\DotImages\DotOrange.png" />
+    <Resource Include="Crosshairs\DotImages\DotPurple.png" />
+    <Resource Include="Crosshairs\DotImages\DotRed.png" />
+    <Resource Include="Crosshairs\DotImages\DotYellow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

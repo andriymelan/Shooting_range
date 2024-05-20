@@ -25,6 +25,7 @@ namespace Shooting_range.ViewModels
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+        static string cursorDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Cursor";
         public StartMenuViewModel()
         {
             StartMenuVisibility = new StartMenuModel();
@@ -33,15 +34,20 @@ namespace Shooting_range.ViewModels
             BackToMenuCommand = new RelayCommand(BackToMenu);
             CloseAppCommand = new RelayCommand(CloseApp);
             OpenPlayCommand = new RelayCommand(OpenPlay);
-            string cursorDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Cursor";
             cursor = ($@"{cursorDirectory}\\MainCursor.cur");
+
             ChangeEnglishLanguageCommand = new RelayCommand(ChangeEnglishLanguage);
             ChangeUkrainianLanguageCommand = new RelayCommand(ChangeUkrainianLanguage);
             ChangeSpanishLanguageCommand = new RelayCommand(ChangeSpanishLanguage);
+
             OpenSoundSettingsCommand = new RelayCommand(OpenSoundSettings);
             OpenCustomizeSettingsCommand = new RelayCommand(OpenCustomizeSettings);
             OpenLanguageSettingsCommand = new RelayCommand(OpenLanguageSettings);
+
+            SetDefaultSettingsCommand = new RelayCommand(SetDefaultSettings);
+
             ApplySettingsChangeCommand = new RelayCommand(ApplySettingsChange);
+
             TargetPathChangeAquaCommand = new RelayCommand(TargetPathChangeAqua);
             TargetPathChangeBlackCommand = new RelayCommand(TargetPathChangeBlack);
             TargetPathChangeBlueCommand = new RelayCommand(TargetPathChangeBlue);
@@ -50,6 +56,25 @@ namespace Shooting_range.ViewModels
             TargetPathChangePurpleCommand = new RelayCommand(TargetPathChangePurple);
             TargetPathChangeRedCommand = new RelayCommand(TargetPathChangeRed);
             TargetPathChangeYellowCommand = new RelayCommand(TargetPathChangeYellow);
+
+            CrosshairPathChangeFineAquaCommand = new RelayCommand(CrosshairPathChangeFineAqua);
+            CrosshairPathChangeFineBlackCommand = new RelayCommand(CrosshairPathChangeFineBlack);
+            CrosshairPathChangeFineBlueCommand = new RelayCommand(CrosshairPathChangeFineBlue);
+            CrosshairPathChangeFineGreenCommand = new RelayCommand(CrosshairPathChangeFineGreen);
+            CrosshairPathChangeFineOrangeCommand = new RelayCommand(CrosshairPathChangeFineOrange);
+            CrosshairPathChangeFinePurpleCommand = new RelayCommand(CrosshairPathChangeFinePurple);
+            CrosshairPathChangeFineRedCommand = new RelayCommand(CrosshairPathChangeFineRed);
+            CrosshairPathChangeFineYellowCommand = new RelayCommand(CrosshairPathChangeFineYellow);
+
+            CrosshairPathChangeDotAquaCommand = new RelayCommand(CrosshairPathChangeDotAqua);
+            CrosshairPathChangeDotBlackCommand = new RelayCommand(CrosshairPathChangeDotBlack);
+            CrosshairPathChangeDotBlueCommand = new RelayCommand(CrosshairPathChangeDotBlue);
+            CrosshairPathChangeDotGreenCommand = new RelayCommand(CrosshairPathChangeDotGreen);
+            CrosshairPathChangeDotOrangeCommand = new RelayCommand(CrosshairPathChangeDotOrange);
+            CrosshairPathChangeDotPurpleCommand = new RelayCommand(CrosshairPathChangeDotPurple);
+            CrosshairPathChangeDotRedCommand = new RelayCommand(CrosshairPathChangeDotRed);
+            CrosshairPathChangeDotYellowCommand = new RelayCommand(CrosshairPathChangeDotYellow);
+
         }
 
 
@@ -62,13 +87,19 @@ namespace Shooting_range.ViewModels
         public RelayCommand OpenSureExitCommand {  get; set; }
         public RelayCommand BackToMenuCommand {  get; set; }
         public RelayCommand OpenPlayCommand { get; set; }
+
         public RelayCommand ChangeEnglishLanguageCommand { get; set; }
         public RelayCommand ChangeUkrainianLanguageCommand { get; set; }
         public RelayCommand ChangeSpanishLanguageCommand { get; set; }
+
         public RelayCommand OpenSoundSettingsCommand {  get; set; }
         public RelayCommand OpenCustomizeSettingsCommand {  get; set; }
         public RelayCommand OpenLanguageSettingsCommand {  get; set; }
+
+        public RelayCommand SetDefaultSettingsCommand {  get; set; }
+
         public RelayCommand ApplySettingsChangeCommand {  get; set; }
+
         public RelayCommand TargetPathChangeAquaCommand {  get; set; }
         public RelayCommand TargetPathChangeBlackCommand {  get; set; }
         public RelayCommand TargetPathChangeBlueCommand {  get; set; }
@@ -77,6 +108,25 @@ namespace Shooting_range.ViewModels
         public RelayCommand TargetPathChangePurpleCommand {  get; set; }
         public RelayCommand TargetPathChangeRedCommand {  get; set; }
         public RelayCommand TargetPathChangeYellowCommand {  get; set; }
+
+        public RelayCommand CrosshairPathChangeFineAquaCommand { get; set; }
+        public RelayCommand CrosshairPathChangeFineBlackCommand { get; set; }
+        public RelayCommand CrosshairPathChangeFineBlueCommand { get; set; }
+        public RelayCommand CrosshairPathChangeFineGreenCommand { get; set; }
+        public RelayCommand CrosshairPathChangeFineOrangeCommand { get; set; }
+        public RelayCommand CrosshairPathChangeFinePurpleCommand { get; set; }
+        public RelayCommand CrosshairPathChangeFineRedCommand { get; set; }
+        public RelayCommand CrosshairPathChangeFineYellowCommand { get; set; }
+
+        public RelayCommand CrosshairPathChangeDotAquaCommand { get; set; }
+        public RelayCommand CrosshairPathChangeDotBlackCommand { get; set; }
+        public RelayCommand CrosshairPathChangeDotBlueCommand { get; set; }
+        public RelayCommand CrosshairPathChangeDotGreenCommand { get; set; }
+        public RelayCommand CrosshairPathChangeDotOrangeCommand { get; set; }
+        public RelayCommand CrosshairPathChangeDotPurpleCommand { get; set; }
+        public RelayCommand CrosshairPathChangeDotRedCommand { get; set; }
+        public RelayCommand CrosshairPathChangeDotYellowCommand { get; set; }
+
         private string Cursor { get; set; }
         public string cursor
         {
@@ -109,6 +159,7 @@ namespace Shooting_range.ViewModels
         }
         private string ApplyLanguageChange { get; set; }
         private string TargetPathChange { get; set; }
+        private string CrosshairPathChange {  get; set; }
 
 
         #region BorderProperties
@@ -256,6 +307,214 @@ namespace Shooting_range.ViewModels
                 OnPropertyChanged(nameof(borderChangeTargetYellow));
             }
         }
+        private int borderChangeFineCrosshairAqua { get; set; } = 0;
+        public int BorderChangeFineCrosshairAqua
+        {
+            get
+            {
+                return borderChangeFineCrosshairAqua;
+            }
+            set
+            {
+                borderChangeFineCrosshairAqua = value;
+                OnPropertyChanged(nameof(borderChangeFineCrosshairAqua));
+            }
+        }
+        private int borderChangeFineCrosshairBlack { get; set; } = 0;
+        public int BorderChangeFineCrosshairBlack
+        {
+            get
+            {
+                return borderChangeFineCrosshairBlack;
+            }
+            set
+            {
+                borderChangeFineCrosshairBlack = value;
+                OnPropertyChanged(nameof(borderChangeFineCrosshairBlack));
+            }
+        }
+        private int borderChangeFineCrosshairBlue { get; set; } = 0;
+        public int BorderChangeFineCrosshairBlue
+        {
+            get
+            {
+                return borderChangeFineCrosshairBlue;
+            }
+            set
+            {
+                borderChangeFineCrosshairBlue = value;
+                OnPropertyChanged(nameof(borderChangeFineCrosshairBlue));
+            }
+        }
+        private int borderChangeFineCrosshairGreen { get; set; } = 0;
+        public int BorderChangeFineCrosshairGreen
+        {
+            get
+            {
+                return borderChangeFineCrosshairGreen;
+            }
+            set
+            {
+                borderChangeFineCrosshairGreen = value;
+                OnPropertyChanged(nameof(borderChangeFineCrosshairGreen));
+            }
+        }
+        private int borderChangeFineCrosshairOrange { get; set; } = 0;
+        public int BorderChangeFineCrosshairOrange
+        {
+            get
+            {
+                return borderChangeFineCrosshairOrange;
+            }
+            set
+            {
+                borderChangeFineCrosshairOrange = value;
+                OnPropertyChanged(nameof(borderChangeFineCrosshairOrange));
+            }
+        }
+        private int borderChangeFineCrosshairPurple { get; set; } = 0;
+        public int BorderChangeFineCrosshairPurple
+        {
+            get
+            {
+                return borderChangeFineCrosshairPurple;
+            }
+            set
+            {
+                borderChangeFineCrosshairPurple = value;
+                OnPropertyChanged(nameof(borderChangeFineCrosshairPurple));
+            }
+        }
+        private int borderChangeFineCrosshairRed { get; set; } = 0;
+        public int BorderChangeFineCrosshairRed
+        {
+            get
+            {
+                return borderChangeFineCrosshairRed;
+            }
+            set
+            {
+                borderChangeFineCrosshairRed = value;
+                OnPropertyChanged(nameof(borderChangeFineCrosshairRed));
+            }
+        }
+        private int borderChangeFineCrosshairYellow { get; set; } = 0;
+        public int BorderChangeFineCrosshairYellow
+        {
+            get
+            {
+                return borderChangeFineCrosshairYellow;
+            }
+            set
+            {
+                borderChangeFineCrosshairYellow = value;
+                OnPropertyChanged(nameof(borderChangeFineCrosshairYellow));
+            }
+        }
+        private int borderChangeDotCrosshairAqua { get; set; } = 0;
+        public int BorderChangeDotCrosshairAqua
+        {
+            get
+            {
+                return borderChangeDotCrosshairAqua;
+            }
+            set
+            {
+                borderChangeDotCrosshairAqua = value;
+                OnPropertyChanged(nameof(borderChangeDotCrosshairAqua));
+            }
+        }
+        private int borderChangeDotCrosshairBlack { get; set; } = 0;
+        public int BorderChangeDotCrosshairBlack
+        {
+            get
+            {
+                return borderChangeDotCrosshairBlack;
+            }
+            set
+            {
+                borderChangeDotCrosshairBlack = value;
+                OnPropertyChanged(nameof(borderChangeDotCrosshairBlack));
+            }
+        }
+        private int borderChangeDotCrosshairBlue { get; set; } = 0;
+        public int BorderChangeDotCrosshairBlue
+        {
+            get
+            {
+                return borderChangeDotCrosshairBlue;
+            }
+            set
+            {
+                borderChangeDotCrosshairBlue = value;
+                OnPropertyChanged(nameof(borderChangeDotCrosshairBlue));
+            }
+        }
+        private int borderChangeDotCrosshairGreen { get; set; } = 0;
+        public int BorderChangeDotCrosshairGreen
+        {
+            get
+            {
+                return borderChangeDotCrosshairGreen;
+            }
+            set
+            {
+                borderChangeDotCrosshairGreen = value;
+                OnPropertyChanged(nameof(borderChangeDotCrosshairGreen));
+            }
+        }
+        private int borderChangeDotCrosshairOrange { get; set; } = 0;
+        public int BorderChangeDotCrosshairOrange
+        {
+            get
+            {
+                return borderChangeDotCrosshairOrange;
+            }
+            set
+            {
+                borderChangeDotCrosshairOrange = value;
+                OnPropertyChanged(nameof(borderChangeDotCrosshairOrange));
+            }
+        }
+        private int borderChangeDotCrosshairPurple { get; set; } = 0;
+        public int BorderChangeDotCrosshairPurple
+        {
+            get
+            {
+                return borderChangeDotCrosshairPurple;
+            }
+            set
+            {
+                borderChangeDotCrosshairPurple = value;
+                OnPropertyChanged(nameof(borderChangeDotCrosshairPurple));
+            }
+        }
+        private int borderChangeDotCrosshairRed { get; set; } = 0;
+        public int BorderChangeDotCrosshairRed
+        {
+            get
+            {
+                return borderChangeDotCrosshairRed;
+            }
+            set
+            {
+                borderChangeDotCrosshairRed = value;
+                OnPropertyChanged(nameof(borderChangeDotCrosshairRed));
+            }
+        }
+        private int borderChangeDotCrosshairYellow { get; set; } = 0;
+        public int BorderChangeDotCrosshairYellow
+        {
+            get
+            {
+                return borderChangeDotCrosshairYellow;
+            }
+            set
+            {
+                borderChangeDotCrosshairYellow = value;
+                OnPropertyChanged(nameof(borderChangeDotCrosshairYellow));
+            }
+        }
         #endregion
         #endregion
         #region StartMenuButtons
@@ -339,7 +598,7 @@ namespace Shooting_range.ViewModels
             BorderChangeLanguageSpanish = 2;
             IsEnabledApplyButton = true;
         }
-        private void Changelanguage(string language)
+        private void ChangeLanguage(string language)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo($"{language}");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo($"{language}");
@@ -397,6 +656,10 @@ namespace Shooting_range.ViewModels
         }
         #endregion
         #region TargetPathChange
+        private void ApplyTargetPathChange(string Path)
+        {
+            settingsProperty.TargetPath = Path;
+        }
         private void TargetPathChangeAqua(object sender)
         {
             TargetPathChange = "../Targets/Aqua-Target.png";
@@ -453,10 +716,6 @@ namespace Shooting_range.ViewModels
             BorderChangeTargetYellow = 2;
             IsEnabledApplyButton = true;
         }
-        private void ApplyTargetPathChange(string Path)
-        {
-            settingsProperty.TargetPath = Path;
-        }
         private void HideAllBorderTarget()
         {
             BorderChangeTargetAqua = 0;
@@ -469,16 +728,164 @@ namespace Shooting_range.ViewModels
             BorderChangeTargetYellow = 0;
         }
         #endregion
+        #region CrosshairPathChange
+        private void ApplyCrosshairPathChange(string Path)
+        {
+            settingsProperty.CrosshairPath = Path;
+        }
+        private void CrosshairPathChangeFineAqua(object sender)
+        {
+            CrosshairPathChange = @"\\Fine\\AquaFineCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeFineCrosshairAqua = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeFineBlack(object sender)
+        {
+            CrosshairPathChange = @"\\Fine\\BlackFineCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeFineCrosshairBlack = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeFineBlue(object sender)
+        {
+            CrosshairPathChange = @"\\Fine\\BlueFineCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeFineCrosshairBlue = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeFineGreen(object sender)
+        {
+            CrosshairPathChange = @"\\Fine\\GreenFineCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeFineCrosshairGreen = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeFineOrange(object sender)
+        {
+            CrosshairPathChange = @"\\Fine\\OrangeFineCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeFineCrosshairOrange = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeFinePurple(object sender)
+        {
+            CrosshairPathChange = @"\\Fine\\PurpleFineCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeFineCrosshairPurple = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeFineRed(object sender)
+        {
+            CrosshairPathChange = @"\\Fine\\RedineCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeFineCrosshairRed = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeFineYellow(object sender)
+        {
+            CrosshairPathChange = @"\\Fine\\YellowFineCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeFineCrosshairYellow = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeDotAqua(object sender)
+        {
+            CrosshairPathChange = @"\\Dot\\AquaDotCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeDotCrosshairAqua = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeDotBlack(object sender)
+        {
+            CrosshairPathChange = @"\\Dot\\BlackDotCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeDotCrosshairBlack = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeDotBlue(object sender)
+        {
+            CrosshairPathChange = @"\\Dot\\BlueDotCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeDotCrosshairBlue = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeDotGreen(object sender)
+        {
+            CrosshairPathChange = @"\\Dot\\GreenDotCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeDotCrosshairGreen = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeDotOrange(object sender)
+        {
+            CrosshairPathChange = @"\\Dot\\OrangeDotCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeDotCrosshairOrange = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeDotPurple(object sender)
+        {
+            CrosshairPathChange = @"\\Dot\\PurpleDotCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeDotCrosshairPurple = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeDotRed(object sender)
+        {
+            CrosshairPathChange = @"\\Dot\\RedDotCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeDotCrosshairRed = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void CrosshairPathChangeDotYellow(object sender)
+        {
+            CrosshairPathChange = @"\\Dot\\YellowDotCrosshair.cur";
+            HideAllBorderCrosshair();
+            BorderChangeDotCrosshairYellow = 2;
+            IsEnabledApplyButton = true;
+        }
+        private void HideAllBorderCrosshair()
+        {
+            BorderChangeFineCrosshairAqua = 0;
+            BorderChangeFineCrosshairBlack = 0;
+            BorderChangeFineCrosshairBlue = 0;
+            BorderChangeFineCrosshairGreen = 0;
+            BorderChangeFineCrosshairOrange = 0;
+            BorderChangeFineCrosshairPurple = 0;
+            BorderChangeFineCrosshairRed = 0;
+            BorderChangeFineCrosshairYellow = 0;
+
+            BorderChangeDotCrosshairYellow = 0;
+            BorderChangeDotCrosshairAqua = 0;
+            BorderChangeDotCrosshairBlack = 0;
+            BorderChangeDotCrosshairBlue = 0;
+            BorderChangeDotCrosshairGreen = 0;
+            BorderChangeDotCrosshairOrange = 0;
+            BorderChangeDotCrosshairPurple = 0;
+            BorderChangeDotCrosshairRed = 0;
+            BorderChangeDotCrosshairYellow = 0;
+        }
+        #endregion
         #region ApplySettingsChange
         private void ApplySettingsChange(object sender)
         {
             if(ApplyLanguageChange!=null)
-                Changelanguage(ApplyLanguageChange);
+                ChangeLanguage(ApplyLanguageChange);
             BorderChangeLanguageHide();
             if(TargetPathChange!=null)
-                ApplyTargetPathChange(TargetPathChange); 
-            HideAllBorderTarget();
+                ApplyTargetPathChange(TargetPathChange);
+            if (CrosshairPathChange != null)
+                ApplyCrosshairPathChange(CrosshairPathChange);
+            HideAllBorderTarget(); 
+            HideAllBorderCrosshair();
             IsEnabledApplyButton = false;
+        }
+        private void SetDefaultSettings(object sender)
+        {
+            ChangeLanguage("en-US");
+            ApplyTargetPathChange("../Targets/Aqua-Target.png");
+            ApplyCrosshairPathChange(@"\\Fine\\AquaFineCrosshair.cur");
         }
         #endregion
     }
