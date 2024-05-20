@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Shooting_range.ViewModels"
              xmlns:local1="clr-namespace:Shooting_range.Models"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="800" WindowState="Maximized" WindowStyle="None" Cursor="{Binding cursor}">
+             d:DesignHeight="1200" d:DesignWidth="1200" WindowState="Maximized" WindowStyle="None" Cursor="{Binding cursor}">
     <Window.Background>
         <ImageBrush ImageSource="../Images/MainMenuBackGround.jpg"/>
     </Window.Background>
@@ -98,8 +98,8 @@
             <Button Content="{DynamicResource MainMenuSettingsCustomizeBtn}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Command="{Binding OpenCustomizeSettingsCommand}" Margin="20" FontSize="36"/>
             <Button Content="{DynamicResource MainMenuSettingsLanguageBtn}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding OpenLanguageSettingsCommand}" Margin="20" FontSize="36"/>
             <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
-            <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20"/>
-            <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20"/>
+            <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20" />
+            <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20" Command="{Binding ApplySettingsChangeCommand}"/>
             <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
                 <!--{Binding StartMenuVisibility.SoundSettings}-->
                 
@@ -126,92 +126,105 @@
 </Grid.ColumnDefinitions>
 <Label Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Content="{DynamicResource MainMenuSettingsTargetLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
 <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Content="{DynamicResource MainMenuSettingsCrosshairLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
-                <Border Grid.Column="2" Grid.Row="1" BorderBrush="Green">
+                <Border x:Name="AquaTarget" Grid.Column="2" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetAqua}">
                     <Ellipse Width="150" Height="150">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="../Targets/Aqua-Target.png"/>
                         </Ellipse.Fill>
                         <Ellipse.InputBindings>
                             <MouseBinding
-            Command="{Binding oop}"
+            Command="{Binding TargetPathChangeAquaCommand}"
             Gesture="leftclick"
             />
                         </Ellipse.InputBindings>
                     </Ellipse>
                 </Border>
-                <Border Grid.Column="3" Grid.Row="1">
-                    <Ellipse Width="100" Height="100">
+                <Border x:Name="BlueTarget" Grid.Column="3" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetBlue}">
+                    <Ellipse Width="150" Height="150">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="../Targets/Blue-Target.png"/>
                         </Ellipse.Fill>
                         <Ellipse.InputBindings>
                             <MouseBinding
-Command="{Binding oop}"
+Command="{Binding TargetPathChangeBlueCommand}"
 Gesture="leftclick"
 />
                         </Ellipse.InputBindings>
                     </Ellipse>
                 </Border>
-                <Border Grid.Column="4" Grid.Row="1">
-                    <Ellipse Width="100" Height="100">
+                <Border x:Name="YellowTarget" Grid.Column="4" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetYellow}">
+                    <Ellipse Width="150" Height="150">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="../Targets/Yellow-Target.png"/>
                         </Ellipse.Fill>
                         <Ellipse.InputBindings>
                             <MouseBinding
-Command="{Binding oop}"
+Command="{Binding TargetPathChangeYellowCommand}"
 Gesture="leftclick"
 />
                         </Ellipse.InputBindings>
                     </Ellipse>
                 </Border>
-                <Border Grid.Column="5" Grid.Row="1">
-                    <Ellipse Width="100" Height="100">
+                <Border x:Name="OrangeTarget" Grid.Column="5" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetOrange}">
+                    <Ellipse Width="150" Height="150">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="../Targets/Orange-Target.png"/>
                         </Ellipse.Fill>
                         <Ellipse.InputBindings>
                             <MouseBinding
-Command="{Binding oop}"
+Command="{Binding TargetPathChangeOrangeCommand}"
 Gesture="leftclick"
 />
                         </Ellipse.InputBindings>
                     </Ellipse>
                 </Border>
-                <Border Grid.Column="6" Grid.Row="1">
-                    <Ellipse Width="100" Height="100">
+                <Border x:Name="RedTarget" Grid.Column="6" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetRed}">
+                    <Ellipse Width="150" Height="150">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="../Targets/Red-Target.png"/>
                         </Ellipse.Fill>
                         <Ellipse.InputBindings>
                             <MouseBinding
-Command="{Binding oop}"
+Command="{Binding TargetPathChangeRedCommand}"
 Gesture="leftclick"
 />
                         </Ellipse.InputBindings>
                     </Ellipse>
                 </Border>
-                <Border Grid.Column="7" Grid.Row="1">
-                    <Ellipse Width="100" Height="100">
+                <Border x:Name="GreenTarget" Grid.Column="7" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetGreen}">
+                    <Ellipse Width="150" Height="150">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="../Targets/Green-Target.png"/>
                         </Ellipse.Fill>
                         <Ellipse.InputBindings>
                             <MouseBinding
-Command="{Binding oop}"
+Command="{Binding TargetPathChangeGreenCommand}"
 Gesture="leftclick"
 />
                         </Ellipse.InputBindings>
                     </Ellipse>
                 </Border>
-                <Border Grid.Column="8" Grid.Row="1">
-                    <Ellipse Width="100" Height="100">
+                <Border x:Name="PurpleTarget" Grid.Column="8" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetPurple}">
+                    <Ellipse Width="150" Height="150">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Targets/Purple-Target.png"/>
+                        </Ellipse.Fill>
+                        <Ellipse.InputBindings>
+                            <MouseBinding
+Command="{Binding TargetPathChangePurpleCommand}"
+Gesture="leftclick"
+/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                </Border>
+                <Border x:Name="BlackTarget" Grid.Column="9" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetBlack}">
+                    <Ellipse Width="150" Height="150">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="../Targets/Black-Target.png"/>
                         </Ellipse.Fill>
                         <Ellipse.InputBindings>
                             <MouseBinding
-Command="{Binding oop}"
+Command="{Binding TargetPathChangeBlackCommand}"
 Gesture="leftclick"
 />
                         </Ellipse.InputBindings>
@@ -225,9 +238,15 @@ Gesture="leftclick"
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="English" Command="{Binding ChangeEnglishLanguageCommand}"/>
-                <Button Grid.Column="1" Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Українська" Command="{Binding ChangeUkrainianLanguageCommand}"/>
-                <Button Grid.Column="2" Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Español" Command="{Binding ChangeSpanishLanguageCommand}"/>
+                <Border BorderBrush="Green" BorderThickness="{Binding BorderChangeLanguageEnglish}" Width="320" Height="220">
+                    <Button Grid.Column="0" Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="English" Command="{Binding ChangeEnglishLanguageCommand}"/>
+                </Border>
+                <Border Grid.Column="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeLanguageUkrainian}" Width="320" Height="220">
+                    <Button Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Українська" Command="{Binding ChangeUkrainianLanguageCommand}"/>
+                </Border>
+                <Border Grid.Column="2" BorderBrush="Green" BorderThickness="{Binding BorderChangeLanguageSpanish}" Width="320" Height="220">
+                    <Button Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Español" Command="{Binding ChangeSpanishLanguageCommand}"/>
+                </Border>
             </Grid>
         </Grid>
         <Grid x:Name="SureExitGrid" Visibility="Collapsed">

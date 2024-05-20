@@ -41,8 +41,18 @@ namespace Shooting_range.ViewModels
             OpenSoundSettingsCommand = new RelayCommand(OpenSoundSettings);
             OpenCustomizeSettingsCommand = new RelayCommand(OpenCustomizeSettings);
             OpenLanguageSettingsCommand = new RelayCommand(OpenLanguageSettings);
+            ApplySettingsChangeCommand = new RelayCommand(ApplySettingsChange);
+            TargetPathChangeAquaCommand = new RelayCommand(TargetPathChangeAqua);
+            TargetPathChangeBlackCommand = new RelayCommand(TargetPathChangeBlack);
+            TargetPathChangeBlueCommand = new RelayCommand(TargetPathChangeBlue);
+            TargetPathChangeGreenCommand = new RelayCommand(TargetPathChangeGreen);
+            TargetPathChangeOrangeCommand = new RelayCommand(TargetPathChangeOrange);
+            TargetPathChangePurpleCommand = new RelayCommand(TargetPathChangePurple);
+            TargetPathChangeRedCommand = new RelayCommand(TargetPathChangeRed);
+            TargetPathChangeYellowCommand = new RelayCommand(TargetPathChangeYellow);
         }
         #region CreateProperty
+        SettingsProperty settingsProperty = new SettingsProperty();
         public RelayCommand OpenSettingsCommand {  get; set; }
         public RelayCommand CloseAppCommand { get; set; }
         public RelayCommand OpenSureExitCommand {  get; set; }
@@ -54,6 +64,15 @@ namespace Shooting_range.ViewModels
         public RelayCommand OpenSoundSettingsCommand {  get; set; }
         public RelayCommand OpenCustomizeSettingsCommand {  get; set; }
         public RelayCommand OpenLanguageSettingsCommand {  get; set; }
+        public RelayCommand ApplySettingsChangeCommand {  get; set; }
+        public RelayCommand TargetPathChangeAquaCommand {  get; set; }
+        public RelayCommand TargetPathChangeBlackCommand {  get; set; }
+        public RelayCommand TargetPathChangeBlueCommand {  get; set; }
+        public RelayCommand TargetPathChangeGreenCommand {  get; set; }
+        public RelayCommand TargetPathChangeOrangeCommand {  get; set; }
+        public RelayCommand TargetPathChangePurpleCommand {  get; set; }
+        public RelayCommand TargetPathChangeRedCommand {  get; set; }
+        public RelayCommand TargetPathChangeYellowCommand {  get; set; }
         private string Cursor { get; set; }
         public string cursor
         {
@@ -74,6 +93,153 @@ namespace Shooting_range.ViewModels
                 OnPropertyChanged(nameof(startMenuVisibility));
             }
         }
+        
+        private string ApplyLanguageChange { get; set; }
+        private string TargetPathChange { get; set; }
+        #region BorderProperties
+        private int borderChangeLanguageEnglish { get; set; } = 0;
+        public int BorderChangeLanguageEnglish {
+            get 
+            {
+                return borderChangeLanguageEnglish;
+            }
+            set 
+            {
+                borderChangeLanguageEnglish = value;
+                OnPropertyChanged(nameof(borderChangeLanguageEnglish));
+            } 
+        }
+        private int borderChangeLanguageUkrainian { get; set; } = 0;
+        public int BorderChangeLanguageUkrainian
+        {
+            get
+            {
+                return borderChangeLanguageUkrainian;
+            }
+            set
+            {
+                borderChangeLanguageUkrainian = value;
+                OnPropertyChanged(nameof(borderChangeLanguageUkrainian));
+            }
+        }
+        private int borderChangeLanguageSpanish { get; set; } = 0;
+        public int BorderChangeLanguageSpanish
+        {
+            get
+            {
+                return borderChangeLanguageSpanish;
+            }
+            set
+            {
+                borderChangeLanguageSpanish = value;
+                OnPropertyChanged(nameof(borderChangeLanguageSpanish));
+            }
+        }
+        private int borderChangeTargetAqua { get; set; } = 0;
+        public int BorderChangeTargetAqua
+        {
+            get
+            {
+                return borderChangeTargetAqua;
+            }
+            set
+            {
+                borderChangeTargetAqua = value;
+                OnPropertyChanged(nameof(borderChangeTargetAqua));
+            }
+        }
+        private int borderChangeTargetBlack { get; set; } = 0;
+        public int BorderChangeTargetBlack
+        {
+            get
+            {
+                return borderChangeTargetBlack;
+            }
+            set
+            {
+                borderChangeTargetBlack = value;
+                OnPropertyChanged(nameof(borderChangeTargetBlack));
+            }
+        }
+        private int borderChangeTargetBlue { get; set; } = 0;
+        public int BorderChangeTargetBlue
+        {
+            get
+            {
+                return borderChangeTargetBlue;
+            }
+            set
+            {
+                borderChangeTargetBlue = value;
+                OnPropertyChanged(nameof(borderChangeTargetBlue));
+            }
+        }
+        private int borderChangeTargetGreen { get; set; } = 0;
+        public int BorderChangeTargetGreen
+        {
+            get
+            {
+                return borderChangeTargetGreen;
+            }
+            set
+            {
+                borderChangeTargetGreen = value;
+                OnPropertyChanged(nameof(borderChangeTargetGreen));
+            }
+        }
+        private int borderChangeTargetOrange { get; set; } = 0;
+        public int BorderChangeTargetOrange
+        {
+            get
+            {
+                return borderChangeTargetOrange;
+            }
+            set
+            {
+                borderChangeTargetOrange = value;
+                OnPropertyChanged(nameof(borderChangeTargetOrange));
+            }
+        }
+        private int borderChangeTargetPurple { get; set; } = 0;
+        public int BorderChangeTargetPurple
+        {
+            get
+            {
+                return borderChangeTargetPurple;
+            }
+            set
+            {
+                borderChangeTargetPurple = value;
+                OnPropertyChanged(nameof(borderChangeTargetPurple));
+            }
+        }
+        private int borderChangeTargetRed { get; set; } = 0;
+        public int BorderChangeTargetRed
+        {
+            get
+            {
+                return borderChangeTargetRed;
+            }
+            set
+            {
+                borderChangeTargetRed = value;
+                OnPropertyChanged(nameof(borderChangeTargetRed));
+            }
+        }
+        private int borderChangeTargetYellow { get; set; } = 0;
+        public int BorderChangeTargetYellow
+        {
+            get
+            {
+                return borderChangeTargetYellow;
+            }
+            set
+            {
+                borderChangeTargetYellow = value;
+                OnPropertyChanged(nameof(borderChangeTargetYellow));
+            }
+        }
+        #endregion
         #endregion
         #region StartMenuButtons
         private void BackToMenu(object sender)
@@ -137,15 +303,21 @@ namespace Shooting_range.ViewModels
         #region LanguageChange
         private void ChangeEnglishLanguage(object sender)
         {
-            Changelanguage("en-US");
+            ApplyLanguageChange = "en-US";
+            BorderChangeLanguageHide();
+            BorderChangeLanguageEnglish = 2;
         }
         private void ChangeUkrainianLanguage(object sender)
         {
-            Changelanguage("uk-UA");
+            ApplyLanguageChange = "uk-UA";
+            BorderChangeLanguageHide();
+            BorderChangeLanguageUkrainian = 2;
         }
         private void ChangeSpanishLanguage(object sender)
         {
-            Changelanguage("es-ES");
+            ApplyLanguageChange = "es-ES";
+            BorderChangeLanguageHide();
+            BorderChangeLanguageSpanish = 2;
         }
         private void Changelanguage(string language)
         {
@@ -158,6 +330,12 @@ namespace Shooting_range.ViewModels
                 Source = new Uri($"LanguagePack/Dictionary-{language}.xaml", UriKind.Relative)
             };
             Application.Current.Resources.MergedDictionaries.Add(resdict);
+        }
+        private void BorderChangeLanguageHide()
+        {
+            BorderChangeLanguageEnglish = 0;    
+            BorderChangeLanguageUkrainian = 0;    
+            BorderChangeLanguageSpanish = 0;    
         }
         #endregion
         #region SettingsButtons
@@ -196,6 +374,82 @@ namespace Shooting_range.ViewModels
             StartMenuVisibility.SoundSettings = Visibility.Collapsed;
             StartMenuVisibility.CustomizeSettings = Visibility.Collapsed;
             StartMenuVisibility.LanguageSettings = Visibility.Collapsed;
+        }
+        #endregion
+        #region TargetPathChange
+        private void TargetPathChangeAqua(object sender)
+        {
+            TargetPathChange = "../Targets/Aqua-Target.png";
+            HideAllBorderTarget();
+            BorderChangeTargetAqua = 2;
+        }
+        private void TargetPathChangeBlack(object sender)
+        {
+            TargetPathChange = "../Targets/Black-Target.png";
+            HideAllBorderTarget();
+            BorderChangeTargetBlack = 2;
+        }
+        private void TargetPathChangeBlue (object sender)
+        {
+            TargetPathChange = "../Targets/Blue-Target.png";
+            HideAllBorderTarget();
+            BorderChangeTargetBlue = 2;
+        }
+        private void TargetPathChangeGreen(object sender)
+        {
+            TargetPathChange = "../Targets/Green-Target.png";
+            HideAllBorderTarget();
+            BorderChangeTargetGreen = 2;
+        }
+        private void TargetPathChangeOrange(object sender)
+        {
+            TargetPathChange = "../Targets/Orange-Target.png";
+            HideAllBorderTarget();
+            BorderChangeTargetOrange = 2;
+        }
+        private void TargetPathChangePurple(object sender)
+        {
+            TargetPathChange = "../Targets/Purple-Target.png";
+            HideAllBorderTarget();
+            BorderChangeTargetPurple = 2;
+        }
+        private void TargetPathChangeRed(object sender)
+        {
+            TargetPathChange = "../Targets/Red-Target.png";
+            HideAllBorderTarget();
+            BorderChangeTargetRed = 2;
+        }
+        private void TargetPathChangeYellow(object sender)
+        {
+            TargetPathChange = "../Targets/Yellow-Target.png";
+            HideAllBorderTarget();
+            BorderChangeTargetYellow = 2;
+        }
+        private void ApplyTargetPathChange(string Path)
+        {
+            settingsProperty.TargetPath = Path;
+        }
+        private void HideAllBorderTarget()
+        {
+            BorderChangeTargetAqua = 0;
+            BorderChangeTargetBlack = 0;
+            BorderChangeTargetBlue = 0;
+            BorderChangeTargetGreen = 0;
+            BorderChangeTargetPurple = 0;
+            BorderChangeTargetOrange = 0;
+            BorderChangeTargetRed = 0;
+            BorderChangeTargetYellow = 0;
+        }
+        #endregion
+        #region ApplySettingsChange
+        private void ApplySettingsChange(object sender)
+        {
+            if(ApplyLanguageChange!=null)
+                Changelanguage(ApplyLanguageChange);
+            BorderChangeLanguageHide();
+            if(TargetPathChange!=null)
+                ApplyTargetPathChange(TargetPathChange); 
+            HideAllBorderTarget();
         }
         #endregion
     }

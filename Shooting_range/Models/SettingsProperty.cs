@@ -16,7 +16,7 @@ namespace Shooting_range.Models
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-        private string targetPath { get; set; }
+        private string targetPath { get; set; } = "../Targets/Aqua-Target.png";
         public string TargetPath
         {
             get { return targetPath; }
