@@ -66,13 +66,15 @@
             <Button Grid.Column="1" Grid.Row="3" FontSize="36" Padding="0 0 30 0" x:Name="SettingButton" Content="{DynamicResource MainMenuSettingsBtn}" Command="{Binding OpenSettingsCommand}"/>
             <Button Grid.Column="1" Grid.Row="7" Margin="0 0 0 20" FontSize="36" Padding="0 0 30 0" x:Name="ExitButton" Content="{DynamicResource MainMenuQuitBtn}" Command="{Binding OpenSureExitCommand}"/>
         </Grid>
-        <Grid x:Name="PlayGrid" Visibility="Collapsed">
+        <Grid x:Name="PlayGrid" Visibility="Visible">
             <!--Visibility="{Binding StartMenuVisibility.PlayVisibility}"-->
-            <Button Width="200" Height="200" Margin="0 0 600 0"/>
-            <Button Width="200" Height="200" Margin="0 0 0 0"/>
-            <Button Width="200" Height="200" Margin="600 0 0 0"/>
+            <Grid>
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayGridShotButton}" FontSize="48" FontWeight="Bold"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0"/>
+            </Grid>
         </Grid>
-        <Grid x:Name="SettingsGrid" Visibility="Visible">
+        <Grid x:Name="SettingsGrid" Visibility="Collapsed">
             <!--"{Binding StartMenuVisibility.SettingsVisibility}"-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -100,33 +102,62 @@
             <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding BackToMenuCommand}" Margin="20"/>
             <Button Content="{DynamicResource MainMenuSettingsDefaultBtn}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="20" Command="{Binding SetDefaultSettingsCommand}"/>
             <Button Content="{DynamicResource MainMenuSettingsApplyBtn}" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Margin="20" Command="{Binding ApplySettingsChangeCommand}" IsEnabled="{Binding IsEnabledApplyButton}"/>
-            <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
+            <Grid x:Name="SoundSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Visible">
                 <!--{Binding StartMenuVisibility.SoundSettings}-->
-                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="1" Grid.Row="1" Margin="20" Command="{Binding ChangeMusicVolumeDownCommand}">
+                    <Image Source="../Images/LeftPoint.png" Margin="10"/>
+                </Button>
+                <Label Background="#FF029DBB" Grid.Row="1" Grid.Column="2" Margin="20" Content="{Binding MusicVolume}" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button Grid.Column="3" Grid.Row="1" Margin="20" Command="{Binding ChangeMusicVolumeUpCommand}">
+                    <Image Source="../Images/RightPoint.png" Margin="10"/>
+                </Button>
+                <Button Grid.Column="1" Grid.Row="3" Margin="20" Command="{Binding ChangeSoundVolumeDownCommand}">
+                    <Image Source="../Images/LeftPoint.png" Margin="10"/>
+                </Button>
+                <Label Background="#FF029DBB" Grid.Row="3" Grid.Column="2" Margin="20" Content="{Binding SoundVolume}" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button Grid.Column="3" Grid.Row="3" Margin="20" Command="{Binding ChangeSoundVolumeUpCommand}">
+                    <Image Source="../Images/RightPoint.png" Margin="10"/>
+                </Button>
+                <Label Grid.Column="2" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" Content="{DynamicResource MainMenuSettingsVolumeLevel}" Foreground="#FF029DBB" FontWeight="Bold"/>
+                <Label Grid.Column="2" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" Content="{DynamicResource MainMenuSettingsSoundLevel}" Foreground="#FF029DBB" FontWeight="Bold"/>
             </Grid>
             <Grid x:Name="CustomizeSettings" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="10" Visibility="Collapsed">
                 <!--{Binding StartMenuVisibility.CustomizeSettings}-->
                 <Grid.RowDefinitions>
-    <RowDefinition Height="150"/>
-    <RowDefinition/>
-    <RowDefinition Height="150"/>
-    <RowDefinition/>
-    <RowDefinition/>
-</Grid.RowDefinitions>
-<Grid.ColumnDefinitions>
-    <ColumnDefinition/>
-    <ColumnDefinition Width="300"/>
-    <ColumnDefinition/>
-    <ColumnDefinition/>
-    <ColumnDefinition/>
-    <ColumnDefinition/>
-    <ColumnDefinition/>
-    <ColumnDefinition/>
-    <ColumnDefinition/>
-    <ColumnDefinition/>
-</Grid.ColumnDefinitions>
-<Label Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Content="{DynamicResource MainMenuSettingsTargetLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
-<Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Content="{DynamicResource MainMenuSettingsCrosshairLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Content="{DynamicResource MainMenuSettingsTargetLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
+                <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Content="{DynamicResource MainMenuSettingsCrosshairLabel}" Background="#FF029DBB" Foreground="White" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300" Margin="20"/>
                 <Border x:Name="AquaTarget" Grid.Column="2" Grid.Row="1" BorderBrush="Green" BorderThickness="{Binding BorderChangeTargetAqua}">
                     <Ellipse Width="150" Height="150">
                         <Ellipse.Fill>
@@ -232,8 +263,9 @@ Gesture="leftclick"
                     </Ellipse>
                 </Border>
 
-                <Border x:Name="FineAquaCrosshair" Grid.Column="2" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairAqua}"> 
-                    <Image Source="../Crosshairs/FineImages/FineAqua.png" Width="100" Height="100"/>                     <Border.InputBindings>
+                <Border x:Name="FineAquaCrosshair" Grid.Column="2" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairAqua}">
+                    <Image Source="../Crosshairs/FineImages/FineAqua.png" Width="100" Height="100"/>
+                    <Border.InputBindings>
                         <MouseBinding
                             Command="{Binding CrosshairPathChangeFineAquaCommand}"
                             Gesture="leftclick">
@@ -276,7 +308,7 @@ Gesture="leftclick"
                         </MouseBinding>
                     </Border.InputBindings>
                 </Border>
-                <Border x:Name="FineGreenCrosshair" Grid.Column="7" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairGreen}"> 
+                <Border x:Name="FineGreenCrosshair" Grid.Column="7" Grid.Row="3" BorderBrush="Green" BorderThickness="{Binding BorderChangeFineCrosshairGreen}">
                     <Image Source="../Crosshairs/FineImages/FineGreen.png" Width="100" Height="100"/>
                     <Border.InputBindings>
                         <MouseBinding
@@ -367,7 +399,7 @@ Gesture="leftclick">
                         </MouseBinding>
                     </Border.InputBindings>
                 </Border>
-                <Border x:Name="DotBlackCrosshair" Grid.Column="9" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairBlack}"> 
+                <Border x:Name="DotBlackCrosshair" Grid.Column="9" Grid.Row="4" BorderBrush="Green" BorderThickness="{Binding BorderChangeDotCrosshairBlack}">
                     <Image Source="../Crosshairs/DotImages/DotBlack.png" Width="50" Height="50"/>
                     <Border.InputBindings>
                         <MouseBinding

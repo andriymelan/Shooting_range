@@ -41,5 +41,25 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(crosshairPath));
             }
         }
+        private double musicVolume { get; set; } = 1;
+        public double MusicVolume
+        {
+            get { return musicVolume; }
+            set
+            {
+                musicVolume = value;
+                OnPropertyChanged(nameof(musicVolume));
+            }
+        }
+        private double soundVolume { get; set; } = 1;
+        public double SoundVolume
+        {
+            get { return soundVolume; }
+            set
+            {
+                soundVolume = value;
+                OnPropertyChanged(nameof(soundVolume));
+            }
+        }
     }
 }

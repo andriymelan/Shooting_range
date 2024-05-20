@@ -14,11 +14,14 @@ using System.Runtime.CompilerServices;
 using System.IO;
 using System.Globalization;
 using System.Threading;
+using System.Reflection;
+using System.Windows.Media;
 
 namespace Shooting_range.ViewModels
 {
     public class StartMenuViewModel:INotifyPropertyChanged
     {
+        #region InitializeDefauleConstructorAndINotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
@@ -75,13 +78,17 @@ namespace Shooting_range.ViewModels
             CrosshairPathChangeDotRedCommand = new RelayCommand(CrosshairPathChangeDotRed);
             CrosshairPathChangeDotYellowCommand = new RelayCommand(CrosshairPathChangeDotYellow);
 
-        }
+            ChangeMusicVolumeUpCommand = new RelayCommand(ChangeMusicVolumeUp);
+            ChangeMusicVolumeDownCommand = new RelayCommand(ChangeMusicVolumeDown);
+            ChangeSoundVolumeUpCommand = new RelayCommand(ChangeSoundVolumeUp);
+            ChangeSoundVolumeDownCommand = new RelayCommand(ChangeSoundVolumeDown);
 
+            MusicInitialize();
+        }
+        #endregion
 
         #region CreateProperty
 
-
-        SettingsProperty settingsProperty = new SettingsProperty();
         public RelayCommand OpenSettingsCommand {  get; set; }
         public RelayCommand CloseAppCommand { get; set; }
         public RelayCommand OpenSureExitCommand {  get; set; }
@@ -127,6 +134,11 @@ namespace Shooting_range.ViewModels
         public RelayCommand CrosshairPathChangeDotRedCommand { get; set; }
         public RelayCommand CrosshairPathChangeDotYellowCommand { get; set; }
 
+        public RelayCommand ChangeMusicVolumeUpCommand {  get; set; }
+        public RelayCommand ChangeMusicVolumeDownCommand {  get; set; }
+        public RelayCommand ChangeSoundVolumeUpCommand {  get; set; }
+        public RelayCommand ChangeSoundVolumeDownCommand {  get; set; }
+
         private string Cursor { get; set; }
         public string cursor
         {
@@ -137,7 +149,17 @@ namespace Shooting_range.ViewModels
                 OnPropertyChanged(nameof(Cursor));
             }
         }
-        private StartMenuModel startMenuVisibility { get; set; }
+        SettingsProperty settingsProperty = new SettingsProperty();
+        public SettingsProperty SettingsProperty
+        {
+            get { return settingsProperty; }
+            set
+            {
+                settingsProperty = value;
+                OnPropertyChanged(nameof(settingsProperty));
+            }
+        }
+        StartMenuModel startMenuVisibility = new StartMenuModel();
         public StartMenuModel StartMenuVisibility
         {
             get { return startMenuVisibility; }
@@ -160,7 +182,26 @@ namespace Shooting_range.ViewModels
         private string ApplyLanguageChange { get; set; }
         private string TargetPathChange { get; set; }
         private string CrosshairPathChange {  get; set; }
-
+        private int musicVolume { get; set; } = 50;
+        public int MusicVolume
+        {
+            get { return musicVolume; }
+            set
+            {
+                musicVolume = value;
+                OnPropertyChanged(nameof(musicVolume));
+            }
+        }
+        private int soundVolume { get; set; } = 50;
+        public int SoundVolume
+        {
+            get { return soundVolume; }
+            set
+            {
+                soundVolume = value;
+                OnPropertyChanged(nameof(soundVolume));
+            }
+        }
 
         #region BorderProperties
 
@@ -517,6 +558,7 @@ namespace Shooting_range.ViewModels
         }
         #endregion
         #endregion
+
         #region StartMenuButtons
         private void BackToMenu(object sender)
         {
@@ -576,6 +618,7 @@ namespace Shooting_range.ViewModels
             StartMenuVisibility.PlayVisibility = Visibility.Collapsed;
         }
         #endregion
+
         #region LanguageChange
         private void ChangeEnglishLanguage(object sender)
         {
@@ -617,6 +660,7 @@ namespace Shooting_range.ViewModels
             BorderChangeLanguageSpanish = 0;    
         }
         #endregion
+
         #region SettingsButtons
         private void OpenSoundSettings(object sender)
         {
@@ -655,6 +699,7 @@ namespace Shooting_range.ViewModels
             StartMenuVisibility.LanguageSettings = Visibility.Collapsed;
         }
         #endregion
+
         #region TargetPathChange
         private void ApplyTargetPathChange(string Path)
         {
@@ -728,6 +773,7 @@ namespace Shooting_range.ViewModels
             BorderChangeTargetYellow = 0;
         }
         #endregion
+
         #region CrosshairPathChange
         private void ApplyCrosshairPathChange(string Path)
         {
@@ -867,7 +913,58 @@ namespace Shooting_range.ViewModels
             BorderChangeDotCrosshairYellow = 0;
         }
         #endregion
-        #region ApplySettingsChange
+
+        #region ChangeVolume
+        private void ChangeMusicVolumeUp(object sender)
+        {
+            if(MusicVolume!=100)
+            {
+                ButtonClick();
+                MusicVolume += 5;
+                IsEnabledApplyButton = true;
+            }
+        }
+        private void ChangeMusicVolumeDown(object sender)
+        {
+            if(MusicVolume!=0)
+            {
+                ButtonClick();
+                MusicVolume -= 5;
+                IsEnabledApplyButton = true;
+            }
+        }
+        private void ChangeSoundVolumeUp(object sender)
+        {
+            if(SoundVolume!=100)
+            {
+                ButtonClick();
+                SoundVolume += 5;
+                IsEnabledApplyButton = true;
+            }
+        }
+
+
+        
+        private void ChangeSoundVolumeDown(object sender)
+        {
+            if (SoundVolume != 0)
+            {
+                ButtonClick();
+                SoundVolume -= 5;
+                IsEnabledApplyButton = true;
+            }
+        }
+        private void ApplyMusicVolumeChange(int volume)
+        {
+            settingsProperty.MusicVolume = volume;
+        }
+        private void ApplySoundVolumeChange(int volume)
+        {
+            settingsProperty.SoundVolume = volume;
+        }
+        #endregion
+
+        #region ApplySettingsChanges
         private void ApplySettingsChange(object sender)
         {
             if(ApplyLanguageChange!=null)
@@ -877,6 +974,9 @@ namespace Shooting_range.ViewModels
                 ApplyTargetPathChange(TargetPathChange);
             if (CrosshairPathChange != null)
                 ApplyCrosshairPathChange(CrosshairPathChange);
+            ApplyMusicVolumeChange(MusicVolume);
+            ApplySoundVolumeChange(SoundVolume);
+            MainMenuMusic.Volume = (settingsProperty.MusicVolume) / 100;
             HideAllBorderTarget(); 
             HideAllBorderCrosshair();
             IsEnabledApplyButton = false;
@@ -886,8 +986,42 @@ namespace Shooting_range.ViewModels
             ChangeLanguage("en-US");
             ApplyTargetPathChange("../Targets/Aqua-Target.png");
             ApplyCrosshairPathChange(@"\\Fine\\AquaFineCrosshair.cur");
+            MusicVolume = 50;
+            ApplyMusicVolumeChange(50);
+            SoundVolume = 50;
+            ApplySoundVolumeChange(50);
+            IsEnabledApplyButton = false;
+        }
+        #endregion
+
+        #region MusicAndSound
+        MediaPlayer ButtonClickSound; 
+        MediaPlayer MainMenuMusic; 
+
+        static string FilePath = Assembly.GetExecutingAssembly().Location;
+        static string DirectionPath = System.IO.Path.GetDirectoryName(FilePath);
+        static string ButtonClickPath = System.IO.Path.Combine(DirectionPath, "Sounds/SoundEffects/ButtonClick.wav");
+        static string MainMenuMusicPath = System.IO.Path.Combine(DirectionPath, "Sounds/Music/MainMenuMusic.wav");
+
+        private void ButtonClick()
+        {
+            ButtonClickSound = new MediaPlayer();
+            ButtonClickSound.Open(new Uri(ButtonClickPath));
+            ButtonClickSound.Volume = (settingsProperty.SoundVolume)/100;
+            ButtonClickSound.Play();
+        }
+        private void MusicInitialize()
+        {
+            MainMenuMusic = new MediaPlayer();
+            MainMenuMusic.MediaEnded += MusicEnd;
+            MainMenuMusic.Open(new Uri(MainMenuMusicPath));
+            MainMenuMusic.Volume = (settingsProperty.MusicVolume) / 100;
+            MainMenuMusic.Play();
+        }
+        private void MusicEnd(object sender, EventArgs e)
+        {
+            MainMenuMusic.Position = TimeSpan.MinValue;
         }
         #endregion
     }
-
 }

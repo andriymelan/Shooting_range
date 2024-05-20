@@ -13,5 +13,6 @@
     <System:String x:Key="MainMenuSettingsCrosshairLabel">Приціл</System:String>
     <System:String x:Key="MainMenuSettingsCloseBtn">Закрити</System:String>
     <System:String x:Key="MainMenuSettingsDefaultBtn">За замовчуванням</System:String>
-    <System:String x:Key="MainMenuSettingsApplyBtn">Застосувати</System:String>
+    <System:String x:Key="MainMenuSettingsVolumeLevel">Музика</System:String>
+    <System:String x:Key="MainMenuSettingsSoundLevel">Звуки</System:String>
 </ResourceDictionary>

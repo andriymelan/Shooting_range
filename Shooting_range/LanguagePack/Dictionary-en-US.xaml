@@ -14,4 +14,7 @@
     <System:String x:Key="MainMenuSettingsCloseBtn">Close</System:String>
     <System:String x:Key="MainMenuSettingsDefaultBtn">Default</System:String>
     <System:String x:Key="MainMenuSettingsApplyBtn">Apply</System:String>
+    <System:String x:Key="MainMenuSettingsVolumeLevel">Music</System:String>
+    <System:String x:Key="MainMenuSettingsSoundLevel">Sound</System:String>
+    <System:String x:Key="MainMenuPlayGridShotButton">Grid shot</System:String>
 </ResourceDictionary>

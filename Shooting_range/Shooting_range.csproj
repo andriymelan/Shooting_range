@@ -112,62 +112,166 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\MainMenuBackGround.jpg" />
+    <Content Include="Images\MainMenuBackGround.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Targets\Aqua-Target.png" />
-    <Resource Include="Targets\Black-Target.png" />
-    <Resource Include="Targets\Blue-Target.png" />
-    <Resource Include="Targets\Green-Target.png" />
-    <Resource Include="Targets\Orange-Target.png" />
-    <Resource Include="Targets\Purple-Target.png" />
-    <Resource Include="Targets\Red-Target.png" />
-    <Resource Include="Targets\Yellow-Target.png" />
+    <Content Include="Sounds\Music\MainMenuMusic.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Targets\Aqua-Target.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Targets\Black-Target.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Targets\Blue-Target.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Targets\Green-Target.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Targets\Orange-Target.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Targets\Purple-Target.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Targets\Red-Target.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Targets\Yellow-Target.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Cursor\MainCursor.cur" />
+    <Content Include="Cursor\MainCursor.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Crosshairs\Dot\AquaDotCrosshair.cur" />
-    <Resource Include="Crosshairs\Dot\BlackDotCrosshair.cur" />
-    <Resource Include="Crosshairs\Dot\BlueDotCrosshair.cur" />
+    <Content Include="Crosshairs\Dot\AquaDotCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Dot\BlackDotCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Dot\BlueDotCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Crosshairs\Fine\AquaFineCrosshair.cur" />
-    <Resource Include="Crosshairs\Fine\BlackFineCrosshair.cur" />
-    <Resource Include="Crosshairs\Fine\BlueFineCrosshair.cur" />
-    <Resource Include="Crosshairs\Fine\GreenFineCrosshair.cur" />
-    <Resource Include="Crosshairs\Fine\OrangeFineCrosshair.cur" />
-    <Resource Include="Crosshairs\Fine\PurpleFineCrosshair.cur" />
-    <Resource Include="Crosshairs\Fine\RedFineCrosshair.cur" />
-    <Resource Include="Crosshairs\Fine\YellowFineCrosshair.cur" />
+    <Content Include="Crosshairs\Fine\AquaFineCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Fine\BlackFineCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Fine\BlueFineCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Fine\GreenFineCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Fine\OrangeFineCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Fine\PurpleFineCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Fine\RedFineCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Fine\YellowFineCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Crosshairs\Dot\GreenDotCrosshair.cur" />
-    <Resource Include="Crosshairs\Dot\OrangeDotCrosshair.cur" />
-    <Resource Include="Crosshairs\Dot\PurpleDotCrosshair.cur" />
-    <Resource Include="Crosshairs\Dot\RedDotCrosshair.cur" />
-    <Resource Include="Crosshairs\Dot\YellowDotCrosshair.cur" />
+    <Content Include="Crosshairs\Dot\GreenDotCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Dot\OrangeDotCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Dot\PurpleDotCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Dot\RedDotCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\Dot\YellowDotCrosshair.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Crosshairs\FineImages\FineAqua.png" />
-    <Resource Include="Crosshairs\FineImages\FineBlack.png" />
-    <Resource Include="Crosshairs\FineImages\FineBlue.png" />
-    <Resource Include="Crosshairs\FineImages\FineGreen.png" />
-    <Resource Include="Crosshairs\FineImages\FineOrange.png" />
-    <Resource Include="Crosshairs\FineImages\FinePurple.png" />
-    <Resource Include="Crosshairs\FineImages\FineRed.png" />
-    <Resource Include="Crosshairs\FineImages\FineYellow.png" />
+    <Content Include="Crosshairs\FineImages\FineAqua.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\FineImages\FineBlack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\FineImages\FineBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\FineImages\FineGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\FineImages\FineOrange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\FineImages\FinePurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\FineImages\FineRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\FineImages\FineYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Crosshairs\DotImages\DotAqua.png" />
-    <Resource Include="Crosshairs\DotImages\DotBlack.png" />
-    <Resource Include="Crosshairs\DotImages\DotBlue.png" />
-    <Resource Include="Crosshairs\DotImages\DotGreen.png" />
-    <Resource Include="Crosshairs\DotImages\DotOrange.png" />
-    <Resource Include="Crosshairs\DotImages\DotPurple.png" />
-    <Resource Include="Crosshairs\DotImages\DotRed.png" />
-    <Resource Include="Crosshairs\DotImages\DotYellow.png" />
+    <Content Include="Crosshairs\DotImages\DotAqua.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\DotImages\DotBlack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\DotImages\DotBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\DotImages\DotGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\DotImages\DotOrange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\DotImages\DotPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\DotImages\DotRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Crosshairs\DotImages\DotYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\LeftPoint.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\RightPoint.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Sounds\SoundEffects\ButtonClick.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\SoundEffects\TargetHit.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
