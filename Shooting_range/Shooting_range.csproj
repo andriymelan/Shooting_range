@@ -59,8 +59,11 @@
     <Compile Include="Models\SettingsProperty.cs" />
     <Compile Include="Models\StartMenuModel.cs" />
     <Compile Include="Services\RellayCommand.cs" />
-    <Compile Include="Services\WindowService.cs" />
+    <Compile Include="ViewModels\PlayGameViewModel.cs" />
     <Compile Include="ViewModels\StartMenuViewModel.cs" />
+    <Compile Include="Views\PlayGameView.xaml.cs">
+      <DependentUpon>PlayGameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartMenuView.xaml.cs">
       <DependentUpon>StartMenuView.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LanguagePack\Dictionary-uk-UA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayGameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,7 +124,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\PlayGameBackGround.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Sounds\Music\MainMenuMusic.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Music\PlayGameMusic.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Targets\Aqua-Target.png">

@@ -114,14 +114,14 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(gridShotVisibility));
             }
         }
-        private Visibility spiderShotVisibility {  get; set; } = Visibility.Collapsed;
-        public Visibility SpiderShotVisibility
+        private Visibility spyderShotVisibility {  get; set; } = Visibility.Collapsed;
+        public Visibility SpyderShotVisibility
         {
-            get { return spiderShotVisibility; }
+            get { return spyderShotVisibility; }
             set
             {
-                spiderShotVisibility = value;
-                OnPropertyChanged(nameof(spiderShotVisibility));
+                spyderShotVisibility = value;
+                OnPropertyChanged(nameof(spyderShotVisibility));
             }
         }
         private Visibility motionShotVisibility {  get; set; } = Visibility.Collapsed;
