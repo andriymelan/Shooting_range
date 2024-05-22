@@ -9,51 +9,51 @@
     <Window.Background>
         <ImageBrush ImageSource="../Images/PlayGameBackGround.jpg"/>
     </Window.Background>
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding GamePauseCommand}" />
+    </Window.InputBindings>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="1300"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="700"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Border BorderBrush="Green" BorderThickness="2" Grid.Column="1" Grid.Row="1"/>
-        <Grid Grid.Column="1" Grid.Row="1">
-                <Canvas>
-                <Ellipse Width="100" Height="100" Canvas.Top="{Binding CanvasTop}" Canvas.Left="{Binding CanvasLeft}">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding Target}"/>
-                        </Ellipse.Fill>
-                        <Ellipse.InputBindings>
-                            <MouseBinding
-                            Command="{Binding TargetHitCommand}"
-                            Gesture="leftclick"/>
-                        </Ellipse.InputBindings>
-                    </Ellipse>
-                <Ellipse Width="100" Height="100" Canvas.Top="{Binding CanvasTop1}" Canvas.Left="{Binding CanvasLeft1}">
+        <Grid>
+        <Grid.InputBindings>
+            <MouseBinding Gesture="leftclick" Command="{Binding CountAllLeftMouseClickCommand}"/>
+        </Grid.InputBindings>
+            
+        <Label Content="{Binding CountAllLeftMouseClick}" Foreground="Aqua" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Margin="0 30 50 0"/>
+        <Label Content="{Binding CountAllLeftMouseClick}" Foreground="Aqua" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Margin="50 30 0 0"/>
+        <Grid Grid.Column="1" Grid.Row="1" Width="1300" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Canvas>
+                    <Ellipse Width="100" Height="100" Canvas.Top="{Binding CanvasTopFirstTarget}" Canvas.Left="{Binding CanvasLeftFirstTarget}">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding Target}"/>
                     </Ellipse.Fill>
                     <Ellipse.InputBindings>
                         <MouseBinding
-            Command="{Binding TargetHitCommand1}"
+                            Command="{Binding FirstTargetHitCommand}"
+                            Gesture="leftclick"/>
+                    </Ellipse.InputBindings>
+                </Ellipse>
+                    <Ellipse Width="100" Height="100" Canvas.Top="{Binding CanvasTopSecondTarget}" Canvas.Left="{Binding CanvasLeftSecondTarget}">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding Target}"/>
+                    </Ellipse.Fill>
+                    <Ellipse.InputBindings>
+                        <MouseBinding
+            Command="{Binding SecondTargetHitCommand}"
             Gesture="leftclick"/>
                     </Ellipse.InputBindings>
                 </Ellipse>
-                <Ellipse Width="100" Height="100" Canvas.Top="{Binding CanvasTop2}" Canvas.Left="{Binding CanvasLeft2}">
+                    <Ellipse Width="100" Height="100" Canvas.Top="{Binding CanvasTopThirdTarget}" Canvas.Left="{Binding CanvasLeftThirdTarget}">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding Target}"/>
                     </Ellipse.Fill>
                     <Ellipse.InputBindings>
                         <MouseBinding
-            Command="{Binding TargetHitCommand2}"
+            Command="{Binding ThirdTargetHitCommand}"
             Gesture="leftclick"/>
                     </Ellipse.InputBindings>
                 </Ellipse>
             </Canvas>
             </Grid>
+        </Grid>
     </Grid>
 </Window>

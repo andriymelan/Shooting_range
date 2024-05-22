@@ -31,94 +31,109 @@ namespace Shooting_range.ViewModels
 
         public PlayGameViewModel()
         {
-            TargetHitCommand = new RelayCommand(TargetHit);
-            TargetHitCommand1 = new RelayCommand(TargetHit1);
-            TargetHitCommand2 = new RelayCommand(TargetHit2);
-
+            FirstTargetHitCommand = new RelayCommand(TargetHit);
+            SecondTargetHitCommand = new RelayCommand(TargetHit1);
+            ThirdTargetHitCommand = new RelayCommand(TargetHit2);
+            CountAllLeftMouseClickCommand = new RelayCommand(CountAllLeftMouseClickMethod);
+            GamePauseCommand = new RelayCommand(esc);
+            StartLocationTarget();
             MusicInitialize();
         }
 
 
-        public RelayCommand TargetHitCommand { get; set; }
-        public RelayCommand TargetHitCommand1 { get; set; }
-        public RelayCommand TargetHitCommand2 { get; set; }
+        public RelayCommand FirstTargetHitCommand { get; set; }
+        public RelayCommand SecondTargetHitCommand { get; set; }
+        public RelayCommand ThirdTargetHitCommand { get; set; }
+        public RelayCommand CountAllLeftMouseClickCommand {  get; set; }
+        public RelayCommand GamePauseCommand {  get; set; }
 
         public string Crosshair { get; } = SettingsProperty.CrosshairPath;
 
         public string Target { get; } = SettingsProperty.TargetPath;
 
-        private long canvasTop { get; set; } = 0;
-        public long CanvasTop
+        private int canvasTopFirstTarget { get; set; } = 0;
+        public int CanvasTopFirstTarget
         {
             get
             {
-                return canvasTop;
+                return canvasTopFirstTarget;
             }
             set
             {
-                canvasTop = value;
-                OnPropertyChanged(nameof(canvasTop));
+                canvasTopFirstTarget = value;
+                OnPropertyChanged(nameof(canvasTopFirstTarget));
             }
         }
 
-        private long canvasLeft { get; set; } = 0;
-        public long CanvasLeft
+        private int canvasLeftFirstTarget { get; set; } = 0;
+        public int CanvasLeftFirstTarget
         {
             get
             {
-                return canvasLeft;
+                return canvasLeftFirstTarget;
             }
             set
             {
-                canvasLeft = value;
-                OnPropertyChanged(nameof(canvasLeft));
+                canvasLeftFirstTarget = value;
+                OnPropertyChanged(nameof(canvasLeftFirstTarget));
             }
         }
 
-        private long canvasTop1 { get; set; } = 0;
-        public long CanvasTop1
+        private int canvasTopSecondTarget { get; set; } = 0;
+        public int CanvasTopSecondTarget
         {
             get
             {
-                return canvasTop1;
+                return canvasTopSecondTarget;
             }
             set
             {
-                canvasTop1 = value;
-                OnPropertyChanged(nameof(canvasTop1));
-            }
-        }
-
-        private long canvasLeft1 { get; set; } = 0;
-        public long CanvasLeft1
-        {
-            get { return canvasLeft1;}
-            set
-            {
-                canvasLeft1 = value;
-                OnPropertyChanged(nameof(canvasLeft1));
+                canvasTopSecondTarget = value;
+                OnPropertyChanged(nameof(canvasTopSecondTarget));
             }
         }
 
-        private long canvasTop2 { get; set; } = 0;
-        public long CanvasTop2
+        private int canvasLeftSecondTarget { get; set; } = 0;
+        public int CanvasLeftSecondTarget
         {
-            get { return canvasTop2;}
+            get { return canvasLeftSecondTarget; }
             set
             {
-                canvasTop2 = value;
-                OnPropertyChanged(nameof(canvasTop2));
+                canvasLeftSecondTarget = value;
+                OnPropertyChanged(nameof(canvasLeftSecondTarget));
             }
         }
 
-        private long canvasLeft2 { get; set; } = 0;
-        public long CanvasLeft2
+        private int canvasTopThirdTarget { get; set; } = 0;
+        public int CanvasTopThirdTarget
         {
-            get { return canvasLeft2; }
+            get { return canvasTopThirdTarget; }
             set
             {
-                canvasLeft2 = value;
-                OnPropertyChanged(nameof(canvasLeft2));
+                canvasTopThirdTarget = value;
+                OnPropertyChanged(nameof(canvasTopThirdTarget));
+            }
+        }
+
+        private int canvasLeftThirdTarget { get; set; } = 0;
+        public int CanvasLeftThirdTarget
+        {
+            get { return canvasLeftThirdTarget; }
+            set
+            {
+                canvasLeftThirdTarget = value;
+                OnPropertyChanged(nameof(canvasLeftThirdTarget));
+            }
+        }
+
+        private int countAllLeftMouseClick { get; set; } = 0;
+        public int CountAllLeftMouseClick
+        {
+            get { return countAllLeftMouseClick; }
+            set
+            {
+                countAllLeftMouseClick = value;
+                OnPropertyChanged(nameof(countAllLeftMouseClick));
             }
         }
 
@@ -126,23 +141,37 @@ namespace Shooting_range.ViewModels
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(0);
+            CountAllLeftMouseClick += 5;
+            while ((CanvasTopFirstTarget == CanvasTopSecondTarget && CanvasLeftFirstTarget == CanvasLeftSecondTarget) || (CanvasTopFirstTarget == CanvasTopThirdTarget && CanvasLeftFirstTarget == CanvasLeftThirdTarget))
+                ChangeLocationTarget(0);
         }
 
         private void TargetHit1(object sender)
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(1);
+            CountAllLeftMouseClick += 5;
+            while ((CanvasTopSecondTarget == CanvasTopFirstTarget && CanvasLeftSecondTarget == CanvasLeftFirstTarget) || (CanvasTopSecondTarget == CanvasTopThirdTarget && CanvasLeftSecondTarget == CanvasLeftThirdTarget))
+                ChangeLocationTarget(1);
         }
         private void TargetHit2(object sender)
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(2);
+            CountAllLeftMouseClick += 5;
+            while ((CanvasTopThirdTarget == CanvasTopSecondTarget && CanvasLeftThirdTarget == CanvasLeftSecondTarget) || (CanvasTopThirdTarget == CanvasTopFirstTarget && CanvasLeftThirdTarget == CanvasLeftFirstTarget))
+                ChangeLocationTarget(2);
         }
-
-        private void StartLocationTarget(int targetNumber)
+        
+        private void StartLocationTarget()
         {
             Random randomStartLocation = new Random();
-
+            CanvasTopFirstTarget = (randomStartLocation.Next(1001) % 6) * 100;
+            CanvasTopSecondTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 6) * 100;
+            CanvasTopThirdTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 6) * 100;
+            CanvasLeftFirstTarget = (randomStartLocation.Next(1001) % 13) * 100;
+            CanvasLeftSecondTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 13) * 100;
+            CanvasLeftThirdTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 13) * 100;
         }
         private void ChangeLocationTarget(int targetNumber)
         {
@@ -150,26 +179,30 @@ namespace Shooting_range.ViewModels
             switch (targetNumber)
             {
                 case 0:
-                    CanvasTop = (CanvasRandom.Next(1001) % 6) * 100;
-                    CanvasLeft = (CanvasRandom.Next(1001) % 13) * 100;
-                    if ((CanvasTop == CanvasTop1 && CanvasLeft == CanvasLeft1)||(CanvasTop == CanvasTop2 && CanvasLeft == CanvasLeft2))
-                        ChangeLocationTarget(targetNumber);
+                    CanvasTopFirstTarget = (CanvasRandom.Next(1001) % 6) * 100;
+                    CanvasLeftFirstTarget = (CanvasRandom.Next(1001) % 13) * 100;        
                     break;
                 case 1:
-                    CanvasTop1 = (CanvasRandom.Next(1001) % 6) * 100;
-                    CanvasLeft1 = (CanvasRandom.Next(1001) % 13) * 100;
-                    if ((CanvasTop1 == CanvasTop && CanvasLeft1 == CanvasLeft) || (CanvasTop1 == CanvasTop2 && CanvasLeft1 == CanvasLeft2))
-                        ChangeLocationTarget(targetNumber);
+                    CanvasTopSecondTarget = (CanvasRandom.Next(1001) % 6) * 100;
+                    CanvasLeftSecondTarget = (CanvasRandom.Next(1001) % 13) * 100;
                     break;
                 case 2:
-                    CanvasTop2 = (CanvasRandom.Next(1001) % 6) * 100;
-                    CanvasLeft2 = (CanvasRandom.Next(1001) % 13) * 100;
-                    if ((CanvasTop2 == CanvasTop1 && CanvasLeft2 == CanvasLeft1) || (CanvasTop2 == CanvasTop && CanvasLeft2 == CanvasLeft))
-                        ChangeLocationTarget(targetNumber);
+                    CanvasTopThirdTarget = (CanvasRandom.Next(1001) % 6) * 100;
+                    CanvasLeftThirdTarget = (CanvasRandom.Next(1001) % 13) * 100;
                     break;
                 default: 
                     break;
             }
+        }
+
+        private void esc(object sender)
+        {
+            CountAllLeftMouseClick += 100;
+        }
+
+        private void CountAllLeftMouseClickMethod(object sender)
+        {
+            CountAllLeftMouseClick++;
         }
 
         #region MusicAndSound
