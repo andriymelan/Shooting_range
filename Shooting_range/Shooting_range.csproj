@@ -56,7 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\SettingsProperty.cs" />
+    <Compile Include="Models\GameModeSettingsModel.cs" />
+    <Compile Include="Models\SettingsPropertyModel.cs" />
     <Compile Include="Models\StartMenuModel.cs" />
     <Compile Include="Services\RellayCommand.cs" />
     <Compile Include="ViewModels\PlayGameViewModel.cs" />

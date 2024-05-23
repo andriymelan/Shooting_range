@@ -9,20 +9,53 @@
     <Window.Background>
         <ImageBrush ImageSource="../Images/PlayGameBackGround.jpg"/>
     </Window.Background>
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF029DBB" />
+            <Setter Property="Foreground" Value="#FFC6FBFF" />
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="30" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF00778E" />
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#FF1F1616" Direction="-50" Opacity="1" BlurRadius="5" ShadowDepth="4"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="LightGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Key="Escape" Command="{Binding GamePauseCommand}" />
     </Window.InputBindings>
     <Grid>
-        <Grid>
-        <Grid.InputBindings>
-            <MouseBinding Gesture="leftclick" Command="{Binding CountAllLeftMouseClickCommand}"/>
-        </Grid.InputBindings>
-            
-        <Label Content="{Binding CountAllLeftMouseClick}" Foreground="Aqua" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Margin="0 30 50 0"/>
+        <Grid IsEnabled="{Binding IsEnablePlayGrid}">
+            <Grid.InputBindings>
+                <MouseBinding Gesture="leftclick" Command="{Binding CountAllLeftMouseClickCommand}"/>
+            </Grid.InputBindings>
+        <Label Content="{Binding TimerTime}" Foreground="Black" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="0 30 50 0"/>
+        <Label Content="{Binding TimerTime}" Foreground="Black" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="0 30 50 0"/>
         <Label Content="{Binding CountAllLeftMouseClick}" Foreground="Aqua" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Margin="50 30 0 0"/>
         <Grid Grid.Column="1" Grid.Row="1" Width="1300" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Canvas>
-                    <Ellipse Width="100" Height="100" Canvas.Top="{Binding CanvasTopFirstTarget}" Canvas.Left="{Binding CanvasLeftFirstTarget}">
+                <Ellipse Width="100" Height="100" Canvas.Top="{Binding CanvasTopFirstTarget}" Canvas.Left="{Binding CanvasLeftFirstTarget}">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding Target}"/>
                     </Ellipse.Fill>
@@ -54,6 +87,11 @@
                 </Ellipse>
             </Canvas>
             </Grid>
+        </Grid>
+        <Grid Visibility="{Binding AfterGameStats}">
+            <Border Background="White" BorderBrush="#FF029DBB" BorderThickness="10" CornerRadius="30" Width="500" Height="600" Opacity="0.7">
+                <Button HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            </Border>
         </Grid>
     </Grid>
 </Window>

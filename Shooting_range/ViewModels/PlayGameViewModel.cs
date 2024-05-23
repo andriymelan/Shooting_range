@@ -15,6 +15,7 @@ using System.Globalization;
 using System.Threading;
 using System.Reflection;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Shooting_range.ViewModels
 {
@@ -27,17 +28,16 @@ namespace Shooting_range.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-
-
         public PlayGameViewModel()
         {
-            FirstTargetHitCommand = new RelayCommand(TargetHit);
-            SecondTargetHitCommand = new RelayCommand(TargetHit1);
-            ThirdTargetHitCommand = new RelayCommand(TargetHit2);
+            FirstTargetHitCommand = new RelayCommand(FirstTargetHit);
+            SecondTargetHitCommand = new RelayCommand(SecindTargetHit);
+            ThirdTargetHitCommand = new RelayCommand(ThirdTargetHit);
             CountAllLeftMouseClickCommand = new RelayCommand(CountAllLeftMouseClickMethod);
             GamePauseCommand = new RelayCommand(esc);
             StartLocationTarget();
             MusicInitialize();
+            InitializeTimer();
         }
 
 
@@ -47,9 +47,11 @@ namespace Shooting_range.ViewModels
         public RelayCommand CountAllLeftMouseClickCommand {  get; set; }
         public RelayCommand GamePauseCommand {  get; set; }
 
-        public string Crosshair { get; } = SettingsProperty.CrosshairPath;
+        private DispatcherTimer GameTimer = new DispatcherTimer();
 
-        public string Target { get; } = SettingsProperty.TargetPath;
+        public string Crosshair { get; } = SettingsPropertyModel.CrosshairPath;
+
+        public string Target { get; } = SettingsPropertyModel.TargetPath;
 
         private int canvasTopFirstTarget { get; set; } = 0;
         public int CanvasTopFirstTarget
@@ -137,7 +139,18 @@ namespace Shooting_range.ViewModels
             }
         }
 
-        private void TargetHit(object sender)
+        private int timerTime { get; set; } = 10;
+        public int TimerTime
+        {
+            get { return timerTime; }
+            set
+            {
+                timerTime = value;
+                OnPropertyChanged(nameof(timerTime));
+            }
+        }
+
+        private void FirstTargetHit(object sender)
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(0);
@@ -146,7 +159,7 @@ namespace Shooting_range.ViewModels
                 ChangeLocationTarget(0);
         }
 
-        private void TargetHit1(object sender)
+        private void SecindTargetHit(object sender)
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(1);
@@ -154,7 +167,7 @@ namespace Shooting_range.ViewModels
             while ((CanvasTopSecondTarget == CanvasTopFirstTarget && CanvasLeftSecondTarget == CanvasLeftFirstTarget) || (CanvasTopSecondTarget == CanvasTopThirdTarget && CanvasLeftSecondTarget == CanvasLeftThirdTarget))
                 ChangeLocationTarget(1);
         }
-        private void TargetHit2(object sender)
+        private void ThirdTargetHit(object sender)
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(2);
@@ -172,6 +185,14 @@ namespace Shooting_range.ViewModels
             CanvasLeftFirstTarget = (randomStartLocation.Next(1001) % 13) * 100;
             CanvasLeftSecondTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 13) * 100;
             CanvasLeftThirdTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 13) * 100;
+            while ((CanvasTopThirdTarget == CanvasTopSecondTarget && CanvasLeftThirdTarget == CanvasLeftSecondTarget) || 
+                (CanvasTopThirdTarget == CanvasTopFirstTarget && CanvasLeftThirdTarget == CanvasLeftFirstTarget) || 
+                (CanvasTopFirstTarget == CanvasTopSecondTarget && CanvasLeftFirstTarget == CanvasLeftSecondTarget))
+            {
+                ChangeLocationTarget(0);
+                ChangeLocationTarget(1);
+                ChangeLocationTarget(2);
+            }
         }
         private void ChangeLocationTarget(int targetNumber)
         {
@@ -205,6 +226,47 @@ namespace Shooting_range.ViewModels
             CountAllLeftMouseClick++;
         }
 
+        private Visibility afterGameStats { get; set; } = Visibility.Collapsed;
+        public Visibility AfterGameStats
+        {
+            get { return afterGameStats; }
+            set
+            {
+                afterGameStats = value;
+                OnPropertyChanged(nameof(afterGameStats));
+            }
+        }
+
+        private void InitializeTimer()
+        {
+            GameTimer.Interval = TimeSpan.FromSeconds(1);
+            GameTimer.Tick += GameTimerTicker;
+            GameTimer.Start();
+        }
+
+        private void GameTimerTicker(object sender, EventArgs e)
+        {
+            if(TimerTime!=0)
+                TimerTime--;
+            else
+            {
+                GameTimer.Stop();
+                IsEnablePlayGrid = false;
+                AfterGameStats = Visibility.Visible;
+            }
+        }
+
+        private bool isEnablePlayGrid {  get; set; } = true;
+        public bool IsEnablePlayGrid
+        {
+            get { return isEnablePlayGrid; }
+            set
+            {
+                isEnablePlayGrid = value;
+                OnPropertyChanged(nameof(isEnablePlayGrid));
+            }
+        }
+
         #region MusicAndSound
         MediaPlayer TargetHitSound;
         MediaPlayer PlayGameMusic;
@@ -218,7 +280,7 @@ namespace Shooting_range.ViewModels
         {
             TargetHitSound = new MediaPlayer();
             TargetHitSound.Open(new Uri(TargetHitPath));
-            TargetHitSound.Volume = (SettingsProperty.SoundVolume) / 100;
+            TargetHitSound.Volume = (SettingsPropertyModel.SoundVolume) / 100;
             TargetHitSound.Play();
         }
         private void MusicInitialize()
@@ -226,7 +288,7 @@ namespace Shooting_range.ViewModels
             PlayGameMusic = new MediaPlayer();
             PlayGameMusic.MediaEnded += MusicEnd;
             PlayGameMusic.Open(new Uri(PlayGameMusicPath));
-            PlayGameMusic.Volume = (SettingsProperty.MusicVolume) / 100;
+            PlayGameMusic.Volume = (SettingsPropertyModel.MusicVolume) / 100;
             PlayGameMusic.Play();
         }
         private void MusicEnd(object sender, EventArgs e)

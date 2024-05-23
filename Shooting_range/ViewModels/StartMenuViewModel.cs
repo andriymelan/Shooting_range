@@ -678,18 +678,21 @@ namespace Shooting_range.ViewModels
             ButtonClick();
             CloseGameProperties();
             startMenuVisibility.GridShotVisibility = Visibility.Visible;
+            StartMenuVisibility.GameModeVisibility = Visibility.Collapsed;
         }
         private void OpenSpyderShot(object sender)
         {
             ButtonClick();
             CloseGameProperties();
             startMenuVisibility.SpyderShotVisibility = Visibility.Visible;
+            StartMenuVisibility.GameModeVisibility = Visibility.Collapsed;
         }
         private void OpenMotionShot(object sender)
         {
             ButtonClick();
             CloseGameProperties();
             startMenuVisibility.MotionShotVisibility = Visibility.Visible;
+            StartMenuVisibility.GameModeVisibility = Visibility.Collapsed;
         }
         private void OpenMotionShotComplexity(object sender)
         {
@@ -760,7 +763,7 @@ namespace Shooting_range.ViewModels
         #region TargetPathChange
         private void ApplyTargetPathChange(string Path)
         {
-            SettingsProperty.TargetPath = Path;
+            SettingsPropertyModel.TargetPath = Path;
         }
         private void TargetPathChangeAqua(object sender)
         {
@@ -834,7 +837,7 @@ namespace Shooting_range.ViewModels
         #region CrosshairPathChange
         private void ApplyCrosshairPathChange(string Path)
         {
-            SettingsProperty.CrosshairPath = Path;
+            SettingsPropertyModel.CrosshairPath = Path;
         }
         private void CrosshairPathChangeFineAqua(object sender)
         {
@@ -1013,11 +1016,11 @@ namespace Shooting_range.ViewModels
         }
         private void ApplyMusicVolumeChange(int volume)
         {
-            SettingsProperty.MusicVolume = volume;
+            SettingsPropertyModel.MusicVolume = volume;
         }
         private void ApplySoundVolumeChange(int volume)
         {
-            SettingsProperty.SoundVolume = volume;
+            SettingsPropertyModel.SoundVolume = volume;
         }
         #endregion
 
@@ -1034,7 +1037,7 @@ namespace Shooting_range.ViewModels
         {
             ButtonClickSound = new MediaPlayer();
             ButtonClickSound.Open(new Uri(ButtonClickPath));
-            ButtonClickSound.Volume = (SettingsProperty.SoundVolume)/100;
+            ButtonClickSound.Volume = (SettingsPropertyModel.SoundVolume)/100;
             ButtonClickSound.Play();
         }
         private void MusicInitialize()
@@ -1042,7 +1045,7 @@ namespace Shooting_range.ViewModels
             MainMenuMusic = new MediaPlayer();
             MainMenuMusic.MediaEnded += MusicEnd;
             MainMenuMusic.Open(new Uri(MainMenuMusicPath));
-            MainMenuMusic.Volume = (SettingsProperty.MusicVolume) / 100;
+            MainMenuMusic.Volume = (SettingsPropertyModel.MusicVolume) / 100;
             MainMenuMusic.Play();
         }
         private void MusicEnd(object sender, EventArgs e)
@@ -1064,8 +1067,8 @@ namespace Shooting_range.ViewModels
                 ApplyCrosshairPathChange(CrosshairPathChange);
             ApplyMusicVolumeChange(MusicVolume);
             ApplySoundVolumeChange(SoundVolume);
-            MainMenuMusic.Volume = (SettingsProperty.MusicVolume) / 100;
-            ButtonClickSound.Volume = (SettingsProperty.SoundVolume) / 100;
+            MainMenuMusic.Volume = (SettingsPropertyModel.MusicVolume) / 100;
+            ButtonClickSound.Volume = (SettingsPropertyModel.SoundVolume) / 100;
             HideAllBorderTarget();
             HideAllBorderCrosshair();
             IsEnabledApplyButton = false;
@@ -1085,10 +1088,10 @@ namespace Shooting_range.ViewModels
             ApplyCrosshairPathChange(@"\\Fine\\AquaFineCrosshair.cur");
             MusicVolume = 50;
             ApplyMusicVolumeChange(MusicVolume);
-            MainMenuMusic.Volume = (SettingsProperty.MusicVolume) / 100;
+            MainMenuMusic.Volume = (SettingsPropertyModel.MusicVolume) / 100;
             SoundVolume = 50;
             ApplySoundVolumeChange(SoundVolume);
-            ButtonClickSound.Volume = (SettingsProperty.SoundVolume) / 100;
+            ButtonClickSound.Volume = (SettingsPropertyModel.SoundVolume) / 100;
             IsEnabledApplyButton = false;
         }
         #endregion

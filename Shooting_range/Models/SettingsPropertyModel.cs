@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Shooting_range.Models
 {
-    public class SettingsProperty
+    public class SettingsPropertyModel
     {
         static private string targetPath { get; set; } = "../Targets/Aqua-Target.png";
         static public string TargetPath

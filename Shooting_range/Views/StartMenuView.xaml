@@ -70,9 +70,9 @@
             <!--Visibility="{Binding StartMenuVisibility.PlayVisibility}"-->
             <Grid x:Name="GameMode" Visibility="{Binding StartMenuVisibility.GameModeVisibility}">
                 <!--Visibility="{Binding StartMenuVisibility.GameModeVisibility}"-->
-                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayGridShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenGridShotCommand}"/>
-                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlaySpyderShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenSpyderShotCommand}"/>
-                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotCommand}"/>
+                <Button Width="350" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayGridShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenGridShotCommand}"/>
+                <Button Width="350" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlaySpyderShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenSpyderShotCommand}"/>
+                <Button Width="350" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotCommand}"/>
                 <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToMenuCommand}" Margin="40"/>
             </Grid>
             <Grid x:Name="GridShot" Visibility="{Binding StartMenuVisibility.GridShotVisibility}">
