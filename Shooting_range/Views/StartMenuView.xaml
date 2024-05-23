@@ -72,35 +72,35 @@
                 <!--Visibility="{Binding StartMenuVisibility.GameModeVisibility}"-->
                 <Button Width="350" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayGridShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenGridShotCommand}"/>
                 <Button Width="350" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlaySpyderShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenSpyderShotCommand}"/>
-                <Button Width="350" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotCommand}"/>
+                <Button Width="350" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionShotButton}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotComplexityCommand}"/>
                 <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToMenuCommand}" Margin="40"/>
             </Grid>
             <Grid x:Name="GridShot" Visibility="{Binding StartMenuVisibility.GridShotVisibility}">
                 <!--Visibility="{Binding StartMenuVisibility.GridShotVisibility}"-->
-                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenPlayGameWindowCommand}"/>
-                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenPlayGameWindowCommand}"/>
-                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenPlayGameWindowCommand}"/>
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer15Command}"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer30Command}"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer60Command}"/>
                 <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
             </Grid>
             <Grid x:Name="SpyderShot" Visibility="{Binding StartMenuVisibility.SpyderShotVisibility}">
                 <!--Visibility="{Binding StartMenuVisibility.SpyderShotVisibility}"-->
-                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold"/>
-                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold"/>
-                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold"/>
-                <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
-            </Grid>
-            <Grid x:Name="MotionShot" Visibility="{Binding StartMenuVisibility.MotionShotVisibility}">
-                <!--Visibility="{Binding StartMenuVisibility.MotionShotVisibility}"-->
-                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotComplexityCommand}"/>
-                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotComplexityCommand}"/>
-                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotComplexityCommand}"/>
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer15Command}"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer30Command}"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer60Command}"/>
                 <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
             </Grid>
             <Grid x:Name="MotionShotComplexity" Visibility="{Binding StartMenuVisibility.MotionComplexityVisibility}">
                 <!--Visibility="{Binding StartMenuVisibility.MotionComplexityVisibility}"-->
-                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayMotionComplexityEasy}" FontSize="48" FontWeight="Bold"/>
-                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityMedium}" FontSize="48" FontWeight="Bold"/>
-                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityHard}" FontSize="48" FontWeight="Bold"/>
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayMotionComplexityEasy}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotTimerCommand}"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityMedium}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotTimerCommand}"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityHard}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotTimerCommand}"/>
+                <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
+            </Grid>
+            <Grid x:Name="MotionShot" Visibility="{Binding StartMenuVisibility.MotionShotVisibility}">
+                <!--Visibility="{Binding StartMenuVisibility.MotionShotVisibility}"-->
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayTime15Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer15Command}"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayTime30Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer30Command}"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayTime60Sec}" FontSize="48" FontWeight="Bold" Command="{Binding SetGameTimer60Command}"/>
                 <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
             </Grid>
         </Grid>

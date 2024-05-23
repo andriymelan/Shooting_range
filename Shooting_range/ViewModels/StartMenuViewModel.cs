@@ -85,9 +85,13 @@ namespace Shooting_range.ViewModels
 
             OpenGridShotCommand = new RelayCommand(OpenGridShot);
             OpenSpyderShotCommand = new RelayCommand(OpenSpyderShot);
-            OpenMotionShotCommand = new RelayCommand(OpenMotionShot);
-            BackToGameModeCommand = new RelayCommand(BackToGameModeChange);
             OpenMotionShotComplexityCommand = new RelayCommand(OpenMotionShotComplexity);
+            OpenMotionShotTimerCommand = new RelayCommand(OpenMotionShotTimer);
+            BackToGameModeCommand = new RelayCommand(BackToGameModeChange);
+
+            SetGameTimer15Command = new RelayCommand(SetGameTimer15);
+            SetGameTimer30Command = new RelayCommand(SetGameTimer30);
+            SetGameTimer60Command = new RelayCommand(SetGameTimer60);
 
             OpenPlayGameWindowCommand = new RelayCommand(OpenPlayGameWindow);
 
@@ -149,9 +153,13 @@ namespace Shooting_range.ViewModels
 
         public RelayCommand OpenGridShotCommand {  get; set; }
         public RelayCommand OpenSpyderShotCommand {  get; set; }
-        public RelayCommand OpenMotionShotCommand {  get; set; }
+        public RelayCommand OpenMotionShotComplexityCommand { get; set; }
+        public RelayCommand OpenMotionShotTimerCommand {  get; set; }
         public RelayCommand BackToGameModeCommand { get; set; }
-        public RelayCommand OpenMotionShotComplexityCommand {  get; set; }
+
+        public RelayCommand SetGameTimer15Command { get; set; }
+        public RelayCommand SetGameTimer30Command { get; set; }
+        public RelayCommand SetGameTimer60Command { get; set; }
 
         public RelayCommand OpenPlayGameWindowCommand {  get; set; }
 
@@ -677,29 +685,53 @@ namespace Shooting_range.ViewModels
         {
             ButtonClick();
             CloseGameProperties();
-            startMenuVisibility.GridShotVisibility = Visibility.Visible;
+            GameModeSettingsModel.TypeGameMode = "GridShot";
+            StartMenuVisibility.GridShotVisibility = Visibility.Visible;
             StartMenuVisibility.GameModeVisibility = Visibility.Collapsed;
         }
         private void OpenSpyderShot(object sender)
         {
             ButtonClick();
             CloseGameProperties();
-            startMenuVisibility.SpyderShotVisibility = Visibility.Visible;
-            StartMenuVisibility.GameModeVisibility = Visibility.Collapsed;
-        }
-        private void OpenMotionShot(object sender)
-        {
-            ButtonClick();
-            CloseGameProperties();
-            startMenuVisibility.MotionShotVisibility = Visibility.Visible;
+            GameModeSettingsModel.TypeGameMode = "SpyderShot";
+            StartMenuVisibility.SpyderShotVisibility = Visibility.Visible;
             StartMenuVisibility.GameModeVisibility = Visibility.Collapsed;
         }
         private void OpenMotionShotComplexity(object sender)
         {
             ButtonClick();
             CloseGameProperties();
-            startMenuVisibility.MotionComplexityVisibility = Visibility.Visible;
+            GameModeSettingsModel.TypeGameMode = "MotionShot";
+            StartMenuVisibility.MotionComplexityVisibility = Visibility.Visible;
+            StartMenuVisibility.GameModeVisibility = Visibility.Collapsed;
         }
+        private void OpenMotionShotTimer(object sender)
+        {
+            ButtonClick();
+            CloseGameProperties();
+            StartMenuVisibility.MotionShotVisibility = Visibility.Visible;
+            StartMenuVisibility.MotionComplexityVisibility = Visibility.Collapsed;
+        }
+
+
+        private void SetGameTimer15(object sender)
+        {
+            GameModeSettingsModel.GameTimer = 15;
+            OpenPlayGameWindow(sender);
+        }
+
+        private void SetGameTimer30(object sender)
+        {
+            GameModeSettingsModel.GameTimer = 30;
+            OpenPlayGameWindow(sender);
+        }
+
+        private void SetGameTimer60(object sender)
+        {
+            GameModeSettingsModel.GameTimer = 60;
+            OpenPlayGameWindow(sender);
+        }
+
         private void BackToGameModeChange(object sender)
         {
             ButtonClick();
@@ -709,9 +741,9 @@ namespace Shooting_range.ViewModels
         }
         private void CloseGameProperties()
         {
-            startMenuVisibility.GridShotVisibility = Visibility.Collapsed;
-            startMenuVisibility.SpyderShotVisibility = Visibility.Collapsed;
-            startMenuVisibility.MotionShotVisibility = Visibility.Collapsed;
+            StartMenuVisibility.GridShotVisibility = Visibility.Collapsed;
+            StartMenuVisibility.SpyderShotVisibility = Visibility.Collapsed;
+            StartMenuVisibility.MotionShotVisibility = Visibility.Collapsed;
         }
         #endregion
               

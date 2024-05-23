@@ -57,6 +57,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\GameModeSettingsModel.cs" />
+    <Compile Include="Models\HighScoresModel.cs" />
+    <Compile Include="Models\PlayGameModel.cs" />
     <Compile Include="Models\SettingsPropertyModel.cs" />
     <Compile Include="Models\StartMenuModel.cs" />
     <Compile Include="Services\RellayCommand.cs" />
