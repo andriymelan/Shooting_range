@@ -72,5 +72,38 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(isHighscore));
             }
         }
+
+
+        private Visibility firstTargetVisibility {  get; set; } = Visibility.Visible;
+        public Visibility FirstTargetVisibility
+        {
+            get { return firstTargetVisibility; }
+            set
+            {
+                firstTargetVisibility = value;
+                OnPropertyChanged(nameof(firstTargetVisibility));
+            }
+        }
+
+        private Visibility secondTargetVisibility {  get; set; } = Visibility.Visible;
+        public Visibility SecondTargetVisibility { 
+            get { return secondTargetVisibility; }
+            set 
+            {
+                secondTargetVisibility = value;
+                OnPropertyChanged(nameof(secondTargetVisibility));
+            } 
+        }
+
+        private Visibility thirdTargetVisibility { get; set; } = Visibility.Visible;
+        public Visibility ThirdTargetVisibility
+        {
+            get { return thirdTargetVisibility; }
+            set
+            {
+                thirdTargetVisibility = value;
+                OnPropertyChanged(nameof(thirdTargetVisibility));
+            }
+        }
     }
 }

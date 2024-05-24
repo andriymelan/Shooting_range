@@ -18,7 +18,7 @@ using System.Windows.Media;
 
 namespace Shooting_range.ViewModels
 {
-    public class StartMenuViewModel:INotifyPropertyChanged
+    public class StartMenuViewModel : INotifyPropertyChanged
     {
         #region InitializeDefauleConstructorAndINotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,6 +33,7 @@ namespace Shooting_range.ViewModels
         {
             StartMenuVisibility = new StartMenuModel();
             OpenSettingsCommand = new RelayCommand(OpenSettings);
+            OpenRecordsCommand = new RelayCommand(OpenRecords);
             OpenSureExitCommand = new RelayCommand(OpenSureExit);
             BackToMenuCommand = new RelayCommand(BackToMenu);
             CloseAppCommand = new RelayCommand(CloseApp);
@@ -86,8 +87,11 @@ namespace Shooting_range.ViewModels
             OpenGridShotCommand = new RelayCommand(OpenGridShot);
             OpenSpyderShotCommand = new RelayCommand(OpenSpyderShot);
             OpenMotionShotComplexityCommand = new RelayCommand(OpenMotionShotComplexity);
-            OpenMotionShotTimerCommand = new RelayCommand(OpenMotionShotTimer);
             BackToGameModeCommand = new RelayCommand(BackToGameModeChange);
+
+            SetMotionDifficultEasyCommand = new RelayCommand(SetMotionDifficultEasy);
+            SetMotionDifficultMediumCommand = new RelayCommand(SetMotionDifficultMedium);
+            SetMotionDifficultHardCommand = new RelayCommand(SetMotionDifficultHard);
 
             SetGameTimer15Command = new RelayCommand(SetGameTimer15);
             SetGameTimer30Command = new RelayCommand(SetGameTimer30);
@@ -101,32 +105,33 @@ namespace Shooting_range.ViewModels
 
         #region CreateProperty
 
-        public RelayCommand OpenSettingsCommand {  get; set; }
+        public RelayCommand OpenSettingsCommand { get; set; }
+        public RelayCommand OpenRecordsCommand {  get; set; }
         public RelayCommand CloseAppCommand { get; set; }
-        public RelayCommand OpenSureExitCommand {  get; set; }
-        public RelayCommand BackToMenuCommand {  get; set; }
+        public RelayCommand OpenSureExitCommand { get; set; }
+        public RelayCommand BackToMenuCommand { get; set; }
         public RelayCommand OpenPlayCommand { get; set; }
 
         public RelayCommand ChangeEnglishLanguageCommand { get; set; }
         public RelayCommand ChangeUkrainianLanguageCommand { get; set; }
         public RelayCommand ChangeSpanishLanguageCommand { get; set; }
 
-        public RelayCommand OpenSoundSettingsCommand {  get; set; }
-        public RelayCommand OpenCustomizeSettingsCommand {  get; set; }
-        public RelayCommand OpenLanguageSettingsCommand {  get; set; }
+        public RelayCommand OpenSoundSettingsCommand { get; set; }
+        public RelayCommand OpenCustomizeSettingsCommand { get; set; }
+        public RelayCommand OpenLanguageSettingsCommand { get; set; }
 
-        public RelayCommand SetDefaultSettingsCommand {  get; set; }
+        public RelayCommand SetDefaultSettingsCommand { get; set; }
 
-        public RelayCommand ApplySettingsChangeCommand {  get; set; }
+        public RelayCommand ApplySettingsChangeCommand { get; set; }
 
-        public RelayCommand TargetPathChangeAquaCommand {  get; set; }
-        public RelayCommand TargetPathChangeBlackCommand {  get; set; }
-        public RelayCommand TargetPathChangeBlueCommand {  get; set; }
-        public RelayCommand TargetPathChangeGreenCommand {  get; set; }
-        public RelayCommand TargetPathChangeOrangeCommand {  get; set; }
-        public RelayCommand TargetPathChangePurpleCommand {  get; set; }
-        public RelayCommand TargetPathChangeRedCommand {  get; set; }
-        public RelayCommand TargetPathChangeYellowCommand {  get; set; }
+        public RelayCommand TargetPathChangeAquaCommand { get; set; }
+        public RelayCommand TargetPathChangeBlackCommand { get; set; }
+        public RelayCommand TargetPathChangeBlueCommand { get; set; }
+        public RelayCommand TargetPathChangeGreenCommand { get; set; }
+        public RelayCommand TargetPathChangeOrangeCommand { get; set; }
+        public RelayCommand TargetPathChangePurpleCommand { get; set; }
+        public RelayCommand TargetPathChangeRedCommand { get; set; }
+        public RelayCommand TargetPathChangeYellowCommand { get; set; }
 
         public RelayCommand CrosshairPathChangeFineAquaCommand { get; set; }
         public RelayCommand CrosshairPathChangeFineBlackCommand { get; set; }
@@ -146,20 +151,24 @@ namespace Shooting_range.ViewModels
         public RelayCommand CrosshairPathChangeDotRedCommand { get; set; }
         public RelayCommand CrosshairPathChangeDotYellowCommand { get; set; }
 
-        public RelayCommand ChangeMusicVolumeUpCommand {  get; set; }
-        public RelayCommand ChangeMusicVolumeDownCommand {  get; set; }
-        public RelayCommand ChangeSoundVolumeUpCommand {  get; set; }
-        public RelayCommand ChangeSoundVolumeDownCommand {  get; set; }
+        public RelayCommand ChangeMusicVolumeUpCommand { get; set; }
+        public RelayCommand ChangeMusicVolumeDownCommand { get; set; }
+        public RelayCommand ChangeSoundVolumeUpCommand { get; set; }
+        public RelayCommand ChangeSoundVolumeDownCommand { get; set; }
 
-        public RelayCommand OpenGridShotCommand {  get; set; }
-        public RelayCommand OpenSpyderShotCommand {  get; set; }
+        public RelayCommand OpenGridShotCommand { get; set; }
+        public RelayCommand OpenSpyderShotCommand { get; set; }
         public RelayCommand OpenMotionShotComplexityCommand { get; set; }
-        public RelayCommand OpenMotionShotTimerCommand {  get; set; }
+        public RelayCommand OpenMotionShotTimerCommand { get; set; }
         public RelayCommand BackToGameModeCommand { get; set; }
 
         public RelayCommand SetGameTimer15Command { get; set; }
         public RelayCommand SetGameTimer30Command { get; set; }
         public RelayCommand SetGameTimer60Command { get; set; }
+
+        public RelayCommand SetMotionDifficultEasyCommand { get; set; }
+        public RelayCommand SetMotionDifficultMediumCommand { get; set; }
+        public RelayCommand SetMotionDifficultHardCommand {  get; set; }
 
         public RelayCommand OpenPlayGameWindowCommand {  get; set; }
 
@@ -182,6 +191,17 @@ namespace Shooting_range.ViewModels
             {
                 startMenuVisibility = value;
                 OnPropertyChanged(nameof(startMenuVisibility));
+            }
+        }
+
+        HighScoresModel highscores = new HighScoresModel();
+        public HighScoresModel HighScores
+        {
+            get { return highscores; }
+            set
+            {
+                highscores = value;
+                OnPropertyChanged(nameof(highscores));
             }
         }
         private bool isEnabledApplyButton {  get; set; } = false;
@@ -595,6 +615,11 @@ namespace Shooting_range.ViewModels
             OpenSmth("SettingsVisibility");
         }
 
+        private void OpenRecords(object sender)
+        {
+            ButtonClick();
+            OpenSmth("RecordsVisibility");
+        }
 
         private void OpenSureExit(object sender)
         {
@@ -625,6 +650,9 @@ namespace Shooting_range.ViewModels
                 case "SureExitVisibility":
                     StartMenuVisibility.SureExitVisibility = Visibility.Visible;
                     break;
+                case "RecordsVisibility":
+                    StartMenuVisibility.RecordsVisibility = Visibility.Visible;
+                    break;
                 default:
                     break;
             }
@@ -635,6 +663,7 @@ namespace Shooting_range.ViewModels
             StartMenuVisibility.SettingsVisibility = Visibility.Collapsed;
             StartMenuVisibility.SureExitVisibility = Visibility.Collapsed;
             StartMenuVisibility.PlayVisibility = Visibility.Collapsed;
+            StartMenuVisibility.RecordsVisibility = Visibility.Collapsed;
         }
         #endregion
 
@@ -705,9 +734,27 @@ namespace Shooting_range.ViewModels
             StartMenuVisibility.MotionComplexityVisibility = Visibility.Visible;
             StartMenuVisibility.GameModeVisibility = Visibility.Collapsed;
         }
-        private void OpenMotionShotTimer(object sender)
+
+        private void SetMotionDifficultEasy(object sender)
         {
             ButtonClick();
+            GameModeSettingsModel.DifficultOfGameModeMotionGrid = "Easy";
+            OpenMotionShotTimer();
+        }
+        private void SetMotionDifficultMedium(object sender)
+        {
+            ButtonClick();
+            GameModeSettingsModel.DifficultOfGameModeMotionGrid = "Medium";
+            OpenMotionShotTimer();
+        }
+        private void SetMotionDifficultHard(object sender)
+        {
+            ButtonClick();
+            GameModeSettingsModel.DifficultOfGameModeMotionGrid = "Hard";
+            OpenMotionShotTimer();
+        }
+        private void OpenMotionShotTimer()
+        {
             CloseGameProperties();
             StartMenuVisibility.MotionShotVisibility = Visibility.Visible;
             StartMenuVisibility.MotionComplexityVisibility = Visibility.Collapsed;

@@ -58,10 +58,21 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(playVisibility));
             }
         }
+
+        private Visibility recordsVisibility {  get; set; } = Visibility.Collapsed;
+        public Visibility RecordsVisibility
+        {
+            get { return recordsVisibility; }
+            set
+            {
+                recordsVisibility = value;
+                OnPropertyChanged(nameof(recordsVisibility));
+            }
+        }
         #endregion
 
         #region VisibilitySettings
-        private Visibility soundSettings {  get; set; } = Visibility.Collapsed;
+        private Visibility soundSettings {  get; set; } = Visibility.Visible;
         public Visibility SoundSettings
         {
             get { return soundSettings; }

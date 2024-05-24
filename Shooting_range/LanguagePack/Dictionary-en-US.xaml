@@ -3,6 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <System:String x:Key="MainMenuPlayBtn">Play</System:String>
     <System:String x:Key="MainMenuSettingsBtn">Settings</System:String>
+    <System:String x:Key="MainMenuRecordsBtn">Records</System:String>
     <System:String x:Key="MainMenuQuitBtn">Exit</System:String>
     <System:String x:Key="MainMenuSureExitYesBtn">Yes</System:String>
     <System:String x:Key="MainMenuSureExitNoBtn">No</System:String>
@@ -25,4 +26,35 @@
     <System:String x:Key="MainMenuPlayMotionComplexityEasy">Easy</System:String>
     <System:String x:Key="MainMenuPlayMotionComplexityMedium">Meduim</System:String>
     <System:String x:Key="MainMenuPlayMotionComplexityHard">Hard</System:String>
+    <System:String x:Key="Score">Score</System:String>
+    <System:String x:Key="Time">Time</System:String>
+    <System:String x:Key="Highscore">High score</System:String>
+    <System:String x:Key="Resume">Resume</System:String>
+    <System:String x:Key="Restart">Restart</System:String>
+    <System:String x:Key="Stats">Stats</System:String>
+    <System:String x:Key="Menu">Menu</System:String>
+    <System:String x:Key="TotalTargets">Total targets</System:String>
+    <System:String x:Key="TotalShot">Total shots</System:String>
+    <System:String x:Key="AvgReaction">Avg reaction</System:String>
+
+
+    <System:String x:Key="GridShot15SecRecord">Grid shot 15 sec:</System:String>
+    <System:String x:Key="GridShot30SecRecord">Grid shot 30 sec:</System:String>
+    <System:String x:Key="GridShot60SecRecord">Grid shot 60 sec:</System:String>
+    
+    <System:String x:Key="SpyderShot15SecRecord">Spyder shot 15 sec:</System:String>
+    <System:String x:Key="SpyderShot30SecRecord">Spyder shot 30 sec:</System:String>
+    <System:String x:Key="SpyderShot60SecRecord">Spyder shot 60 sec:</System:String>
+    
+    <System:String x:Key="MotionShot15SecEasyRecord">Motion shot easy 15 sec:</System:String>
+    <System:String x:Key="MotionShot30SecEasyRecord">Motion shot easy 30 sec:</System:String>
+    <System:String x:Key="MotionShot60SecEasyRecord">Motion shot easy 60 sec:</System:String>
+
+    <System:String x:Key="MotionShot15SecMediumRecord">Motion shot medium 15 sec:</System:String>
+    <System:String x:Key="MotionShot30SecMediumRecord">Motion shot medium 30 sec:</System:String>
+    <System:String x:Key="MotionShot60SecMediumRecord">Motion shot medium 60 sec:</System:String>
+
+    <System:String x:Key="MotionShot15SecHardRecord">Motion shot hard 15 sec:</System:String>
+    <System:String x:Key="MotionShot30SecHardRecord">Motion shot hard 30 sec:</System:String>
+    <System:String x:Key="MotionShot60SecHardRecord">Motion shot hard 60 sec:</System:String>
 </ResourceDictionary>

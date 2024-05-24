@@ -64,6 +64,7 @@
             </Grid.RowDefinitions>
             <Button Grid.Column="1" Grid.Row="1" FontSize="36" Padding="0 0 95 0" x:Name="Play" Content="{DynamicResource MainMenuPlayBtn}" Command="{Binding OpenPlayCommand}"/>
             <Button Grid.Column="1" Grid.Row="3" FontSize="36" Padding="0 0 30 0" x:Name="SettingButton" Content="{DynamicResource MainMenuSettingsBtn}" Command="{Binding OpenSettingsCommand}"/>
+            <Button Grid.Column="1" Grid.Row="5" FontSize="36" Padding="0 0 30 0" x:Name="RecordsButton" Content="{DynamicResource MainMenuRecordsBtn}" Command="{Binding OpenRecordsCommand}"/>
             <Button Grid.Column="1" Grid.Row="7" Margin="0 0 0 20" FontSize="36" Padding="0 0 30 0" x:Name="ExitButton" Content="{DynamicResource MainMenuQuitBtn}" Command="{Binding OpenSureExitCommand}"/>
         </Grid>
         <Grid x:Name="PlayGrid" Visibility="{Binding StartMenuVisibility.PlayVisibility}">
@@ -91,9 +92,9 @@
             </Grid>
             <Grid x:Name="MotionShotComplexity" Visibility="{Binding StartMenuVisibility.MotionComplexityVisibility}">
                 <!--Visibility="{Binding StartMenuVisibility.MotionComplexityVisibility}"-->
-                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayMotionComplexityEasy}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotTimerCommand}"/>
-                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityMedium}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotTimerCommand}"/>
-                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityHard}" FontSize="48" FontWeight="Bold" Command="{Binding OpenMotionShotTimerCommand}"/>
+                <Button Width="300" Height="200" Margin="0 0 800 0" Content="{DynamicResource MainMenuPlayMotionComplexityEasy}" FontSize="48" FontWeight="Bold" Command="{Binding SetMotionDifficultEasyCommand}"/>
+                <Button Width="300" Height="200" Margin="0 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityMedium}" FontSize="48" FontWeight="Bold" Command="{Binding SetMotionDifficultMediumCommand}"/>
+                <Button Width="300" Height="200" Margin="800 0 0 0" Content="{DynamicResource MainMenuPlayMotionComplexityHard}" FontSize="48" FontWeight="Bold" Command="{Binding SetMotionDifficultHardCommand}"/>
                 <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Width="300" Height="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToGameModeCommand}" Margin="40"/>
             </Grid>
             <Grid x:Name="MotionShot" Visibility="{Binding StartMenuVisibility.MotionShotVisibility}">
@@ -456,6 +457,68 @@ Gesture="leftclick">
                     <Button Height="200" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Español" Command="{Binding ChangeSpanishLanguageCommand}"/>
                 </Border>
             </Grid>
+        </Grid>
+        <Grid x:Name="RecordsGrid" Visibility="{Binding StartMenuVisibility.RecordsVisibility}">
+            <!--{Binding StartMenuVisibility.RecordsVisibility}-->
+            <Label Foreground="#FF029DBB" Content="{DynamicResource GridShot15SecRecord}" FontSize="36" Margin="50 50 0 0"/>
+            <Label Foreground="#FF029DBB" Content="{Binding HighScores.GridShot15SecHighscore}" FontSize="36" Margin="650 50 0 0"/>
+            
+            <Label Foreground="#FF029DBB" Content="{DynamicResource GridShot30SecRecord}" FontSize="36" Margin="50 100 0 0"/>
+            <Label Foreground="#FF029DBB" Content="{Binding HighScores.GridShot30SecHighscore}" FontSize="36" Margin="650 100 0 0"/>
+            
+            <Label Foreground="#FF029DBB" Content="{DynamicResource GridShot60SecRecord}" FontSize="36" Margin="50 150 0 0"/>
+            <Label Foreground="#FF029DBB" Content="{Binding HighScores.GridShot60SecHighscore}" FontSize="36" Margin="650 150 0 0"/>
+            
+            
+            
+            
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource SpyderShot15SecRecord}" FontSize="36" Margin="50 250 0 0"/>
+            <Label Foreground="#FF029DBB" Content="{Binding HighScores.SpyderShot15SecHighscore}" FontSize="36" Margin="650 250 0 0"/>
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource SpyderShot30SecRecord}" FontSize="36" Margin="50 300 0 0"/>
+            <Label Foreground="#FF029DBB" Content="{Binding HighScores.SpyderShot30SecHighscore}" FontSize="36" Margin="650 300 0 0"/>
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource SpyderShot60SecRecord}" FontSize="36" Margin="50 350 0 0"/>
+            <Label Foreground="#FF029DBB" Content="{Binding HighScores.SpyderShot60SecHighscore}" FontSize="36" Margin="650 350 0 0"/>
+
+
+
+            <Grid x:Name="MotionRecordsGrid" Margin="800 0 0 0">
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot15SecEasyRecord}" FontSize="36" Margin="50 50 0 0"/>
+            <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotEasy15SecHighscore}" FontSize="36" Margin="650 50 0 0"/>
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot30SecEasyRecord}" FontSize="36" Margin="50 100 0 0"/>
+                <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotEasy30SecHighscore}" FontSize="36" Margin="650 100 0 0"/>
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot60SecEasyRecord}" FontSize="36" Margin="50 150 0 0"/>
+                <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotEasy60SecHighscore}" FontSize="36" Margin="650 150 0 0"/>
+
+
+
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot15SecMediumRecord}" FontSize="36" Margin="50 250 0 0"/>
+                <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotMedium15SecHighscore}" FontSize="36" Margin="650 250 0 0"/>
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot30SecMediumRecord}" FontSize="36" Margin="50 300 0 0"/>
+                <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotMedium30SecHighscore}" FontSize="36" Margin="650 300 0 0"/>
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot60SecMediumRecord}" FontSize="36" Margin="50 350 0 0"/>
+                <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotMedium60SecHighscore}" FontSize="36" Margin="650 350 0 0"/>
+
+
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot15SecHardRecord}" FontSize="36" Margin="50 450 0 0"/>
+                <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotHard15SecHighscore}" FontSize="36" Margin="650 450 0 0"/>
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot30SecHardRecord}" FontSize="36" Margin="50 500 0 0"/>
+                <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotHard30SecHighscore}" FontSize="36" Margin="650 500 0 0"/>
+
+            <Label Foreground="#FF029DBB" Content="{DynamicResource MotionShot60SecHardRecord}" FontSize="36" Margin="50 550 0 0"/>
+                <Label Foreground="#FF029DBB" Content="{Binding HighScores.MotionShotHard60SecHighscore}" FontSize="36" Margin="650 550 0 0"/>
+            </Grid>
+            <Button Content="{DynamicResource MainMenuSettingsCloseBtn}" Height="100" Width="300" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding BackToMenuCommand}" Margin="30"/>
         </Grid>
         <Grid x:Name="SureExitGrid" Visibility="{Binding StartMenuVisibility.SureExitVisibility}">
             <!--{Binding StartMenuVisibility.SureExitVisibility}-->

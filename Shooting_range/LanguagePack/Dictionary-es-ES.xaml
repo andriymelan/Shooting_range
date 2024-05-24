@@ -3,6 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <System:String x:Key="MainMenuPlayBtn">Jugar</System:String>
     <System:String x:Key="MainMenuSettingsBtn">Ajustes</System:String>
+    <System:String x:Key="MainMenuRecordsBtn">Registros</System:String>
     <System:String x:Key="MainMenuQuitBtn">Salida</System:String>
     <System:String x:Key="MainMenuSureExitYesBtn">Sí</System:String>
     <System:String x:Key="MainMenuSureExitNoBtn">No</System:String>
@@ -25,4 +26,34 @@
     <System:String x:Key="MainMenuPlayMotionComplexityEasy">Luz</System:String>
     <System:String x:Key="MainMenuPlayMotionComplexityMedium">Medio</System:String>
     <System:String x:Key="MainMenuPlayMotionComplexityHard">Dificil</System:String>
+    <System:String x:Key="Score">Puntaje</System:String>
+    <System:String x:Key="Time">Tiempo</System:String>
+    <System:String x:Key="Highscore">Registro</System:String>
+    <System:String x:Key="Resume">Continuar</System:String>
+    <System:String x:Key="Restart">Primero</System:String>
+    <System:String x:Key="Stats">Estadísticas</System:String>
+    <System:String x:Key="Menu">Menú</System:String>
+    <System:String x:Key="TotalTargets">Número visitas</System:String>
+    <System:String x:Key="TotalShot">Numero disparos</System:String>
+    <System:String x:Key="AvgReaction">Respuesta promedio</System:String>
+
+    <System:String x:Key="GridShot15SecRecord">Cuadrícula 15 sugundos:</System:String>
+    <System:String x:Key="GridShot30SecRecord">Cuadrícula 30 sugundos:</System:String>
+    <System:String x:Key="GridShot60SecRecord">Cuadrícula 60 sugundos:</System:String>
+
+    <System:String x:Key="SpyderShot15SecRecord">Espía 15 sugundos:</System:String>
+    <System:String x:Key="SpyderShot30SecRecord">Espía 30 sugundos:</System:String>
+    <System:String x:Key="SpyderShot60SecRecord">Espía 60 sugundos:</System:String>
+
+    <System:String x:Key="MotionShot15SecEasyRecord">Movimiento luz 15 sugundos:</System:String>
+    <System:String x:Key="MotionShot30SecEasyRecord">Movimiento luz 30 sugundos:</System:String>
+    <System:String x:Key="MotionShot60SecEasyRecord">Movimiento luz 60 sugundos:</System:String>
+
+    <System:String x:Key="MotionShot15SecMediumRecord">Movimiento medio 15 sugundos:</System:String>
+    <System:String x:Key="MotionShot30SecMediumRecord">Movimiento medio 30 sugundos:</System:String>
+    <System:String x:Key="MotionShot60SecMediumRecord">Movimiento medio 60 sugundos:</System:String>
+
+    <System:String x:Key="MotionShot15SecHardRecord">Movimiento dificul 15 sugundos:</System:String>
+    <System:String x:Key="MotionShot30SecHardRecord">Movimiento dificul 30 sugundos:</System:String>
+    <System:String x:Key="MotionShot60SecHardRecord">Movimiento dificul 60 sugundos:</System:String>
 </ResourceDictionary>

@@ -31,7 +31,6 @@ namespace Shooting_range.ViewModels
         public PlayGameViewModel()
         {
             SetGameMode();
-            CountMissClickCommand = new RelayCommand(CountMissClick);
             GamePauseCommand = new RelayCommand(GamePause);
             BackToMenuCommand = new RelayCommand(BackToMenu);
             RestartGameCommand = new RelayCommand(RestartGame);
@@ -56,6 +55,7 @@ namespace Shooting_range.ViewModels
         public RelayCommand CloseAdditionalStatsCommand { get; set; }
 
         private DispatcherTimer GameTimer = new DispatcherTimer();
+        private DispatcherTimer GameSpyderTimer = new DispatcherTimer();
 
         public string Crosshair { get; } = SettingsPropertyModel.CrosshairPath;
 
@@ -76,20 +76,18 @@ namespace Shooting_range.ViewModels
             }
         }
 
-        HighScoresModel highscoresModel = new HighScoresModel();
-
-        public HighScoresModel HighscoresModel
+        private int firstTargetSizeForSpyder { get; set; } = 100;
+        public int FirstTargetSizeForSpyder
         {
-            get
-            {
-                return highscoresModel;
-            }
+            get { return firstTargetSizeForSpyder; }
             set
             {
-                highscoresModel = value;
-                OnPropertyChanged(nameof(highscoresModel));
+                firstTargetSizeForSpyder = value;
+                OnPropertyChanged(nameof(firstTargetSizeForSpyder));
             }
         }
+
+
 
         private int canvasTopFirstTarget { get; set; } = 0;
         public int CanvasTopFirstTarget
@@ -179,7 +177,7 @@ namespace Shooting_range.ViewModels
             }
         }
 
-        private int gameScoreProgress { get; set; } = 200;
+        private int gameScoreProgress { get; set; }
         public int GameScoreProgress
         {
             get { return gameScoreProgress; }
@@ -187,6 +185,17 @@ namespace Shooting_range.ViewModels
             {
                 gameScoreProgress = value;
                 OnPropertyChanged(nameof(gameScoreProgress));
+            }
+        }
+
+        private int gameScoreRegress {  get; set; }
+        public int GameScoreRegress 
+        {
+            get { return gameScoreRegress; }
+            set
+            {
+                gameScoreRegress = value;
+                OnPropertyChanged(nameof(gameScoreRegress));
             }
         }
 
@@ -245,6 +254,17 @@ namespace Shooting_range.ViewModels
             }
         }
 
+        private double avgReaction {  get; set; }
+        public double AvgReaction
+        {
+            get { return avgReaction; }
+            set
+            {
+                avgReaction = Math.Round(value,3);
+                OnPropertyChanged(nameof(avgReaction));
+            }
+        }
+
         private int timerTime { get; set; } = GameModeSettingsModel.GameTimer;
         public int TimerTime
         {
@@ -256,40 +276,96 @@ namespace Shooting_range.ViewModels
             }
         }
 
-        public int Highscore {  get; set; }
+        private int gameSpyderTimerProp { get; set; }
+        public int GameSpyderTimerProp
+        {
+            get { return gameSpyderTimerProp; }
+            set
+            {
+                gameSpyderTimerProp = value;
+                OnPropertyChanged(nameof(gameSpyderTimerProp));
+            }
+        }
+
+
+        private int highscore { get; set; }
+        public int Highscore {
+            get 
+            {
+                return highscore;
+            }
+            set 
+            {
+                highscore = value;
+                OnPropertyChanged(nameof(highscore));
+            } 
+        }
         private void SetGameMode()
         {
             switch (GameModeSettingsModel.TypeGameMode)
             {
                 case "GridShot":
-                    FirstTargetHitCommand = new RelayCommand(FirstTargetHit);
-                    SecondTargetHitCommand = new RelayCommand(SecondTargetHit);
-                    ThirdTargetHitCommand = new RelayCommand(ThirdTargetHit);
-                    switch (GameModeSettingsModel.GameTimer)
-                    {
-                        case 15:
-                            Highscore = HighScoresModel.GridShot15SecHighscore;
-                            break;
-                        case 30:
-                            Highscore = HighScoresModel.GridShot30SecHighscore;
-                            break;
-                        case 60:
-                            Highscore = HighScoresModel.GridShot60SecHighscore;
-                            break;
-                        default:
-                            break;
-                    }
+                    CountMissClickCommand = new RelayCommand(CountMissClickGrid);
+                    playGameVisibility.FirstTargetVisibility = Visibility.Visible;
+                    playGameVisibility.SecondTargetVisibility = Visibility.Visible;
+                    playGameVisibility.ThirdTargetVisibility = Visibility.Visible;
+                    FirstTargetSizeForSpyder = 100;
+                    GameScoreProgress = 200;
+                    GameScoreRegress = 25;
+                    FirstTargetHitCommand = new RelayCommand(FirstTargetHitGrid);
+                    SecondTargetHitCommand = new RelayCommand(SecondTargetHitGrid);
+                    ThirdTargetHitCommand = new RelayCommand(ThirdTargetHitGrid);
+                    if(GameModeSettingsModel.GameTimer==15)
+                        Highscore = HighScoresModel.GridShot15SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 30)
+                        Highscore = HighScoresModel.GridShot30SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 60)
+                        Highscore = HighScoresModel.GridShot60SecHighscore;
                     break;
                 case "SpyderShot":
+                    GameScoreProgress = 300;
+                    GameScoreRegress = 40;
+                    FirstTargetHitCommand = new RelayCommand(FirstTargetHitSpyder);
+                    CountMissClickCommand = new RelayCommand(CountMissClickSpyder);
+                    playGameVisibility.SecondTargetVisibility = Visibility.Collapsed;
+                    playGameVisibility.ThirdTargetVisibility = Visibility.Collapsed;
+                    if (GameModeSettingsModel.GameTimer == 15)
+                        Highscore = HighScoresModel.SpyderShot15SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 30)
+                        Highscore = HighScoresModel.SpyderShot30SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 60)
+                        Highscore = HighScoresModel.SpyderShot60SecHighscore;
                     break;
                 case "MotionShot":
+                    playGameVisibility.FirstTargetVisibility = Visibility.Visible;
+                    playGameVisibility.SecondTargetVisibility = Visibility.Visible;
+                    playGameVisibility.ThirdTargetVisibility = Visibility.Visible;
+                    FirstTargetSizeForSpyder = 100;
+                    if (GameModeSettingsModel.GameTimer == 15 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Easy")
+                        Highscore = HighScoresModel.MotionShotEasy15SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 30 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Easy")
+                        Highscore = HighScoresModel.MotionShotEasy30SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 60 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Easy")
+                        Highscore = HighScoresModel.MotionShotEasy60SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 15 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Medium")
+                        Highscore = HighScoresModel.MotionShotMedium15SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 30 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Medium")
+                        Highscore = HighScoresModel.MotionShotMedium30SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 60 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Medium")
+                        Highscore = HighScoresModel.MotionShotMedium60SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 15 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Hard")
+                        Highscore = HighScoresModel.MotionShotHard15SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 30 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Hard")
+                        Highscore = HighScoresModel.MotionShotHard30SecHighscore;
+                    else if (GameModeSettingsModel.GameTimer == 60 && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "hard")
+                        Highscore = HighScoresModel.MotionShotHard60SecHighscore;
                     break;
                 default:
                     break;
             }
         }
 
-        private void FirstTargetHit(object sender)
+        private void FirstTargetHitGrid(object sender)
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(0);
@@ -308,7 +384,7 @@ namespace Shooting_range.ViewModels
                 ChangeLocationTarget(0);
         }
 
-        private void SecondTargetHit(object sender)
+        private void SecondTargetHitGrid(object sender)
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(1);
@@ -326,7 +402,7 @@ namespace Shooting_range.ViewModels
                 || (CanvasTopSecondTarget == CanvasTopThirdTarget && CanvasLeftSecondTarget == CanvasLeftThirdTarget))
                 ChangeLocationTarget(1);
         }
-        private void ThirdTargetHit(object sender)
+        private void ThirdTargetHitGrid(object sender)
         {
             TargetHitSoundInitialize();
             ChangeLocationTarget(2);
@@ -344,6 +420,42 @@ namespace Shooting_range.ViewModels
                 || (CanvasTopThirdTarget == CanvasTopFirstTarget && CanvasLeftThirdTarget == CanvasLeftFirstTarget))
                 ChangeLocationTarget(2);
         }
+
+        private void FirstTargetHitSpyder(object sender)
+        {
+            TargetHitSoundInitialize();
+            Random RandomTargetSize = new Random();
+            FirstTargetSizeForSpyder = (5 + RandomTargetSize.Next(12))*10;
+            GameScore += GameScoreProgress;
+            TotalShots++;
+            CountHitInRow++;
+            CountAllHitTarget++;
+            if (CountHitInRow % 3 == 0)
+            {
+                GameScoreProgress += 30;
+                CountHitInRow = 0;
+            }
+            playGameVisibility.FirstTargetVisibility = Visibility.Collapsed;
+            GameSpyderTimerProp = 500;
+            GameSpyderTimer.Interval = TimeSpan.FromMilliseconds(250);
+            GameSpyderTimer.Tick += GameSpyderTimerTicker;
+            GameSpyderTimer.Start();
+        }
+
+        private void GameSpyderTimerTicker(object sender, EventArgs e)
+        {
+            if (GameSpyderTimerProp != 0)
+                GameSpyderTimerProp -= 500;
+            else
+            {
+                GameSpyderTimer.Tick -= GameSpyderTimerTicker;
+                GameSpyderTimer.Stop();
+                playGameVisibility.FirstTargetVisibility = Visibility.Visible;
+                ChangeLocationTarget(0);
+            }
+        }
+
+
 
         private void StartLocationTarget()
         {
@@ -390,6 +502,7 @@ namespace Shooting_range.ViewModels
             PlayGameVisibility.PlayGamePauseVisibility = Visibility.Visible;
             PlayGameVisibility.IsEnablePlayGrid = false;
             GameTimer.Stop();
+            GameSpyderTimer?.Stop();
         }
 
         private void ResumePlayGame(object sender)
@@ -397,16 +510,24 @@ namespace Shooting_range.ViewModels
             PlayGameVisibility.PlayGamePauseVisibility = Visibility.Collapsed;
             PlayGameVisibility.IsEnablePlayGrid = true;
             GameTimer.Start();
+            GameSpyderTimer?.Start();
         }
 
-        private void CountMissClick(object sender)
+        private void CountMissClickGrid(object sender)
         {
             CountAllMissClick++;
             CountHitInRow = 0;
             TotalShots++;
-            GameScore -= 25 * CountMissInRow;
+            GameScore -= GameScoreRegress * CountMissInRow;
             if (CountMissInRow <= 5)
                 CountMissInRow++;
+        }
+
+        private void CountMissClickSpyder(object sender)
+        {
+            CountAllMissClick++;
+            TotalShots++;
+            GameScore -= GameScoreRegress;
         }
 
         private void InitializeTimer()
@@ -418,18 +539,59 @@ namespace Shooting_range.ViewModels
 
         private void GameTimerTicker(object sender, EventArgs e)
         {
-            if (TimerTime != 0)
+            if (TimerTime != 1)
                 TimerTime--;
             else
             {
+                TimerTime--;
                 GameTimer.Stop();
-                if (Highscore < GameScore)
-                {
-                    PlayGameVisibility.IsHighscore = Visibility.Visible;
+                GameSpyderTimer?.Stop();
+                AfterGameResults();
+            }
+        }
+
+        private void AfterGameResults()
+        {
+            AvgReaction = (double)GameModeSettingsModel.GameTimer / (double)TotalShots;
+            PlayGameVisibility.IsEnablePlayGrid = false;
+            PlayGameVisibility.AfterGameStatsVisibility = Visibility.Visible;
+            if (Highscore < GameScore)
+            {
+                PlayGameVisibility.IsHighscore = Visibility.Visible;
+                if (GameModeSettingsModel.GameTimer == 15 && GameModeSettingsModel.TypeGameMode == "GridShot")
+                    HighScoresModel.GridShot15SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 30 && GameModeSettingsModel.TypeGameMode == "GridShot")
+                    HighScoresModel.GridShot30SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 60 && GameModeSettingsModel.TypeGameMode == "GridShot")
+                    HighScoresModel.GridShot60SecHighscore = GameScore;
+
+                else if (GameModeSettingsModel.GameTimer == 15 && GameModeSettingsModel.TypeGameMode == "SpyderShot")
+                    HighScoresModel.SpyderShot15SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 30 && GameModeSettingsModel.TypeGameMode == "SpyderShot")
+                    HighScoresModel.SpyderShot30SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 60 && GameModeSettingsModel.TypeGameMode == "SpyderShot")
+                    HighScoresModel.SpyderShot60SecHighscore = GameScore;
+
+                else if (GameModeSettingsModel.GameTimer == 15 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Easy")
                     HighScoresModel.MotionShotEasy15SecHighscore = GameScore;
-                }
-                PlayGameVisibility.IsEnablePlayGrid = false;
-                PlayGameVisibility.AfterGameStatsVisibility = Visibility.Visible;
+                else if (GameModeSettingsModel.GameTimer == 30 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Easy")
+                    HighScoresModel.MotionShotEasy30SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 60 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Easy")
+                    HighScoresModel.MotionShotEasy60SecHighscore = GameScore;
+
+                else if (GameModeSettingsModel.GameTimer == 15 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Medium")
+                    HighScoresModel.MotionShotMedium15SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 30 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Medium")
+                    HighScoresModel.MotionShotMedium30SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 60 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Medium")
+                    HighScoresModel.MotionShotMedium60SecHighscore = GameScore;
+
+                else if (GameModeSettingsModel.GameTimer == 15 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Hard")
+                    HighScoresModel.MotionShotHard15SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 30 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Hard")
+                    HighScoresModel.MotionShotHard30SecHighscore = GameScore;
+                else if (GameModeSettingsModel.GameTimer == 60 && GameModeSettingsModel.TypeGameMode == "MotionShot" && GameModeSettingsModel.DifficultOfGameModeMotionGrid == "Hard")
+                    HighScoresModel.MotionShotHard60SecHighscore = GameScore;
             }
         }
 
@@ -466,6 +628,8 @@ namespace Shooting_range.ViewModels
             TotalShots = 0;
             TimerTime = GameModeSettingsModel.GameTimer;
             GameTimer.Tick -= GameTimerTicker;
+            SetGameMode();
+            PlayGameVisibility.IsHighscore = Visibility.Collapsed;
             InitializeTimer();
             StartLocationTarget();
             PlayGameVisibility.IsEnablePlayGrid = true;

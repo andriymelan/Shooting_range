@@ -3,6 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <System:String x:Key="MainMenuPlayBtn">Грати</System:String>
     <System:String x:Key="MainMenuSettingsBtn">Налаштування</System:String>
+    <System:String x:Key="MainMenuRecordsBtn">Рекорди</System:String>
     <System:String x:Key="MainMenuQuitBtn">Вийти</System:String>
     <System:String x:Key="MainMenuSureExitYesBtn">Так</System:String>
     <System:String x:Key="MainMenuSureExitNoBtn">Ні</System:String>
@@ -25,4 +26,34 @@
     <System:String x:Key="MainMenuPlayMotionComplexityEasy">Легко</System:String>
     <System:String x:Key="MainMenuPlayMotionComplexityMedium">Середньо</System:String>
     <System:String x:Key="MainMenuPlayMotionComplexityHard">Складно</System:String>
+    <System:String x:Key="Score">Рахунок</System:String>
+    <System:String x:Key="Time">Час</System:String>
+    <System:String x:Key="Highscore">Рекорд</System:String>
+    <System:String x:Key="Resume">Продовжити</System:String>
+    <System:String x:Key="Restart">Рестарт</System:String>
+    <System:String x:Key="Stats">Статистика</System:String>
+    <System:String x:Key="Menu">Меню</System:String>
+    <System:String x:Key="TotalTargets">К-ть влучань</System:String>
+    <System:String x:Key="TotalShot">К-ть Пострілів</System:String>
+    <System:String x:Key="AvgReaction">Сер. реакція</System:String>
+
+    <System:String x:Key="GridShot15SecRecord">Грід шот 15 сек:</System:String>
+    <System:String x:Key="GridShot30SecRecord">Грід шот 30 сек:</System:String>
+    <System:String x:Key="GridShot60SecRecord">Грід шот 60 сек:</System:String>
+
+    <System:String x:Key="SpyderShot15SecRecord">Спайдер шот 15 сек:</System:String>
+    <System:String x:Key="SpyderShot30SecRecord">Спайдер шот 30 сек:</System:String>
+    <System:String x:Key="SpyderShot60SecRecord">Спайдер шот 60 сек:</System:String>
+
+    <System:String x:Key="MotionShot15SecEasyRecord">Моушн шот легко 15 сек:</System:String>
+    <System:String x:Key="MotionShot30SecEasyRecord">Моушн шот легко 30 сек:</System:String>
+    <System:String x:Key="MotionShot60SecEasyRecord">Моушн шот легко 60 сек:</System:String>
+
+    <System:String x:Key="MotionShot15SecMediumRecord">Моушн шот середньо 15 сек:</System:String>
+    <System:String x:Key="MotionShot30SecMediumRecord">Мошун шот середньо 30 сек:</System:String>
+    <System:String x:Key="MotionShot60SecMediumRecord">Моушн шот середньо 60 сек:</System:String>
+
+    <System:String x:Key="MotionShot15SecHardRecord">Моушн шот складно 15 сек:</System:String>
+    <System:String x:Key="MotionShot30SecHardRecord">Моушн шот складно 30 сек:</System:String>
+    <System:String x:Key="MotionShot60SecHardRecord">Моушн шот складно 60 сек:</System:String>
 </ResourceDictionary>
