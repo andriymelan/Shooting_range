@@ -34,7 +34,9 @@ namespace Shooting_range.Models
             }
 
         }
-        static private double musicVolume { get; set; } = 0;
+
+
+        static private double musicVolume { get; set; } = 30;
         static public double MusicVolume
         {
             get { return musicVolume; }
@@ -43,7 +45,9 @@ namespace Shooting_range.Models
                 musicVolume = value;
             }
         }
-        static private double soundVolume { get; set; } = 5;
+
+
+        static private double soundVolume { get; set; } = 30;
         static public double SoundVolume
         {
             get { return soundVolume; }

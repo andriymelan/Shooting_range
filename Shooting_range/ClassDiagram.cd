@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Shooting_range.Models.GameModeSettingsModel">
+    <Position X="4.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAIAAAgAAAAIAAAAAAAAAQAAAAEAAAAAAAA=</HashCode>
+      <FileName>Models\GameModeSettingsModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shooting_range.Models.HighScoresModel" Collapsed="true">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEABAAAACAAAIAEAAAAAggAgAAQAAAAAAAYAQAAAAA=</HashCode>
+      <FileName>Models\HighScoresModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shooting_range.Models.PlayGameModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAgiQCFAggAAYAAAAAAAggEABAQAAAAABAAACAA=</HashCode>
+      <FileName>Models\PlayGameModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Shooting_range.Models.SettingsPropertyModel" Collapsed="true">
+    <Position X="2.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAQAAAAAAAAAAAAAAAAQAALAAAAChAAAA=</HashCode>
+      <FileName>Models\SettingsPropertyModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shooting_range.Models.StartMenuModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgCIAAIAgAACAAgIAAgIAgIwBAICAAQAAAgwAAIYIA=</HashCode>
+      <FileName>Models\StartMenuModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Shooting_range.ViewModels.PlayGameViewModel" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>HJIpAETOYdJUnETU/XYKdjkMmFFAOQaEIAlg0BiMgME=</HashCode>
+      <FileName>ViewModels\PlayGameViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Shooting_range.ViewModels.StartMenuViewModel" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>nPqI71fIS8eIPpsJ4/3AHo/t9vlkr8VXbTJbFOhgrwQ=</HashCode>
+      <FileName>ViewModels\StartMenuViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Shooting_range.Views.PlayGameView" Collapsed="true">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\PlayGameView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Shooting_range.Views.StartMenu" Collapsed="true">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\StartMenuView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Shooting_range.Models.RelayCommand" Collapsed="true">
+    <Position X="9.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\RellayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

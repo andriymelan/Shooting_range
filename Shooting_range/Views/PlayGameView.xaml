@@ -44,9 +44,15 @@
         </Style>
     </Window.Resources>
     <Window.InputBindings>
-        <KeyBinding Key="Escape" Command="{Binding GamePauseCommand}" />
+        <KeyBinding Key="Escape" Command="{Binding GamePauseCommand}"/>
     </Window.InputBindings>
     <Grid>
+        <Grid.InputBindings>
+            <KeyBinding Key="Escape" Command="{Binding GamePauseCommand}"/>
+        </Grid.InputBindings>
+        <Grid Visibility="{Binding PlayGameVisibility.BeforeGameTimerVisibility}">
+            <Label Content="{Binding BeforeGameTimerTime}" FontSize="400" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF029DBB"/>
+        </Grid>
         <Grid IsEnabled="{Binding PlayGameVisibility.IsEnablePlayGrid}">
             <Grid.InputBindings>
                 <MouseBinding Gesture="leftclick" Command="{Binding CountMissClickCommand}"/>
@@ -120,13 +126,13 @@
             <Border Background="White" BorderBrush="#FF029DBB" BorderThickness="10" CornerRadius="30" Width="500" Height="700" Opacity="0.7">
                 <Grid Width="500" Height="600">
                     <Label Content="{DynamicResource Score}" Height="70" Margin="50 0 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
-                    <Label Content="{Binding GameScore}" Width="120" Height="70" Margin="300 0 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
+                    <Label Content="{Binding GameScore}" Width="130" Height="70" Margin="300 0 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
                     <Label Content="{DynamicResource TotalTargets}" Height="70" Margin="50 80 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
-                    <Label Content="{Binding CountAllHitTarget}" Width="120" Height="70" Margin="300 80 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
+                    <Label Content="{Binding CountAllHitTarget}" Width="130" Height="70" Margin="300 80 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
                     <Label Content="{DynamicResource TotalShot}" Height="70" Margin="50 160 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
-                    <Label Content="{Binding TotalShots}" Width="120" Height="70" Margin="300 160 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
+                    <Label Content="{Binding TotalShots}" Width="130" Height="70" Margin="300 160 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
                     <Label Content="{DynamicResource AvgReaction}" Height="70" Margin="50 240 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
-                    <Label Content="{Binding AvgReaction}" Width="120" Height="70" Margin="300 240 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
+                    <Label Content="{Binding AvgReaction}" Width="130" Height="70" Margin="300 240 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="36"/>
                     <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="200" Height="80" Content="{DynamicResource MainMenuSettingsCloseBtn}" Margin="0 250 0 0" Command="{Binding CloseAdditionalStatsCommand}"/>
                 </Grid>
             </Border>

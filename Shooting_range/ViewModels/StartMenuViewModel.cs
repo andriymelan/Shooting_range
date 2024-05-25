@@ -217,8 +217,8 @@ namespace Shooting_range.ViewModels
         private string ApplyLanguageChange { get; set; }
         private string TargetPathChange { get; set; }
         private string CrosshairPathChange {  get; set; }
-        private int musicVolume { get; set; } = 50;
-        public int MusicVolume
+        private double musicVolume { get; set; } = SettingsPropertyModel.MusicVolume;
+        public double MusicVolume
         {
             get { return musicVolume; }
             set
@@ -227,8 +227,8 @@ namespace Shooting_range.ViewModels
                 OnPropertyChanged(nameof(musicVolume));
             }
         }
-        private int soundVolume { get; set; } = 50;
-        public int SoundVolume
+        private double soundVolume { get; set; } = SettingsPropertyModel.SoundVolume;
+        public double SoundVolume
         {
             get { return soundVolume; }
             set
@@ -1093,11 +1093,11 @@ namespace Shooting_range.ViewModels
                 IsEnabledApplyButton = true;
             }
         }
-        private void ApplyMusicVolumeChange(int volume)
+        private void ApplyMusicVolumeChange(double volume)
         {
             SettingsPropertyModel.MusicVolume = volume;
         }
-        private void ApplySoundVolumeChange(int volume)
+        private void ApplySoundVolumeChange(double volume)
         {
             SettingsPropertyModel.SoundVolume = volume;
         }

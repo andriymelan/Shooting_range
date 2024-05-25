@@ -18,7 +18,7 @@ namespace Shooting_range.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        private bool isEnablePlayGrid { get; set; } = true;
+        private bool isEnablePlayGrid { get; set; } = false;
         public bool IsEnablePlayGrid
         {
             get { return isEnablePlayGrid; }
@@ -28,6 +28,7 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(isEnablePlayGrid));
             }
         }
+
 
         private Visibility afterGameStatsVisibility { get; set; } = Visibility.Collapsed;
         public Visibility AfterGameStatsVisibility
@@ -50,6 +51,18 @@ namespace Shooting_range.Models
                 OnPropertyChanged(nameof(playGamePauseVisibility));
             }
         }
+
+        private Visibility beforeGameTimerVisibility {  get; set; } = Visibility.Visible;
+        public Visibility BeforeGameTimerVisibility
+        {
+            get { return beforeGameTimerVisibility; }
+            set
+            {
+                beforeGameTimerVisibility = value;
+                OnPropertyChanged(nameof(beforeGameTimerVisibility));
+            }
+        }
+
 
         private Visibility afterGameAdditionalStatsVisibility { get; set; } = Visibility.Collapsed;
         public Visibility AfterGameAdditionalStatsVisibility

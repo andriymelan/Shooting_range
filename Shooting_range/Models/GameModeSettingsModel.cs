@@ -13,7 +13,7 @@ namespace Shooting_range.Models
         public static int GameTimer { 
             get 
             {
-                return gameTimer;    
+                return gameTimer;
             }
             set 
             {
