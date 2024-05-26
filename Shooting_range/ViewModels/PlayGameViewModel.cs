@@ -44,6 +44,8 @@ namespace Shooting_range.ViewModels
             InitializeBeforeGameTimer();
         }
 
+        #region InitializeProperties
+
 
         public RelayCommand FirstTargetHitCommand { get; set; }
         public RelayCommand SecondTargetHitCommand { get; set; }
@@ -389,6 +391,10 @@ namespace Shooting_range.ViewModels
                 OnPropertyChanged(nameof(highscore));
             } 
         }
+        #endregion
+
+        #region SetGameMode
+
         private void SetGameMode()
         {
             switch (GameModeSettingsModel.TypeGameMode)
@@ -465,6 +471,9 @@ namespace Shooting_range.ViewModels
                     break;
             }
         }
+        #endregion
+
+        #region TargetHit
 
         private void FirstTargetHitGrid(object sender)
         {
@@ -508,8 +517,35 @@ namespace Shooting_range.ViewModels
             GameSpyderTimer.Start();
         }
 
-        
+        private void TargetHitGridAndMotion()
+        {
+            GameScore += GameScoreProgress;
+            CountHitInRow++;
+            CountMissInRow = 1;
+            CountAllHitTarget++;
+            TotalShots++;
+            if (CountHitInRow % 3 == 0)
+            {
+                GameScoreProgress += 20;
+                CountHitInRow = 0;
+            }
+        }
+        private void CountMissClickGridAndMotion(object sender)
+        {
+            CountAllMissClick++;
+            CountHitInRow = 0;
+            TotalShots++;
+            GameScore -= GameScoreRegress * CountMissInRow;
+            if (CountMissInRow <= 5)
+                CountMissInRow++;
+        }
 
+        private void CountMissClickSpyder(object sender)
+        {
+            CountAllMissClick++;
+            TotalShots++;
+            GameScore -= GameScoreRegress;
+        }
 
         private void FirstTargetHitMotion(object sender)
         {
@@ -532,8 +568,48 @@ namespace Shooting_range.ViewModels
             ChangeSpeedMotion(2);
             TargetHitGridAndMotion();
         }
+        private void StartLocationTarget()
+        {
+            Random randomStartLocation = new Random();
+            CanvasTopFirstTarget = (randomStartLocation.Next(1001) % 6) * 100;
+            CanvasTopSecondTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 6) * 100;
+            CanvasTopThirdTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 6) * 100;
+            CanvasLeftFirstTarget = (randomStartLocation.Next(1001) % 13) * 100;
+            CanvasLeftSecondTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 13) * 100;
+            CanvasLeftThirdTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 13) * 100;
+            while ((CanvasTopThirdTarget == CanvasTopSecondTarget && CanvasLeftThirdTarget == CanvasLeftSecondTarget) ||
+                (CanvasTopThirdTarget == CanvasTopFirstTarget && CanvasLeftThirdTarget == CanvasLeftFirstTarget) ||
+                (CanvasTopFirstTarget == CanvasTopSecondTarget && CanvasLeftFirstTarget == CanvasLeftSecondTarget))
+            {
+                ChangeLocationTarget(0);
+                ChangeLocationTarget(1);
+                ChangeLocationTarget(2);
+            }
+        }
+        private void ChangeLocationTarget(int targetNumber)
+        {
+            Random CanvasRandom = new Random();
+            switch (targetNumber)
+            {
+                case 0:
+                    CanvasTopFirstTarget = ((CanvasRandom.Next(1001) * CanvasRandom.Next(1001)) % 6) * 100;
+                    CanvasLeftFirstTarget = (CanvasRandom.Next(1001) % 13) * 100;
+                    break;
+                case 1:
+                    CanvasTopSecondTarget = ((CanvasRandom.Next(1001) * CanvasRandom.Next(1001) * CanvasRandom.Next(1001)) % 6) * 100;
+                    CanvasLeftSecondTarget = (CanvasRandom.Next(1001) % 13) * 100;
+                    break;
+                case 2:
+                    CanvasTopThirdTarget = (CanvasRandom.Next(1001) % 6) * 100;
+                    CanvasLeftThirdTarget = (CanvasRandom.Next(1001) % 13) * 100;
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
 
-        
+        #region MotionGameMode
         private void ChangeSpeedMotion(int target)
         {
             int ChangeSpeedX = 0, ChangeSpeedY = 0;
@@ -606,137 +682,9 @@ namespace Shooting_range.ViewModels
             }
         }
 
+        #endregion
 
-        private void InitialTargetMove()
-        {
-            TargetMove.Interval = TimeSpan.FromMilliseconds(1);
-            TargetMove.Tick += TargetsMoveTicker;
-            TargetMove.Start();
-        }
-
-        private void TargetsMoveTicker(object sender, EventArgs e)
-        {
-            if (TimerTime == 0)
-                TargetMove.Stop();
-            if (CanvasLeftFirstTarget < 0 || CanvasLeftFirstTarget > 1300)
-                SpeedMotionFirstTargetX = -SpeedMotionFirstTargetX;
-            if(CanvasTopFirstTarget < 0 || CanvasTopFirstTarget>600)
-                SpeedMotionFirstTargetY = -SpeedMotionFirstTargetY;
-
-            if (CanvasLeftSecondTarget < 0 || CanvasLeftSecondTarget > 1300)
-                SpeedMotionSecondTargetX = -SpeedMotionSecondTargetX;
-            if (CanvasTopSecondTarget < 0 || CanvasTopSecondTarget > 600)
-                SpeedMotionSecondTargetY = -SpeedMotionSecondTargetY;
-
-            if (CanvasLeftThirdTarget < 0 || CanvasLeftThirdTarget > 1300)
-                SpeedMotionThirdTargetX = -SpeedMotionThirdTargetX;
-            if (CanvasTopThirdTarget < 0 || CanvasTopThirdTarget > 600)
-                SpeedMotionThirdTargetY = -SpeedMotionThirdTargetY;
-
-            CanvasLeftFirstTarget += SpeedMotionFirstTargetX;
-            CanvasTopFirstTarget += SpeedMotionFirstTargetY;
-            CanvasLeftSecondTarget += SpeedMotionSecondTargetX;
-            CanvasTopSecondTarget += SpeedMotionSecondTargetY;
-            CanvasLeftThirdTarget += SpeedMotionThirdTargetX;
-            CanvasTopThirdTarget += SpeedMotionThirdTargetY;
-        }
-
-        private void TargetHitGridAndMotion()
-        {
-            GameScore += GameScoreProgress;
-            CountHitInRow++;
-            CountMissInRow = 1;
-            CountAllHitTarget++;
-            TotalShots++;
-            if (CountHitInRow % 3 == 0)
-            {
-                GameScoreProgress += 20;
-                CountHitInRow = 0;
-            }
-        }
-        private void StartLocationTarget()
-        {
-            Random randomStartLocation = new Random();
-            CanvasTopFirstTarget = (randomStartLocation.Next(1001) % 6) * 100;
-            CanvasTopSecondTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 6) * 100;
-            CanvasTopThirdTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 6) * 100;
-            CanvasLeftFirstTarget = (randomStartLocation.Next(1001) % 13) * 100;
-            CanvasLeftSecondTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 13) * 100;
-            CanvasLeftThirdTarget = (randomStartLocation.Next(1001) * randomStartLocation.Next(1001) * randomStartLocation.Next(1001) % 13) * 100;
-            while ((CanvasTopThirdTarget == CanvasTopSecondTarget && CanvasLeftThirdTarget == CanvasLeftSecondTarget) ||
-                (CanvasTopThirdTarget == CanvasTopFirstTarget && CanvasLeftThirdTarget == CanvasLeftFirstTarget) ||
-                (CanvasTopFirstTarget == CanvasTopSecondTarget && CanvasLeftFirstTarget == CanvasLeftSecondTarget))
-            {
-                ChangeLocationTarget(0);
-                ChangeLocationTarget(1);
-                ChangeLocationTarget(2);
-            }
-        }
-        private void ChangeLocationTarget(int targetNumber)
-        {
-            Random CanvasRandom = new Random();
-            switch (targetNumber)
-            {
-                case 0:
-                    CanvasTopFirstTarget = ((CanvasRandom.Next(1001)* CanvasRandom.Next(1001)) % 6) * 100;
-                    CanvasLeftFirstTarget = (CanvasRandom.Next(1001) % 13) * 100;
-                    break;
-                case 1:
-                    CanvasTopSecondTarget = ((CanvasRandom.Next(1001)* CanvasRandom.Next(1001) * CanvasRandom.Next(1001)) % 6) * 100;
-                    CanvasLeftSecondTarget = (CanvasRandom.Next(1001) % 13) * 100;
-                    break;
-                case 2:
-                    CanvasTopThirdTarget = (CanvasRandom.Next(1001) % 6) * 100;
-                    CanvasLeftThirdTarget = (CanvasRandom.Next(1001) % 13) * 100;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void GamePause(object sender)
-        {
-            PlayGameVisibility.PlayGamePauseVisibility = Visibility.Visible;
-            PlayGameVisibility.IsEnablePlayGrid = false;
-            SaveSpeedMotionTargetsUntilPause(true);
-            GameTimer.Stop();
-            GameSpyderTimer?.Stop();
-        }
-
-        private void ResumePlayGame(object sender)
-        {
-            PlayGameVisibility.PlayGamePauseVisibility = Visibility.Collapsed;
-            PlayGameVisibility.IsEnablePlayGrid = true;
-            SaveSpeedMotionTargetsUntilPause(false);
-            GameTimer.Start();
-            GameSpyderTimer?.Start();
-        }
-
-        private bool CanExecutePause(object sender)
-        {
-            if (TimerTime == 0 || PlayGameVisibility.PlayGamePauseVisibility==Visibility.Visible || BeforeGameTimerTime!=0)
-                return false;
-            else
-                return true;
-        }
-
-        private void CountMissClickGridAndMotion(object sender)
-        {
-            CountAllMissClick++;
-            CountHitInRow = 0;
-            TotalShots++;
-            GameScore -= GameScoreRegress * CountMissInRow;
-            if (CountMissInRow <= 5)
-                CountMissInRow++;
-        }
-
-        private void CountMissClickSpyder(object sender)
-        {
-            CountAllMissClick++;
-            TotalShots++;
-            GameScore -= GameScoreRegress;
-        }
-
+        #region AllTimers
 
         private void InitializeBeforeGameTimer()
         {
@@ -792,12 +740,74 @@ namespace Shooting_range.ViewModels
                 ChangeLocationTarget(0);
             }
         }
+        private void InitialTargetMove()
+        {
+            TargetMove.Interval = TimeSpan.FromMilliseconds(1);
+            TargetMove.Tick += TargetsMoveTicker;
+            TargetMove.Start();
+        }
+        private void TargetsMoveTicker(object sender, EventArgs e)
+        {
+            if (TimerTime == 0)
+                TargetMove.Stop();
+            if (CanvasLeftFirstTarget < 0 || CanvasLeftFirstTarget > 1300)
+                SpeedMotionFirstTargetX = -SpeedMotionFirstTargetX;
+            if (CanvasTopFirstTarget < 0 || CanvasTopFirstTarget > 600)
+                SpeedMotionFirstTargetY = -SpeedMotionFirstTargetY;
 
+            if (CanvasLeftSecondTarget < 0 || CanvasLeftSecondTarget > 1300)
+                SpeedMotionSecondTargetX = -SpeedMotionSecondTargetX;
+            if (CanvasTopSecondTarget < 0 || CanvasTopSecondTarget > 600)
+                SpeedMotionSecondTargetY = -SpeedMotionSecondTargetY;
+
+            if (CanvasLeftThirdTarget < 0 || CanvasLeftThirdTarget > 1300)
+                SpeedMotionThirdTargetX = -SpeedMotionThirdTargetX;
+            if (CanvasTopThirdTarget < 0 || CanvasTopThirdTarget > 600)
+                SpeedMotionThirdTargetY = -SpeedMotionThirdTargetY;
+
+            CanvasLeftFirstTarget += SpeedMotionFirstTargetX;
+            CanvasTopFirstTarget += SpeedMotionFirstTargetY;
+            CanvasLeftSecondTarget += SpeedMotionSecondTargetX;
+            CanvasTopSecondTarget += SpeedMotionSecondTargetY;
+            CanvasLeftThirdTarget += SpeedMotionThirdTargetX;
+            CanvasTopThirdTarget += SpeedMotionThirdTargetY;
+        }
+        #endregion
+
+        #region PauseButtons
+        private void GamePause(object sender)
+        {
+            PlayGameVisibility.PlayGamePauseVisibility = Visibility.Visible;
+            PlayGameVisibility.IsEnablePlayGrid = false;
+            SaveSpeedMotionTargetsUntilPause(true);
+            GameTimer.Stop();
+            GameSpyderTimer?.Stop();
+        }
+
+        private void ResumePlayGame(object sender)
+        {
+            PlayGameVisibility.PlayGamePauseVisibility = Visibility.Collapsed;
+            PlayGameVisibility.IsEnablePlayGrid = true;
+            SaveSpeedMotionTargetsUntilPause(false);
+            GameTimer.Start();
+            GameSpyderTimer?.Start();
+        }
+
+        private bool CanExecutePause(object sender)
+        {
+            if (TimerTime == 0 || PlayGameVisibility.PlayGamePauseVisibility == Visibility.Visible || BeforeGameTimerTime != 0)
+                return false;
+            else
+                return true;
+        }
+        #endregion
 
         #region AfterGameButtons
         private void AfterGameResults()
         {
-            AvgReaction = (double)GameModeSettingsModel.GameTimer / TotalShots;
+            AvgReaction = (double)GameModeSettingsModel.GameTimer / CountAllHitTarget;
+            if (AvgReaction == double.PositiveInfinity)
+                AvgReaction = 0;
             PlayGameVisibility.IsEnablePlayGrid = false;
             PlayGameVisibility.AfterGameStatsVisibility = Visibility.Visible;
             if (Highscore < GameScore)

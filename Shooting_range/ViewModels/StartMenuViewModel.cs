@@ -1165,10 +1165,10 @@ namespace Shooting_range.ViewModels
             ChangeLanguage("en-US");
             ApplyTargetPathChange("../Targets/Aqua-Target.png");
             ApplyCrosshairPathChange(@"\\Fine\\AquaFineCrosshair.cur");
-            MusicVolume = 50;
+            MusicVolume = 30;
             ApplyMusicVolumeChange(MusicVolume);
             MainMenuMusic.Volume = (SettingsPropertyModel.MusicVolume) / 100;
-            SoundVolume = 50;
+            SoundVolume = 30;
             ApplySoundVolumeChange(SoundVolume);
             ButtonClickSound.Volume = (SettingsPropertyModel.SoundVolume) / 100;
             IsEnabledApplyButton = false;
@@ -1180,9 +1180,9 @@ namespace Shooting_range.ViewModels
         {
             MainMenuMusic.Stop();
             var PlayGameWindow = new PlayGameView();
-            var MainMenuWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x=>x.IsActive);
+            var StartMenuWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x=>x.IsActive);
             PlayGameWindow.Show();
-            MainMenuWindow.Close();
+            StartMenuWindow.Close();
         }
         #endregion
     }
