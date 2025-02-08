@@ -915,109 +915,75 @@ namespace Shooting_range.ViewModels
         }
         private void CrosshairPathChangeFineBlack(object sender)
         {
-            CrosshairPathChange = @"\\Fine\\BlackFineCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeFineCrosshairBlack = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Fine", "Black");
         }
         private void CrosshairPathChangeFineBlue(object sender)
         {
-            CrosshairPathChange = @"\\Fine\\BlueFineCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeFineCrosshairBlue = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Fine", "Blue");
         }
         private void CrosshairPathChangeFineGreen(object sender)
         {
-            CrosshairPathChange = @"\\Fine\\GreenFineCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeFineCrosshairGreen = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Fine", "Green");
         }
         private void CrosshairPathChangeFineOrange(object sender)
         {
-            CrosshairPathChange = @"\\Fine\\OrangeFineCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeFineCrosshairOrange = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Fine", "Orange");
         }
         private void CrosshairPathChangeFinePurple(object sender)
         {
-            CrosshairPathChange = @"\\Fine\\PurpleFineCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeFineCrosshairPurple = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Fine", "Purple");
         }
         private void CrosshairPathChangeFineRed(object sender)
         {
-            CrosshairPathChange = @"\\Fine\\RedFineCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeFineCrosshairRed = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Fine", "Red");
         }
         private void CrosshairPathChangeFineYellow(object sender)
         {
-            CrosshairPathChange = @"\\Fine\\YellowFineCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeFineCrosshairYellow = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Fine", "Yellow");
         }
         private void CrosshairPathChangeDotAqua(object sender)
         {
-            CrosshairPathChange = @"\\Dot\\AquaDotCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeDotCrosshairAqua = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Dot", "Aqua");
         }
         private void CrosshairPathChangeDotBlack(object sender)
         {
-            CrosshairPathChange = @"\\Dot\\BlackDotCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeDotCrosshairBlack = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Dot", "Black");
         }
         private void CrosshairPathChangeDotBlue(object sender)
         {
-            CrosshairPathChange = @"\\Dot\\BlueDotCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeDotCrosshairBlue = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Dot", "Blue");
         }
         private void CrosshairPathChangeDotGreen(object sender)
         {
-            CrosshairPathChange = @"\\Dot\\GreenDotCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeDotCrosshairGreen = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Dot", "Green");
         }
         private void CrosshairPathChangeDotOrange(object sender)
         {
-            CrosshairPathChange = @"\\Dot\\OrangeDotCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeDotCrosshairOrange = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Dot", "Orange");
         }
         private void CrosshairPathChangeDotPurple(object sender)
         {
-            CrosshairPathChange = @"\\Dot\\PurpleDotCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeDotCrosshairPurple = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Dot", "Purple");
         }
         private void CrosshairPathChangeDotRed(object sender)
         {
-            CrosshairPathChange = @"\\Dot\\RedDotCrosshair.cur";
-            HideAllBorderCrosshair();
-            BorderChangeDotCrosshairRed = 2;
-            IsEnabledApplyButton = true;
+            CrosshairColorChange("Dot", "Red");
         }
         private void CrosshairPathChangeDotYellow(object sender)
         {
-            CrosshairPathChange = @"\\Dot\\YellowDotCrosshair.cur";
+            CrosshairColorChange("Dot", "Yellow");
+        }
+
+        private void CrosshairColorChange(string crosshairType, string crosshairColor)
+        {
+            CrosshairPathChange = $@"\\{crosshairType}\\{crosshairColor}{crosshairType}Crosshair.cur";
             HideAllBorderCrosshair();
-            BorderChangeDotCrosshairYellow = 2;
+            string propertyName = $"BorderChange{crosshairType}Crosshair{crosshairColor}";
+            var property = GetType().GetProperty(propertyName);
+            property.SetValue(this, 2);
             IsEnabledApplyButton = true;
         }
+
         private void HideAllBorderCrosshair()
         {
             BorderChangeFineCrosshairAqua = 0;
