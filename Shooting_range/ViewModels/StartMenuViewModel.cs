@@ -846,60 +846,48 @@ namespace Shooting_range.ViewModels
         }
         private void TargetPathChangeAqua(object sender)
         {
-            TargetPathChange = "../Targets/Aqua-Target.png";
-            HideAllBorderTarget();
-            BorderChangeTargetAqua = 2;
-            isEnabledApplyButton = true;
+            TargetChoose("Aqua");
         }
         private void TargetPathChangeBlack(object sender)
         {
-            TargetPathChange = "../Targets/Black-Target.png";
-            HideAllBorderTarget();
-            BorderChangeTargetBlack = 2;
-            IsEnabledApplyButton = true;
+            TargetChoose("Black");
         }
         private void TargetPathChangeBlue (object sender)
         {
-            TargetPathChange = "../Targets/Blue-Target.png";
-            HideAllBorderTarget();
-            BorderChangeTargetBlue = 2;
-            IsEnabledApplyButton = true;
+            TargetChoose("Blue");
         }
         private void TargetPathChangeGreen(object sender)
         {
-            TargetPathChange = "../Targets/Green-Target.png";
-            HideAllBorderTarget();
-            BorderChangeTargetGreen = 2;
-            IsEnabledApplyButton = true;
+            TargetChoose("Green");
         }
         private void TargetPathChangeOrange(object sender)
         {
-            TargetPathChange = "../Targets/Orange-Target.png";
-            HideAllBorderTarget();
-            BorderChangeTargetOrange = 2;
-            IsEnabledApplyButton = true;
+            TargetChoose("Orange");
         }
         private void TargetPathChangePurple(object sender)
         {
-            TargetPathChange = "../Targets/Purple-Target.png";
-            HideAllBorderTarget();
-            BorderChangeTargetPurple = 2;
-            IsEnabledApplyButton = true;
+            TargetChoose("Purple");
         }
         private void TargetPathChangeRed(object sender)
         {
-            TargetPathChange = "../Targets/Red-Target.png";
-            HideAllBorderTarget();
-            BorderChangeTargetRed = 2;
-            IsEnabledApplyButton = true;
+            TargetChoose("Red");
         }
         private void TargetPathChangeYellow(object sender)
         {
-            TargetPathChange = "../Targets/Yellow-Target.png";
+            TargetChoose("Yellow");
+        }
+
+
+        private void TargetChoose(string targetColor)
+        {
+            TargetPathChange = $"../Targets/{targetColor}-Target.png";
             HideAllBorderTarget();
-            BorderChangeTargetYellow = 2;
+            string propertyName = $"BorderChangeTarget{targetColor}";
+            var property = GetType().GetProperty(propertyName);
+            property.SetValue(this, 2);
             IsEnabledApplyButton = true;
         }
+
         private void HideAllBorderTarget()
         {
             BorderChangeTargetAqua = 0;
