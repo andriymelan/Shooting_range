@@ -549,25 +549,25 @@ namespace Shooting_range.ViewModels
 
         private void FirstTargetHitMotion(object sender)
         {
-            TargetHitSoundInitialize();
-            ChangeLocationTarget(0);
-            ChangeSpeedMotion(0);
-            TargetHitGridAndMotion();
+            TargerHitMotion(0);
         }
         private void SecondTargetHitMotion(object sender)
         {
-            TargetHitSoundInitialize();
-            ChangeLocationTarget(1);
-            ChangeSpeedMotion(1);
-            TargetHitGridAndMotion();
+            TargerHitMotion(1);
         }
         private void ThirdTargetHitMotion(object sender)
         {
+            TargerHitMotion(2);
+        }
+
+        private void TargerHitMotion(int targetNumber)
+        {
             TargetHitSoundInitialize();
-            ChangeLocationTarget(2);
-            ChangeSpeedMotion(2);
+            ChangeLocationTarget(targetNumber);
+            ChangeSpeedMotion(targetNumber);
             TargetHitGridAndMotion();
         }
+
         private void StartLocationTarget()
         {
             Random randomStartLocation = new Random();
