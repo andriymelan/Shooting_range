@@ -793,32 +793,34 @@ namespace Shooting_range.ViewModels
             StartMenuVisibility.MotionShotVisibility = Visibility.Collapsed;
         }
         #endregion
-              
+
         #region LanguageChange
+        private void ChangeLanguage(object sender, string languageCode)
+        {
+            ButtonClick();
+            ApplyLanguageChange = languageCode;
+            BorderChangeLanguageHide();
+            IsEnabledApplyButton = true;
+        }
+
         private void ChangeEnglishLanguage(object sender)
         {
-            ButtonClick();
-            ApplyLanguageChange = "en-US";
-            BorderChangeLanguageHide();
+            ChangeLanguage(sender, "en-US" );
             BorderChangeLanguageEnglish = 2;
-            IsEnabledApplyButton = true;
         }
+
         private void ChangeUkrainianLanguage(object sender)
         {
-            ButtonClick();
-            ApplyLanguageChange = "uk-UA";
-            BorderChangeLanguageHide();
+            ChangeLanguage(sender, "uk-UA");
             BorderChangeLanguageUkrainian = 2;
-            IsEnabledApplyButton = true;
         }
+
         private void ChangeSpanishLanguage(object sender)
         {
-            ButtonClick();
-            ApplyLanguageChange = "es-ES";
-            BorderChangeLanguageHide();
+            ChangeLanguage(sender, "es-ES");
             BorderChangeLanguageSpanish = 2;
-            IsEnabledApplyButton = true;
         }
+
         private void ChangeLanguage(string language)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo($"{language}");
